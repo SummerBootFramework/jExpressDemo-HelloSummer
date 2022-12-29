@@ -1,0 +1,28 @@
+openapi: 3.0.1
+paths:
+  /hellosummer/hello/{name}:
+    get:
+      operationId: hello
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            '*/*':
+              schema:
+                type: string
+  /hellosummer/ping:
+    get:
+      operationId: ping
+      responses:
+        default:
+          description: default response
+          content:
+            '*/*':
+              schema:
+                type: string
