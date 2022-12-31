@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>WebSocket Client</title>
+        <title>WebSocket Client v12</title>
     </head>
     <body>
         <script type="text/javascript">
@@ -10,7 +10,7 @@
             //If the browser supports WebSocket
             if (window.WebSocket) {
                 //The parameter is the address to connect to the server
-                socket = new WebSocket("wss://localhost:8311/mywebsocket/demo", "jwt");
+                socket = new WebSocket("wss://192.168.1.11:8311/mywebsocket/demo", "jwt");
 
                 //This callback method is executed when the client receives a message from the server
                 socket.onmessage = function (event) {

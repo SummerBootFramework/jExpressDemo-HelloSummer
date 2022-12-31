@@ -20,7 +20,7 @@
         <maven.jar.version>3.3.0</maven.jar.version>
         
         <!-- dependencies -->
-        <jexpress.version>2.2.2-SNAPSHOT</jexpress.version>
+        <jexpress.version>2.2.2</jexpress.version>
         <swagger.core.version>2.2.7</swagger.core.version>
     </properties>
     
@@ -30,6 +30,12 @@
             <groupId>org.summerboot</groupId>
             <artifactId>jexpress</artifactId>
             <version>${jexpress.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.31</version>
         </dependency>
         
         <!-- backward compatible for io.grpc:protoc-gen-grpc-java only https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
