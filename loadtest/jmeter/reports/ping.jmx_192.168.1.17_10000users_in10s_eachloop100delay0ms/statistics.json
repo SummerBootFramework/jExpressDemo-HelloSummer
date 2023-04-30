@@ -1,0 +1,50 @@
+{
+  "ping_with_delay_post_bodydata" : {
+    "transaction" : "ping_with_delay_post_bodydata",
+    "sampleCount" : 1000000,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 1.0909619999999443,
+    "medianResTime" : 0.0,
+    "minResTime" : 0.0,
+    "maxResTime" : 721.0,
+    "pct1ResTime" : 1.0,
+    "pct2ResTime" : 2.0,
+    "pct3ResTime" : 8.0,
+    "throughput" : 34489.894460922944,
+    "receivedKBytesPerSec" : 2963.975305235566,
+    "sentKBytesPerSec" : 6938.396737255984
+  },
+  "ping_with_delay_get" : {
+    "transaction" : "ping_with_delay_get",
+    "sampleCount" : 1000000,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 1.4644129999999989,
+    "medianResTime" : 0.0,
+    "minResTime" : 0.0,
+    "maxResTime" : 764.0,
+    "pct1ResTime" : 1.0,
+    "pct2ResTime" : 2.0,
+    "pct3ResTime" : 14.0,
+    "throughput" : 34083.16291751875,
+    "receivedKBytesPerSec" : 2862.4531356509883,
+    "sentKBytesPerSec" : 5258.925528289025
+  },
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 2000000,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 1.2776875000000563,
+    "medianResTime" : 0.0,
+    "minResTime" : 0.0,
+    "maxResTime" : 764.0,
+    "pct1ResTime" : 1.0,
+    "pct2ResTime" : 1.0,
+    "pct3ResTime" : 8.0,
+    "throughput" : 68166.3258350375,
+    "receivedKBytesPerSec" : 5791.474948875256,
+    "sentKBytesPerSec" : 12115.499318336742
+  }
+}

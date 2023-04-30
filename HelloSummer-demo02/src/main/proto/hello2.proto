@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+option java_package = "org.jexpress.demo.grpc.proto.generated2";
+option java_outer_classname = "Hello2Proto";
+
+package hello2.rpc;
+
+message Hello2Request {
+    string firstName = 1;
+    string lastName = 2;
+}
+
+message Hello2Response {
+    string greeting = 1;
+}
+
+service Hello2Service {
+    rpc hello2(Hello2Request) returns (Hello2Response);
+}

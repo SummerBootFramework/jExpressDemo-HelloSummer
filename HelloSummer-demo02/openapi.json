@@ -1,0 +1,922 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Hello Summer! Demo02",
+    "description" : "This is demo",
+    "contact" : {
+      "name" : "jExpress.org",
+      "email" : "info@jexpress.org"
+    },
+    "version" : "Demo 02"
+  },
+  "servers" : [ {
+    "url" : "https://localhost:8311",
+    "description" : "Local Development server",
+    "variables" : { }
+  } ],
+  "paths" : {
+    "/hellosummer2/hello/{name}" : {
+      "get" : {
+        "operationId" : "hello",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "text/plain" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hellosummer2/account2/{name}" : {
+      "post" : {
+        "operationId" : "hello_auto_validation_protected_logging_markWithPOI",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RequestDto"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseDto"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hellosummer2/account1/{name}" : {
+      "post" : {
+        "operationId" : "hello_no_validation_unprotected_logging",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RequestDto"
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RequestDto"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseDto"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hellosummer/helloAdmin/admin" : {
+      "get" : {
+        "operationId" : "adminOnly",
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ServiceContext"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Pong"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Pong"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hellosummer/hello/anonymous" : {
+      "get" : {
+        "operationId" : "anonymous",
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ServiceContext"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Pong"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Pong"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hellosummer/status" : {
+      "put" : {
+        "tags" : [ "App Admin" ],
+        "summary" : "Graceful shutdown by changing service status",
+        "description" : "pause service if pause param is true, otherwise resume service",
+        "operationId" : "changeStatus",
+        "parameters" : [ {
+          "name" : "pause",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "success"
+          },
+          "401" : {
+            "description" : "caller is not in Admin role",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "4XX" : {
+            "description" : "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "5XX" : {
+            "description" : "Something happened on the server side. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "BearerAuth" : [ ]
+        } ]
+      }
+    },
+    "/hellosummer/helloAdmin/employee" : {
+      "get" : {
+        "operationId" : "employeeOnly",
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ServiceContext"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Pong"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Pong"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hellosummer/inspection" : {
+      "get" : {
+        "tags" : [ "App Admin" ],
+        "summary" : "Run application self inspection",
+        "description" : "get running application health information",
+        "operationId" : "inspect",
+        "responses" : {
+          "200" : {
+            "description" : "inspection success with current version"
+          },
+          "401" : {
+            "description" : "caller is not in Admin role",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "inspection error result"
+          },
+          "4XX" : {
+            "description" : "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "5XX" : {
+            "description" : "Something happened on the server side. The client can continue and try again with the request without modification.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "BearerAuth" : [ ]
+        } ]
+      }
+    },
+    "/hellosummer/j_security_check" : {
+      "post" : {
+        "tags" : [ "App User Authentication" ],
+        "summary" : "User login",
+        "description" : "User login",
+        "operationId" : "login",
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "required" : [ "j_username" ],
+                "type" : "object",
+                "properties" : {
+                  "j_username" : {
+                    "type" : "string"
+                  },
+                  "j_password" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "success and return JWT token in header X-AuthToken",
+            "headers" : {
+              "X-AuthToken" : {
+                "description" : "Generated JWT",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Caller"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Invalid username or password",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "4XX" : {
+            "description" : "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "5XX" : {
+            "description" : "Something happened on the server side. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hellosummer/helloAdmin/user" : {
+      "get" : {
+        "operationId" : "loginedUserOnly",
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ServiceContext"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Pong"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Pong"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hellosummer/logout" : {
+      "delete" : {
+        "tags" : [ "App User Authentication" ],
+        "summary" : "User logout",
+        "description" : "User logout",
+        "operationId" : "logout",
+        "responses" : {
+          "204" : {
+            "description" : "success"
+          },
+          "4XX" : {
+            "description" : "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "5XX" : {
+            "description" : "Something happened on the server side. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "BearerAuth" : [ ]
+        } ]
+      }
+    },
+    "/hellosummer/ping" : {
+      "get" : {
+        "tags" : [ "Load Balancing" ],
+        "summary" : "ping service status",
+        "description" : "Load Balancer (F5, Nginx, etc) will do the health check via this ping service, if Http Status is not 200(OK), the load Balancer will stop sending new request to this service.<br>Below is an example of F5 config: Basically it's one monitor that does the check to each member in the pool . It will mark each server within the pool member down if it does not receive a 200. <br><i>GET /myservices/myapp/ping HTTP/1.1\\r\\nConnection: Close\\r\\n\\r\\n</i>",
+        "operationId" : "ping",
+        "responses" : {
+          "200" : {
+            "description" : "The service status is healthy"
+          },
+          "5XX" : {
+            "description" : "The service status is unhealthy if response code is not 200",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hellosummer/version" : {
+      "get" : {
+        "tags" : [ "App Admin" ],
+        "summary" : "Check application version",
+        "description" : "get running application version information",
+        "operationId" : "version",
+        "responses" : {
+          "200" : {
+            "description" : "running application version"
+          },
+          "401" : {
+            "description" : "caller is not in Admin role",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "4XX" : {
+            "description" : "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "5XX" : {
+            "description" : "Something happened on the server side. The client can continue and try again with the request without modification.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "BearerAuth" : [ ]
+        } ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "ResponseDto" : {
+        "type" : "object",
+        "properties" : {
+          "clientPrivacy" : {
+            "type" : "string"
+          },
+          "clientNonPrivacy" : {
+            "type" : "string"
+          },
+          "secretList" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "RequestDto" : {
+        "required" : [ "creditCardNumber", "shoppingList" ],
+        "type" : "object",
+        "properties" : {
+          "creditCardNumber" : {
+            "type" : "string"
+          },
+          "shoppingList" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "Caller" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          },
+          "type" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "displayName" : {
+            "type" : "string"
+          },
+          "enabled" : {
+            "type" : "boolean"
+          },
+          "tenantId" : {
+            "type" : "number"
+          },
+          "tenantName" : {
+            "type" : "string"
+          },
+          "groups" : {
+            "uniqueItems" : true,
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "uid" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Err" : {
+        "type" : "object",
+        "properties" : {
+          "errorCode" : {
+            "type" : "string"
+          },
+          "errorTag" : {
+            "type" : "string"
+          },
+          "errorDesc" : {
+            "type" : "string"
+          },
+          "cause" : {
+            "type" : "string"
+          }
+        },
+        "description" : "The optional error list"
+      },
+      "HttpHeaders" : {
+        "type" : "object",
+        "properties" : {
+          "empty" : {
+            "type" : "boolean"
+          },
+          "all" : {
+            "$ref" : "#/components/schemas/HttpHeaders"
+          }
+        }
+      },
+      "HttpMethod" : {
+        "type" : "object"
+      },
+      "HttpResponseStatus" : {
+        "type" : "object"
+      },
+      "Level" : {
+        "type" : "object",
+        "properties" : {
+          "standardLevel" : {
+            "type" : "string",
+            "enum" : [ "OFF", "FATAL", "ERROR", "WARN", "INFO", "DEBUG", "TRACE", "ALL" ]
+          }
+        }
+      },
+      "Memo" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "desc" : {
+            "type" : "string"
+          }
+        }
+      },
+      "POI" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "ts" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      },
+      "ResponseEncoder" : {
+        "type" : "object"
+      },
+      "ServiceContext" : {
+        "type" : "object",
+        "properties" : {
+          "localIP" : {
+            "type" : "object"
+          },
+          "remoteIP" : {
+            "type" : "object"
+          },
+          "requesMethod" : {
+            "$ref" : "#/components/schemas/HttpMethod"
+          },
+          "requesURI" : {
+            "type" : "string"
+          },
+          "requestHeaders" : {
+            "$ref" : "#/components/schemas/HttpHeaders"
+          },
+          "requestBody" : {
+            "type" : "string"
+          },
+          "hit" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "startTs" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "caller" : {
+            "$ref" : "#/components/schemas/Caller"
+          },
+          "callerId" : {
+            "type" : "string"
+          },
+          "status" : {
+            "$ref" : "#/components/schemas/HttpResponseStatus"
+          },
+          "autoConvertBlank200To204" : {
+            "type" : "boolean"
+          },
+          "responseHeaders" : {
+            "$ref" : "#/components/schemas/HttpHeaders"
+          },
+          "responseEncoder" : {
+            "$ref" : "#/components/schemas/ResponseEncoder"
+          },
+          "contentType" : {
+            "type" : "string"
+          },
+          "clientAcceptContentType" : {
+            "type" : "string"
+          },
+          "charsetName" : {
+            "type" : "string"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "format" : "byte"
+            }
+          },
+          "txt" : {
+            "type" : "string"
+          },
+          "file" : {
+            "type" : "string",
+            "format" : "binary"
+          },
+          "downloadMode" : {
+            "type" : "boolean"
+          },
+          "redirect" : {
+            "type" : "string"
+          },
+          "poi" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/POI"
+            }
+          },
+          "memo" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Memo"
+            }
+          },
+          "attributes" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "object"
+            }
+          },
+          "serviceError" : {
+            "$ref" : "#/components/schemas/ServiceError"
+          },
+          "cause" : {
+            "type" : "object",
+            "properties" : {
+              "stackTrace" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "classLoaderName" : {
+                      "type" : "string"
+                    },
+                    "moduleName" : {
+                      "type" : "string"
+                    },
+                    "moduleVersion" : {
+                      "type" : "string"
+                    },
+                    "methodName" : {
+                      "type" : "string"
+                    },
+                    "fileName" : {
+                      "type" : "string"
+                    },
+                    "lineNumber" : {
+                      "type" : "integer",
+                      "format" : "int32"
+                    },
+                    "nativeMethod" : {
+                      "type" : "boolean"
+                    },
+                    "className" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              },
+              "message" : {
+                "type" : "string"
+              },
+              "suppressed" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "stackTrace" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "classLoaderName" : {
+                            "type" : "string"
+                          },
+                          "moduleName" : {
+                            "type" : "string"
+                          },
+                          "moduleVersion" : {
+                            "type" : "string"
+                          },
+                          "methodName" : {
+                            "type" : "string"
+                          },
+                          "fileName" : {
+                            "type" : "string"
+                          },
+                          "lineNumber" : {
+                            "type" : "integer",
+                            "format" : "int32"
+                          },
+                          "nativeMethod" : {
+                            "type" : "boolean"
+                          },
+                          "className" : {
+                            "type" : "string"
+                          }
+                        }
+                      }
+                    },
+                    "message" : {
+                      "type" : "string"
+                    },
+                    "localizedMessage" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              },
+              "localizedMessage" : {
+                "type" : "string"
+              }
+            }
+          },
+          "level" : {
+            "$ref" : "#/components/schemas/Level"
+          },
+          "logRequestHeader" : {
+            "type" : "boolean"
+          },
+          "logResponseHeader" : {
+            "type" : "boolean"
+          },
+          "logRequestBody" : {
+            "type" : "boolean"
+          },
+          "logResponseBody" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "ServiceError" : {
+        "required" : [ "ref" ],
+        "type" : "object",
+        "properties" : {
+          "ref" : {
+            "type" : "integer",
+            "description" : "The index of requests received by current server since start",
+            "format" : "int64"
+          },
+          "errors" : {
+            "type" : "array",
+            "description" : "The optional error list",
+            "items" : {
+              "$ref" : "#/components/schemas/Err"
+            }
+          }
+        }
+      },
+      "Pong" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "value" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "receivedTime" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "BearerAuth" : {
+        "type" : "http",
+        "scheme" : "bearer",
+        "bearerFormat" : "Authorization: Bearer <token>"
+      }
+    }
+  }
+}

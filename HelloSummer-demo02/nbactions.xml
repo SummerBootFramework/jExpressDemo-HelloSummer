@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.0.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.vmArgs>-Dopenssl -Dio.netty.leakDetectionLevel=advanced -Dfile.encoding=UTF-8 -server -Xms1G -Xmx1G -XX:+UseG1GC -Djava.awt.headless=true -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector -Dio.netty.noUnsafe=true -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0 -XX:+AlwaysPreTouch -Djna.nosys=true</exec.vmArgs>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+                <exec.appArgs>-domain dev -use RoleBased WebBased</exec.appArgs>
+                <exec.mainClass>org.jexpress.demo.app.Main</exec.mainClass>
+                <exec.executable>java</exec.executable>
+                <exec.workingdir>run</exec.workingdir>
+            </properties>
+        </action>
+        <action>
+            <actionName>debug</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.0.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.vmArgs>-Dopenssl -Dio.netty.leakDetectionLevel=advanced -Dfile.encoding=UTF-8 -server -Xms1G -Xmx1G -XX:+UseG1GC -Djava.awt.headless=true -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector -Dio.netty.noUnsafe=true -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0 -XX:+AlwaysPreTouch -Djna.nosys=true -agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</exec.vmArgs>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+                <exec.appArgs>-domain dev -use RoleBased WebBased</exec.appArgs>
+                <exec.mainClass>org.jexpress.demo.app.Main</exec.mainClass>
+                <exec.executable>java</exec.executable>
+                <jpda.listen>true</jpda.listen>
+                <exec.workingdir>run</exec.workingdir>
+            </properties>
+        </action>
+        <action>
+            <actionName>profile</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.0.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.vmArgs>-Dopenssl -Dio.netty.leakDetectionLevel=advanced -Dfile.encoding=UTF-8 -server -Xms1G -Xmx1G -XX:+UseG1GC -Djava.awt.headless=true -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector -Dio.netty.noUnsafe=true -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0 -XX:+AlwaysPreTouch -Djna.nosys=true</exec.vmArgs>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+                <exec.mainClass>org.jexpress.demo.app.Main</exec.mainClass>
+                <exec.executable>java</exec.executable>
+                <exec.workingdir>run</exec.workingdir>
+                <exec.appArgs>-domain dev -use RoleBased WebBased</exec.appArgs>
+            </properties>
+        </action>
+    </actions>
