@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.jexpress.demo.db.domain.FileLocation;
 import org.jexpress.demo.db.domain.Tenant;
+import org.summerboot.jexpress.boot.config.ConfigUtil;
 
 public class DBTest {
 
@@ -23,6 +24,7 @@ public class DBTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
+        ConfigUtil.updatePasswords(CfgFile_DB, null, true);
         DBConfig.cfg.load(CfgFile_DB, "org.jexpress");
     }
 
