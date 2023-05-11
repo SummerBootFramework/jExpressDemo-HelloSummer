@@ -18,7 +18,7 @@ public class MainRunner implements SummerInitializer, SummerRunner {
 
     @Override
     public void initCLI(Options options) {
-        Throwable ex = new RuntimeException("test");
+        Throwable ex = null;//new RuntimeException("test");
         jul.log(java.util.logging.Level.INFO, "JUL log string={0} int={1}", new Object[]{"abc", 123});
         log.info("Log4J2 log stirng={} int={}", "abc", 123, ex);
     }

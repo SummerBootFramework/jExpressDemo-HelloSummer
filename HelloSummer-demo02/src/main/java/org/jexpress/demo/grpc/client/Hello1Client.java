@@ -1,6 +1,7 @@
 package org.jexpress.demo.grpc.client;
 
 import io.grpc.ManagedChannel;
+import io.grpc.NameResolverProvider;
 import java.io.IOException;
 import java.net.URI;
 import javax.annotation.Nullable;
@@ -13,9 +14,9 @@ import org.summerboot.jexpress.nio.grpc.GRPCClient;
 
 public class Hello1Client extends GRPCClient<Hello1Client> {
 
-    public Hello1Client(URI uri, @Nullable KeyManagerFactory keyManagerFactory, @Nullable TrustManagerFactory trustManagerFactory,
+    public Hello1Client(NameResolverProvider nameResolverProvider, URI uri, @Nullable KeyManagerFactory keyManagerFactory, @Nullable TrustManagerFactory trustManagerFactory,
             @Nullable String overrideAuthority, @Nullable Iterable<String> ciphers, @Nullable String... tlsVersionProtocols) throws IOException {
-        super(uri, keyManagerFactory, trustManagerFactory, overrideAuthority, ciphers, tlsVersionProtocols);
+        super(nameResolverProvider, uri, keyManagerFactory, trustManagerFactory, overrideAuthority, ciphers, tlsVersionProtocols);
     }
 
     private Hello1ServiceGrpc.Hello1ServiceBlockingStub blockingStub;
