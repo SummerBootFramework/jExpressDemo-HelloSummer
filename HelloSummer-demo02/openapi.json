@@ -583,6 +583,9 @@
           "enabled" : {
             "type" : "boolean"
           },
+          "tenantId" : {
+            "type" : "number"
+          },
           "groups" : {
             "uniqueItems" : true,
             "type" : "array",
@@ -590,14 +593,11 @@
               "type" : "string"
             }
           },
-          "tenantName" : {
-            "type" : "string"
-          },
           "uid" : {
             "type" : "string"
           },
-          "tenantId" : {
-            "type" : "number"
+          "tenantName" : {
+            "type" : "string"
           }
         }
       },

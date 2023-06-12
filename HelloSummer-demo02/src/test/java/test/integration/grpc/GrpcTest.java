@@ -1,11 +1,10 @@
-package test.grpc;
+package test.integration.grpc;
 
+import com.google.inject.Injector;
 import com.google.inject.Module;
 import io.grpc.NameResolverProvider;
-import io.grpc.NameResolverRegistry;
 import java.io.File;
 import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.net.ssl.KeyManagerFactory;
@@ -15,7 +14,6 @@ import org.jexpress.demo.grpc.client.HelloClientConfig;
 import org.jexpress.demo.grpc.client.Hello1Client;
 import org.jexpress.demo.grpc.client.Hello2Client;
 import org.summerboot.jexpress.boot.SummerApplication;
-import org.summerboot.jexpress.nio.grpc.BootLoadBalancerProvider;
 import static org.testng.Assert.assertEquals;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -28,13 +26,13 @@ public class GrpcTest {
     public GrpcTest() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    private static SummerApplication app;
+    private static Injector injector;
+
     @BeforeClass
     public static void setUpClass() throws Exception {
+        //app = SummerApplication.unittest(Main.class, null, "-cfgdir run/standalone_dev/configuration");
+        //injector = app.getGuiceInjector();
     }
 
     @AfterClass
@@ -49,13 +47,12 @@ public class GrpcTest {
     public void tearDownMethod() throws Exception {
     }
 
-    //@Test
-    public void testClientSideLoadBalancer() throws IOException {
-        /*
+    /*
         \run>java -jar hellosummer-2.0.jar -cfgdir standalone_qa/configuration_ssl_trustall_8881
         \run>java -jar hellosummer-2.0.jar -cfgdir standalone_qa/configuration_ssl_trustall_8882 -use hawaii_1 hawaii_2
-        
-        */
+     */
+    //@Test
+    public void testClientSideLoadBalancer() throws IOException {
         String firstName = "John";
         String lastName = "Doe";
         String impleKey2Verify1 = "Hello";
@@ -65,9 +62,8 @@ public class GrpcTest {
 //                new InetSocketAddress("127.0.0.1", 8881)
 //        );
 //        NameResolverRegistry.getDefaultRegistry().register(nameResolverProvider);
-
         HelloClientConfig clientcfg = HelloClientConfig.cfg;
-        clientcfg.load(new File("run/standalone_qa/configuration_ssl_trustall_8881/cfg_grpcclient.properties"), true);
+        clientcfg.load(new File("run/standalone_qa/configuration_ssl_trustall_8882/cfg_grpcclient.properties"), true);
         NameResolverProvider nameResolverProvider = clientcfg.getNameResolverProvider();
         URI uri = clientcfg.getUri();
         KeyManagerFactory keyManagerFactory = clientcfg.getKmf();
@@ -75,6 +71,11 @@ public class GrpcTest {
         String overrideAuthority = clientcfg.getOverrideAuthority();
         Iterable<String> ciphers = clientcfg.getCiphers();
         String[] tlsVersionProtocols = clientcfg.getSslProtocols();
+        System.out.println("\n\t client: " + clientcfg);
+        System.out.println("\n\t client.nameResolverProvider: " + nameResolverProvider);
+        System.out.println("\n\t client.uri: " + uri);
+        System.out.println("\n\t client.servers: " + clientcfg.getLoadBalancingServers());
+        System.out.println("\n\n");
         Hello1Client c1 = new Hello1Client(nameResolverProvider, uri, keyManagerFactory, trustManagerFactory, overrideAuthority, ciphers, tlsVersionProtocols);
         try {
             do {
@@ -108,20 +109,25 @@ public class GrpcTest {
 
     @Test
     public void testConnect() throws URISyntaxException, IOException {
-        Module userOverrideModule = null;
-
-        gRPCTest(userOverrideModule, "-cfgdir run/standalone_qa/configuration_nossl", "Hello", "Hello");
-        gRPCTest(userOverrideModule, "-cfgdir run/standalone_qa/configuration_nossl -use hawaii_1 hawaii_2", "Aloha", "Aloha");
-        gRPCTest(userOverrideModule, "-cfgdir run/standalone_qa/configuration_ssl_trustall_8881", "Hello", "Hello");
-        gRPCTest(userOverrideModule, "-cfgdir run/standalone_qa/configuration_ssl_trustall_8881 -use hawaii_2", "Hello", "Aloha");
-        gRPCTest(userOverrideModule, "-cfgdir run/standalone_qa/configuration_ssl_trustall_8881 -use hawaii_1", "Aloha", "Hello");
+        gRPCTest("-cfgdir run/standalone_qa/configuration_nossl", "Hello", "Hello");
+        gRPCTest("-cfgdir run/standalone_qa/configuration_nossl -use hawaii_1 hawaii_2", "Aloha", "Aloha");
+        gRPCTest("-cfgdir run/standalone_qa/configuration_ssl_trustall_8881", "Hello", "Hello");
+        gRPCTest("-cfgdir run/standalone_qa/configuration_ssl_trustall_8881 -use hawaii_2", "Hello", "Aloha");
+        gRPCTest("-cfgdir run/standalone_qa/configuration_ssl_trustall_8881 -use hawaii_1", "Aloha", "Hello");
     }
 
-    private void gRPCTest(Module userOverrideModule, String args, String impleKey2Verify1, String impleKey2Verify2) throws IOException {
-        SummerApplication app = SummerApplication.run(Main.class, userOverrideModule, args);
+    private void gRPCTest(String serverArgs, String impleKey2Verify1, String impleKey2Verify2) throws IOException {
+        Module userOverrideModule = null;
+        app = SummerApplication.run(Main.class, userOverrideModule, serverArgs);
+        System.out.println("\n\t server started: " + serverArgs);
         HelloClientConfig clientcfg = HelloClientConfig.cfg;
         NameResolverProvider nameResolverProvider = clientcfg.getNameResolverProvider();
         URI uri = clientcfg.getUri();
+        System.out.println("\n\t client: " + clientcfg);
+        System.out.println("\n\t client.nameResolverProvider: " + nameResolverProvider);
+        System.out.println("\n\t client.uri: " + uri);
+        System.out.println("\n\t client.servers: " + clientcfg.getLoadBalancingServers());
+        System.out.println("\n\n");
         KeyManagerFactory keyManagerFactory = clientcfg.getKmf();
         TrustManagerFactory trustManagerFactory = clientcfg.getTmf();
         String overrideAuthority = clientcfg.getOverrideAuthority();
@@ -143,7 +149,7 @@ public class GrpcTest {
         } finally {
             c1.disconnect();
             c2.disconnect();
-            app.stop();
+            app.shutdown();
         }
     }
 }

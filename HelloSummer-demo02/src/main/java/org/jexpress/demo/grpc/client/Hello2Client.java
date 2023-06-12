@@ -10,6 +10,7 @@ import javax.net.ssl.TrustManagerFactory;
 import org.jexpress.demo.grpc.proto.generated2.Hello2Request;
 import org.jexpress.demo.grpc.proto.generated2.Hello2Response;
 import org.jexpress.demo.grpc.proto.generated2.Hello2ServiceGrpc;
+import org.summerboot.jexpress.nio.grpc.BearerAuthCredential;
 import org.summerboot.jexpress.nio.grpc.GRPCClient;
 
 public class Hello2Client extends GRPCClient<Hello2Client> {
@@ -23,7 +24,9 @@ public class Hello2Client extends GRPCClient<Hello2Client> {
 
     @Override
     protected void onConnected(ManagedChannel channel) {
-        this.blockingStub = Hello2ServiceGrpc.newBlockingStub(channel);
+        String jwt = "jwt2";
+        BearerAuthCredential bearerAuthCredential = new BearerAuthCredential(jwt);
+        this.blockingStub = Hello2ServiceGrpc.newBlockingStub(channel).withCallCredentials(bearerAuthCredential);
     }
 
     public String hello(String firstName, String lastName) {

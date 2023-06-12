@@ -20,12 +20,12 @@ public class DBTest {
     public DBTest() {
     }
 
-    private static final File CfgFile_DB = new File("src/test/resources/config/cfg_db.properties");
+    private static final File FILE_CFG__DB = new File("src/test/resources/config/cfg_db.properties");
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        ConfigUtil.updatePasswords(CfgFile_DB, null, true);
-        DBConfig.cfg.load(CfgFile_DB, "org.jexpress");
+        ConfigUtil.updatePasswords(FILE_CFG__DB, null, true);
+        DBConfig.cfg.load(FILE_CFG__DB, "org.jexpress");
     }
 
     @AfterClass

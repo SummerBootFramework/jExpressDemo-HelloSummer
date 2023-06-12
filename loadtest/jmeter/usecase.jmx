@@ -49,7 +49,7 @@
             </elementProp>
             <elementProp name="jwt" elementType="Argument">
               <stringProp name="Argument.name">jwt</stringProp>
-              <stringProp name="Argument.value">eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIxLjQ1Nl90emhhbmdfMTY4MjE4Njk5OTIxOCIsInN1YiI6InR6aGFuZyIsImF1ZCI6IkFkbWluR3JvdXAsRW1wbG95ZWVHcm91cCIsImNhbGxlcklkIjo0NTYsInRlbmFudElkIjoxLCJ0ZW5hbnROYW1lIjoiakV4cHJlc3MgT3JnIiwiZXhwIjoxNjgyMjczMzk5LCJpYXQiOjE2ODIxODY5OTl9.J6XFPZ5tUob-5qqS2pSs86OG0tv8QOKGM7erPesHFl0cNDMPcitzyojoUNUV9zWqrqrwBsJJlM7PttjXypbLUAonTltL0JCu3dsV5B4nR0h3CXOiPtAX658zv1zIOrIwglooOOfpPa7kS2KDnhXAgsevro0FJb1oCxRDOhRgyVJmH3CS-GU-AU-xAQqre0EZbFCwI7q8s6SEzVWcidAIKI8iFOueIcT2Vj3dl_xmuPjJwuSNRgygbMMHI-xmhU57uwMpd9Zv7Q2s4xg-N-CZXzUeQK1Dgrf1PKGF7Tgq19_isDqgAut8YE1itn12aREUbFkkfAaCYH9LAwxS4YqqzA</stringProp>
+              <stringProp name="Argument.value">eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIxLjQ1Nl90emhhbmdfMTY4NDU4OTk2Mjk2NSIsInN1YiI6InR6aGFuZyIsImF1ZCI6IkFkbWluR3JvdXAsRW1wbG95ZWVHcm91cCIsImNhbGxlcklkIjo0NTYsInRlbmFudElkIjoxLCJ0ZW5hbnROYW1lIjoiakV4cHJlc3MgT3JnIiwiZXhwIjoxNjg0Njc2MzYyLCJpYXQiOjE2ODQ1ODk5NjJ9.pJIVe1fZ1Zkb5Q5Np-UQtgKg-ymjmC2BLm0C7nrO4YzThJBZ79mLvmYK1oiT4qMufZT-OfOrxBM5sVyHv8tJyMcZXe3zNezDg3f1P3Lm1P0ecomecvPUwudbyCtQV-P4jzwvPKZk3Dv1ZA01DKtF7Sy3QOLuYMfWGPZmd0Zy0D4t_7uDKttooUZlcFkhBK5Nlhc0E6RuDC-PRgkwygc6DA6rmJwo2J--czu8PbFtrZ7nDbAjMY2rJVhKeQq2wgve6oirqerZs2WMMxMCWz-WEOUv-jwXiD4gGWnhYiBpHywq1n9TLagiI_SHNATqOuv33QttVjvOd17mui0PoPA0vA</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="context-root2" elementType="Argument">
@@ -574,7 +574,7 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="hello_no_validation_unprotected_logging" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="hello_no_validation_unprotected_logging" enabled="false">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
