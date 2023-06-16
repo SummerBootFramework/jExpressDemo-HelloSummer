@@ -31,6 +31,9 @@ public class PluginConfig extends BootConfig {
     @Config(key = "plugin.licenseKey", validate = Config.Validate.Encrypted, required = false)
     protected volatile String licenseKey;
 
+    @Config(key = "plugin.name")
+    protected volatile String name;
+
     @Override
     protected void loadCustomizedConfigs(File cfgFile, boolean isNotMock, ConfigUtil helper, Properties props) throws Exception {
     }

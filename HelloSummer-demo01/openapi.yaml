@@ -1,6 +1,6 @@
 openapi: 3.0.1
 paths:
-  /hellosummer/hello/{name}:
+  /hellosummer1/hello/{name}:
     get:
       operationId: hello
       parameters:
@@ -16,7 +16,7 @@ paths:
             '*/*':
               schema:
                 type: string
-  /hellosummer/hello/post:
+  /hellosummer1/hello/post:
     post:
       operationId: helloPost
       requestBody:

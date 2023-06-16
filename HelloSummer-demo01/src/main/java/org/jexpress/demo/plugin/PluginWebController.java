@@ -15,7 +15,7 @@ public class PluginWebController {
     // curl http://localhost:8311/hellosummer/hello/JohnDoe
     @GET
     @Path("/hello/{name}")
-    @RolesAllowed({"Employee"})
+    //@RolesAllowed({"Employee"})
     public String hello(@PathParam("name") String name) {
         return InternalClass.ECHO + " " + name;
     }

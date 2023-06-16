@@ -18,7 +18,13 @@ public class MyAuthenticator extends BootAuthenticator<Long> {
 
     @Override
     protected Caller authenticate(String usename, String password, Long metaData, AuthenticatorListener listener, ServiceContext context) throws NamingException {
-        // verify username and password against LDAP
+        // case1: verify username and password against LDAP
+        /*        
+        try (LdapAgent ldap = LdapAgent.build()) {
+            return ldap.authenticateUser(usename, password, listener);
+        }*/
+
+        // case2: verify username and password with mock logic
         if ("wrongpwd".equals(password)) {
             return null;
         }

@@ -9,13 +9,13 @@ import jakarta.ws.rs.PathParam;
 import org.summerboot.jexpress.boot.annotation.Controller;
 
 @Controller
-@Path("/hellosummer")
+@Path("/hellosummer1")
 public class SimpleWebController {
 
     // curl http://localhost:8311/hellosummer/hello/JohnDoe
     @GET
     @Path("/hello/{name}")
-    @RolesAllowed({"Employee"})
+    //@RolesAllowed({"Employee"})
     public String hello(@PathParam("name") String name) {
         return "Hello " + name;
     }

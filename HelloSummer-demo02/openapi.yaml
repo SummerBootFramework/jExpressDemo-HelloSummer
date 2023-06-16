@@ -97,6 +97,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Pong'
+  /hellosummer/helloAdmin/adminoremployee:
+    get:
+      operationId: adminorEmployeeOnly
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/ServiceContext'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pong'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Pong'
   /hellosummer/hello/anonymous:
     get:
       operationId: anonymous
@@ -393,15 +411,15 @@ components:
           type: boolean
         tenantId:
           type: number
+        tenantName:
+          type: string
+        uid:
+          type: string
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
-        uid:
-          type: string
-        tenantName:
-          type: string
     Err:
       type: object
       properties:

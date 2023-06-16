@@ -77,6 +77,14 @@ public class MyControllerRoleBased extends BootController {
     public Pong employeeOnly(ServiceContext context) {
         return new Pong("Hello employee: " + context.caller(), context.hit());
     }
+    
+    @GET
+    @Path("/helloAdmin/adminoremployee")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @RolesAllowed({"AppAdmin", "Employee"})
+    public Pong adminorEmployeeOnly(ServiceContext context) {
+        return new Pong("Hello employee: " + context.caller(), context.hit());
+    }
 
     public static class Pong {
 
