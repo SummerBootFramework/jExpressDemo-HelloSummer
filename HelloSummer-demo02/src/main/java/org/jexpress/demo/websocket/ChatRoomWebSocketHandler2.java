@@ -19,14 +19,13 @@ import org.summerboot.jexpress.security.auth.User;
  */
 @ChannelHandler.Sharable
 @Singleton
-@Service(binding = ChannelHandler.class, named = "/mywebsocket/demo", type = Service.ChannelHandlerType.Websocket)
-public class ChatRoomWebSocketHandler extends BootWebSocketHandler {
+@Service(binding = ChannelHandler.class, named = "/mywebsocket/demo2", type = Service.ChannelHandlerType.Websocket)
+public class ChatRoomWebSocketHandler2 extends BootWebSocketHandler {
 
     private final StringBuilder history = new StringBuilder();
 
     private static final DateTimeFormatter DTF = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
-
-    private static final String ID = "[ws1] ";
+    private static final String ID = "[ws2] ";
 
     private static String getId(Caller caller) {
         return OffsetDateTime.now().truncatedTo(ChronoUnit.SECONDS).format(DTF) + " [" + caller.getUid() + "]: ";

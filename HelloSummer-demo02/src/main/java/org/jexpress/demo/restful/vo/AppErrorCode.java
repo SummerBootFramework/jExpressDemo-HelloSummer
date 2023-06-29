@@ -4,10 +4,6 @@ import io.netty.handler.codec.http.HttpResponseStatus;
 import org.summerboot.jexpress.boot.BootErrorCode;
 import org.summerboot.jexpress.boot.annotation.Unique;
 
-/**
- *
- * @author Changski Tie Zheng Zhang
- */
 @Unique(name = "ErrorCode", type = int.class)
 public interface AppErrorCode extends BootErrorCode {
 

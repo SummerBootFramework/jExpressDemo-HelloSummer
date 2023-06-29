@@ -6,7 +6,6 @@ import org.summerboot.jexpress.nio.grpc.BootServerInterceptor;
 import org.summerboot.jexpress.security.auth.Caller;
 import org.summerboot.jexpress.security.auth.User;
 
-
 @Service(binding = ServerInterceptor.class)
 public class AuthorizationServerInterceptor extends BootServerInterceptor {
 

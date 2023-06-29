@@ -614,14 +614,14 @@
           "enabled" : {
             "type" : "boolean"
           },
-          "tenantId" : {
-            "type" : "number"
-          },
           "tenantName" : {
             "type" : "string"
           },
           "uid" : {
             "type" : "string"
+          },
+          "tenantId" : {
+            "type" : "number"
           },
           "groups" : {
             "uniqueItems" : true,

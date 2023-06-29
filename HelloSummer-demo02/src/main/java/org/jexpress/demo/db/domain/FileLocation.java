@@ -12,10 +12,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import java.util.Objects;
 
-/**
- *
- * @author Changski Zhang
- */
 @Entity
 @Table(uniqueConstraints = {
     @UniqueConstraint(columnNames = {"tenant_ID", "name"})

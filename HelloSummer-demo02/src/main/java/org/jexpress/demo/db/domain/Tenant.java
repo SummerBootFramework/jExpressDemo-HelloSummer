@@ -7,10 +7,6 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import org.summerboot.jexpress.integration.jpa.EntityEx;
 
-/**
- *
- * @author tzhang
- */
 @Entity
 @Table(name = "tenant")
 @NamedQueries({

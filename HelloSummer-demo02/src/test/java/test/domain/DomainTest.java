@@ -3,17 +3,12 @@ package test.domain;
 import com.google.inject.Injector;
 import org.jexpress.demo.app.Main;
 import org.summerboot.jexpress.boot.SummerApplication;
-import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-/**
- *
- * @author DuXiao
- */
 public class DomainTest {
 
     public DomainTest() {

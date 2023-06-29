@@ -10,16 +10,12 @@
             //If the browser supports WebSocket
             if (window.WebSocket) {
                 //The parameter is the address to connect to the server
-                socket = new WebSocket("wss://192.168.1.11:8311/mywebsocket/demo", "jwt");
-
-                //This callback method is executed when the client receives a message from the server
-                socket.onmessage = function (event) {
-                    var ta = document.getElementById("responseText");
-                    ta.value = ta.value + "\n" + event.data;
-                };
+                //socket = new WebSocket("wss://localhost:8311/mywebsocket/demo", ["Subprotocol1", "Subprotocol2"]);
+				socket = new WebSocket("wss://localhost:8311/mywebsocket/demo", "Subprotocol");
 
                 //Callback function for connection establishment
                 socket.onopen = function (event) {
+					alert("protocol: " + socket.protocol);
                     var ta = document.getElementById("responseText");
                     ta.value = "connected";
                 };
@@ -28,6 +24,12 @@
                 socket.onclose = function (event) {
                     var ta = document.getElementById("responseText");
                     ta.value = ta.value + "\n" + "disconnected";
+                };
+
+                //This callback method is executed when the client receives a message from the server
+                socket.onmessage = function (event) {
+                    var ta = document.getElementById("responseText");
+                    ta.value = ta.value + "\n" + event.data;
                 };
             } else {
                 alert("The browser does not support WebSocket!");

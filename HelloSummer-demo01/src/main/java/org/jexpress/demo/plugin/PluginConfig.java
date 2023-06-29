@@ -9,10 +9,6 @@ import org.summerboot.jexpress.boot.config.annotation.Config;
 import org.summerboot.jexpress.boot.config.annotation.ConfigHeader;
 import org.summerboot.jexpress.boot.config.annotation.ImportResource;
 
-/**
- *
- * @author Changski Tie Zheng Zhang
- */
 @ImportResource("cfg_plugin.properties")
 public class PluginConfig extends BootConfig {
 
