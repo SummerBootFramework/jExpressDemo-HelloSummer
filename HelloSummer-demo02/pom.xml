@@ -20,7 +20,7 @@
         <maven.jar.version>3.3.0</maven.jar.version>
         
         <!-- dependencies -->
-        <jexpress.version>2.3.7-SNAPSHOT</jexpress.version>
+        <jexpress.version>2.3.8-SNAPSHOT</jexpress.version>
         <!-- protobuf and gRPC -->
         <protobuf.version>3.23.1</protobuf.version>
         <grpc.version>1.55.1</grpc.version>

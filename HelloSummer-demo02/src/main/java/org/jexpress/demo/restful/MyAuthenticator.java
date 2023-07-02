@@ -1,10 +1,9 @@
 package org.jexpress.demo.restful;
 
 import com.google.inject.Singleton;
-import io.netty.handler.codec.http.HttpHeaders;
+import io.grpc.ServerInterceptor;
 import javax.naming.NamingException;
 import org.summerboot.jexpress.boot.annotation.Service;
-import org.summerboot.jexpress.nio.server.RequestProcessor;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 import org.summerboot.jexpress.security.auth.Authenticator;
 import org.summerboot.jexpress.security.auth.AuthenticatorListener;
@@ -13,7 +12,7 @@ import org.summerboot.jexpress.security.auth.Caller;
 import org.summerboot.jexpress.security.auth.User;
 
 @Singleton
-@Service(binding = Authenticator.class)
+@Service(binding = {Authenticator.class, ServerInterceptor.class})
 public class MyAuthenticator extends BootAuthenticator<Long> {
 
     @Override
@@ -36,11 +35,6 @@ public class MyAuthenticator extends BootAuthenticator<Long> {
         user.addGroup("AdminGroup");
         user.addGroup("EmployeeGroup");
         return user;
-    }
-
-    @Override
-    public boolean customizedAuthorizationCheck(RequestProcessor processor, HttpHeaders httpRequestHeaders, String httpRequestPath, ServiceContext context) throws Exception {
-        return true;
     }
 
 }

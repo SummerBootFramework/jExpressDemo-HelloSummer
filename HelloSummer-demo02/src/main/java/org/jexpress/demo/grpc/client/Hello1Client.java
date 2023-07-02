@@ -26,7 +26,7 @@ public class Hello1Client extends GRPCClient<Hello1Client> {
     protected void onConnected(ManagedChannel channel) {
         String jwt = "jwt1";
         BearerAuthCredential bearerAuthCredential = new BearerAuthCredential(jwt);
-        this.blockingStub = Hello1ServiceGrpc.newBlockingStub(channel).withCallCredentials(bearerAuthCredential);
+        this.blockingStub = Hello1ServiceGrpc.newBlockingStub(channel);//.withCallCredentials(bearerAuthCredential);
     }
 
     public String hello(String firstName, String lastName) {

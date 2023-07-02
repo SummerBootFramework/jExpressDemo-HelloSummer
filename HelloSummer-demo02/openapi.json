@@ -614,12 +614,6 @@
           "enabled" : {
             "type" : "boolean"
           },
-          "tenantName" : {
-            "type" : "string"
-          },
-          "uid" : {
-            "type" : "string"
-          },
           "tenantId" : {
             "type" : "number"
           },
@@ -629,6 +623,12 @@
             "items" : {
               "type" : "string"
             }
+          },
+          "tenantName" : {
+            "type" : "string"
+          },
+          "uid" : {
+            "type" : "string"
           }
         }
       },

@@ -49,7 +49,7 @@
             </elementProp>
             <elementProp name="jwt" elementType="Argument">
               <stringProp name="Argument.name">jwt</stringProp>
-              <stringProp name="Argument.value">eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIxLjQ1Nl90emhhbmdfMTY4NjY2NjAwNzUyNiIsInN1YiI6InR6aGFuZyIsImF1ZCI6IkFkbWluR3JvdXAsRW1wbG95ZWVHcm91cCIsImNhbGxlcklkIjo0NTYsInRlbmFudElkIjoxLCJ0ZW5hbnROYW1lIjoiakV4cHJlc3MgT3JnIiwiZXhwIjoxNjg2NzUyNDA3LCJpYXQiOjE2ODY2NjYwMDd9.ewQ-QqBsvCdIaE3AKqL1sQzLRqF0VSddy6JbsnhPOLlCpEQzfcXjRgPZcPZyDSo74-eF0ON2VyC1opOO6DEcfrKFl0AyjLwIdmoU8I85MpJBFQRmCFCmJbkz3pTslAMNBPsaBLfZtoFWpFQ-7yJqhLjJ5UTfeVzAKOB3k7-FIFlvub24bPe1LPvHQKjE6kL5K3VTjXy4fpMm2iUYJtjdKmztIdiqDozNO0zuagupZC_Q0XfLgzgiLidgb5fTESuuJCNd8WXfyMfl3p2bHxpa5FXos4hP_h37M5buJmR-Th5vQ5VCMY--tMs36Jn647X4PNaqvuq7ia-9IRYHCRPCsw</stringProp>
+              <stringProp name="Argument.value">eyJhbGciOiJSUzUxMiJ9.eyJqdGkiOiIxLjQ1Nl90emhhbmdfMTY4ODIzMzEyOTUwOCIsInN1YiI6InR6aGFuZyIsImF1ZCI6IkFkbWluR3JvdXAsRW1wbG95ZWVHcm91cCIsImNhbGxlcklkIjo0NTYsInRlbmFudElkIjoxLCJ0ZW5hbnROYW1lIjoiakV4cHJlc3MgT3JnIiwiZXhwIjoxNjg4MzE5NTI5LCJpYXQiOjE2ODgyMzMxMjl9.aREAW-WYLzy4LoNDB4iTTspPRYYX5bRWKmv_5_7Joh66wcmPF_dSoiBPwhOFuR84JYmzzCwQhB5RRK4w3clbbDuRt1YpCc7oBRpFViuP5wbB7PdEWxXNx0DGP4_bG8JMMgQwHaaaTM2uHgn7EI3V3DwUzS_T1ErZkfcJrf2LFkgUy44T845_wLRI5MkpcPHK2N5slprah6ZT1wlN-aLjG-RPyn57PZlUfpW5nW3Y2Sv00Byf20iXVBWvxNpeCKbg7wgaEX2UQPOV0LaNbJPn6UR2DDLplXDjg6ogJWVL2VtmOtRfD3J9QinzWEIqraFvSKArQRhlm-v8__5Nw_hjpQ_8kW_HS1i5_yedd6bHWBNraSUa5x65dfKIuPsqKIWrGqwYWCEXtVUu1nUtXZoNWxNwvRvbsGHSTIQpzxldlTE-x__vihHFnWQm1OcD9VIZVA4864Du_dxGuU7QLtbmOZJandrOVLVzwahR265NCMh5WTEYHf9_NinKTH3HaZ4Ie1c26fr86-nBF1mr4K185nFJb4vYFZrW8nsZ8ILnVa7J4t3cl60wWqRCm0PCJkfySe_2nMe0R6ysIrmoyS1qjMj2Gdor6hFBRcYLmLMm0lR6gxY0-lE1eQDXWzX1-MHwzDDggo9bB4aP8Jvwrgj8x_b9ol1yqVIFNpamiuSNRpQ</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="context-root2" elementType="Argument">
@@ -574,7 +574,7 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="hello_no_validation_unprotected_logging" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="hello_no_validation_unprotected_logging" enabled="false">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -682,7 +682,7 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="hello_json" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="hello_json" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
