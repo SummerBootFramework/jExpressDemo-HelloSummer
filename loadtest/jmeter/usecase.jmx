@@ -49,7 +49,7 @@
             </elementProp>
             <elementProp name="jwt" elementType="Argument">
               <stringProp name="Argument.name">jwt</stringProp>
-              <stringProp name="Argument.value">eyJhbGciOiJSUzUxMiJ9.eyJqdGkiOiIxLjQ1Nl90emhhbmdfMTY4ODIzMzEyOTUwOCIsInN1YiI6InR6aGFuZyIsImF1ZCI6IkFkbWluR3JvdXAsRW1wbG95ZWVHcm91cCIsImNhbGxlcklkIjo0NTYsInRlbmFudElkIjoxLCJ0ZW5hbnROYW1lIjoiakV4cHJlc3MgT3JnIiwiZXhwIjoxNjg4MzE5NTI5LCJpYXQiOjE2ODgyMzMxMjl9.aREAW-WYLzy4LoNDB4iTTspPRYYX5bRWKmv_5_7Joh66wcmPF_dSoiBPwhOFuR84JYmzzCwQhB5RRK4w3clbbDuRt1YpCc7oBRpFViuP5wbB7PdEWxXNx0DGP4_bG8JMMgQwHaaaTM2uHgn7EI3V3DwUzS_T1ErZkfcJrf2LFkgUy44T845_wLRI5MkpcPHK2N5slprah6ZT1wlN-aLjG-RPyn57PZlUfpW5nW3Y2Sv00Byf20iXVBWvxNpeCKbg7wgaEX2UQPOV0LaNbJPn6UR2DDLplXDjg6ogJWVL2VtmOtRfD3J9QinzWEIqraFvSKArQRhlm-v8__5Nw_hjpQ_8kW_HS1i5_yedd6bHWBNraSUa5x65dfKIuPsqKIWrGqwYWCEXtVUu1nUtXZoNWxNwvRvbsGHSTIQpzxldlTE-x__vihHFnWQm1OcD9VIZVA4864Du_dxGuU7QLtbmOZJandrOVLVzwahR265NCMh5WTEYHf9_NinKTH3HaZ4Ie1c26fr86-nBF1mr4K185nFJb4vYFZrW8nsZ8ILnVa7J4t3cl60wWqRCm0PCJkfySe_2nMe0R6ysIrmoyS1qjMj2Gdor6hFBRcYLmLMm0lR6gxY0-lE1eQDXWzX1-MHwzDDggo9bB4aP8Jvwrgj8x_b9ol1yqVIFNpamiuSNRpQ</stringProp>
+              <stringProp name="Argument.value">eyJhbGciOiJSUzUxMiJ9.eyJqdGkiOiIxLjQ1Nl90emhhbmdfMTY4ODUwNTc0NTE3MSIsInN1YiI6InR6aGFuZyIsImF1ZCI6IkFkbWluR3JvdXAsRW1wbG95ZWVHcm91cCIsImNhbGxlcklkIjo0NTYsInRlbmFudElkIjoxLCJ0ZW5hbnROYW1lIjoiakV4cHJlc3MgT3JnIiwiZXhwIjoxNjg4NTkyMTQ1LCJpYXQiOjE2ODg1MDU3NDV9.MAXhIFC4mnzqaSgE2l9hB6J6tUvnPpzajdWH-qLdXXd9QlE8YL7y-rnFruSGSoWnMMkp40BkodGSTbCYzOgqh6bTqgqBOqlg5KbB59JJvHdl_AB50I0VBF3hAX6lvcL_LHOE3umRVvT0ZRkKDfuVrl0oKsQBxmFKlLY2SUqaGf_-_tnm7FOCcwjszvXDD9pvOmCi7oeO27MaT73hPbA51I7fNomcJdiamoNIoKBdrkRrPpCF4NmeKwLzhSH1zt2KnhDT9jF2NKexO2EReFFbEKor5RpWf0fbXJLBBOnND-KPcqwAyzfhzA1s12ptI7E0QVNDAbekIMlgtkHtG1PvVh_C0FbaSd9194gu5fW-rZU6TZb2zTBejOH9MCczWjt_PG9ikwoNDPLCjJeBR8znlS6JKcQr8-4lrfAsKiV_o3PEAR9Qs1Q_Kg9SCV-7GIny2OHx5slM6_OmdVb5wHxjYAUhwRwLIfUiF6-iYn-HIDdyNKBhlKpTfWrGP0BPVFz6Zc8hgdFBBftZjNvU7gwudmgnhJ7vMWirXAJKrgYUgUC5fmPN3LTPn6XcEQx3Yu_FTHR3Y6vKrzUKSABzWpEaId4hUfeKKAx851IUU0o_BJdMszVQPxmfx2KX_PV_-JrPyOKDnSy6jCUzlowklQ3qosut0XqX0WGKKP_8UX-L-ts</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="context-root2" elementType="Argument">
@@ -574,7 +574,7 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="hello_no_validation_unprotected_logging" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="hello_no_validation_unprotected_logging" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -582,7 +582,7 @@
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
   &quot;creditCardNumber&quot; : &quot;123456&quot;,&#xd;
-  &quot;shoppingList&quot; : [ &quot;a&quot;, &quot;b&quot; ]&#xd;
+  &quot;shoppingList1&quot; : [ &quot;a&quot;, &quot;b&quot; ]&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -682,7 +682,7 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="hello_json" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="hello_json" enabled="false">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>

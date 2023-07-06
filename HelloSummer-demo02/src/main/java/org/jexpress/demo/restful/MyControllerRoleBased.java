@@ -13,9 +13,9 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import java.time.OffsetDateTime;
 import org.summerboot.jexpress.boot.annotation.Controller;
+import org.summerboot.jexpress.boot.annotation.Ping;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 import org.summerboot.jexpress.nio.server.ws.rs.BootController;
-
 
 @Singleton
 @Controller(implTag = "RoleBased")// to enable it, start application with -use RoleBased or -use RoleBased WebBased to enable both role and web based controllers
@@ -40,6 +40,7 @@ public class MyControllerRoleBased extends BootController {
     //@Ping //this annotation will override BootController.ping()
     @GET
     @Path("/ping")
+    //@Ping
     public void myPing() {
     }
 
@@ -77,7 +78,7 @@ public class MyControllerRoleBased extends BootController {
     public Pong employeeOnly(ServiceContext context) {
         return new Pong("Hello employee: " + context.caller(), context.hit());
     }
-    
+
     @GET
     @Path("/helloAdmin/adminoremployee")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

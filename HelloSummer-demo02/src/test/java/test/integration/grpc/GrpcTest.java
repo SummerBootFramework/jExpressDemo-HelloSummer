@@ -48,8 +48,8 @@ public class GrpcTest {
     }
 
     /*
-        \run>java -jar hellosummer-2.0.jar -cfgdir standalone_qa/configuration_two-way_8424
-        \run>java -jar hellosummer-2.0.jar -cfgdir standalone_qa/configuration_two-way_8425 -use hawaii_1 hawaii_2
+        \run>java -jar hellosummer-2.0.jar -cfgdir standalone_dev/configuration_two-way_8424
+        \run>java -jar hellosummer-2.0.jar -cfgdir standalone_dev/configuration_two-way_8425 -use hawaii_1 hawaii_2
      */
     //@Test
     public void testClientSideLoadBalancer() throws IOException {
@@ -63,7 +63,7 @@ public class GrpcTest {
 //        );
 //        NameResolverRegistry.getDefaultRegistry().register(nameResolverProvider);
         HelloClientConfig clientcfg = HelloClientConfig.cfg;
-        clientcfg.load(new File("run/standalone_qa/configuration_two-way_8424/cfg_grpcclient.properties"), true);
+        clientcfg.load(new File("run/standalone_dev/configuration_two-way_8424/cfg_grpcclient.properties"), true);
         NameResolverProvider nameResolverProvider = clientcfg.getNameResolverProvider();
         URI uri = clientcfg.getUri();
         KeyManagerFactory keyManagerFactory = clientcfg.getKmf();
@@ -109,11 +109,11 @@ public class GrpcTest {
 
     @Test
     public void testConnect() throws URISyntaxException, IOException {
-        gRPCTest("-cfgdir run/standalone_qa/configuration_two-way_8424", "Hello", "Hello");
-        gRPCTest("-cfgdir run/standalone_qa/configuration_two-way_8424 -use hawaii_1 hawaii_2", "Aloha", "Aloha");
-        gRPCTest("-cfgdir run/standalone_qa/configuration_two-way_8424", "Hello", "Hello");
-        gRPCTest("-cfgdir run/standalone_qa/configuration_two-way_8424 -use hawaii_2", "Hello", "Aloha");
-        gRPCTest("-cfgdir run/standalone_qa/configuration_two-way_8424 -use hawaii_1", "Aloha", "Hello");
+        gRPCTest("-cfgdir run/standalone_dev/configuration_two-way_8424", "Hello", "Hello");
+        gRPCTest("-cfgdir run/standalone_dev/configuration_two-way_8424 -use hawaii_1 hawaii_2", "Aloha", "Aloha");
+        gRPCTest("-cfgdir run/standalone_dev/configuration_two-way_8424", "Hello", "Hello");
+        gRPCTest("-cfgdir run/standalone_dev/configuration_two-way_8424 -use hawaii_2", "Hello", "Aloha");
+        gRPCTest("-cfgdir run/standalone_dev/configuration_two-way_8424 -use hawaii_1", "Aloha", "Hello");
     }
 
     private void gRPCTest(String serverArgs, String impleKey2Verify1, String impleKey2Verify2) throws IOException {
