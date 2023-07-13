@@ -1,5 +1,6 @@
 package org.jexpress.demo.restful;
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import jakarta.validation.Valid;
@@ -17,6 +18,8 @@ import org.jexpress.demo.app.MyConfig;
 import org.jexpress.demo.restful.vo.AppPOI;
 import org.summerboot.jexpress.boot.annotation.Controller;
 import org.summerboot.jexpress.boot.annotation.Log;
+import org.summerboot.jexpress.boot.instrumentation.HealthInspector;
+import org.summerboot.jexpress.boot.instrumentation.HealthMonitor;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 
 @Singleton
@@ -24,10 +27,14 @@ import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 @Path("/hellosummer2")
 public class MyController {
 
+    @Inject
+    HealthInspector healthInspector;
+
     @GET
     @Path("/hello/{name}")
     @Produces({MediaType.TEXT_PLAIN})
-    public String hello(@NotNull @PathParam("name") String myName) {// both Nonnull or NotNull works    
+    public String hello(@NotNull @PathParam("name") String myName) {// both Nonnull or NotNull works   
+        HealthMonitor.setHealthStatus(false, "test", healthInspector);
         return "Hello " + myName;
     }
 

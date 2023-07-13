@@ -20,12 +20,12 @@
         <maven.jar.version>3.3.0</maven.jar.version>
         
         <!-- dependencies -->
-        <jexpress.version>2.3.8-SNAPSHOT</jexpress.version>
+        <jexpress.version>2.3.8</jexpress.version>
         <!-- protobuf and gRPC -->
-        <protobuf.version>3.23.1</protobuf.version>
-        <grpc.version>1.55.1</grpc.version>
+        <protobuf.version>3.23.4</protobuf.version>
+        <grpc.version>1.56.1</grpc.version>
         <jdbc.version>8.0.33</jdbc.version>
-        <swagger.core.version>2.2.10</swagger.core.version>
+        <swagger.core.version>2.2.14</swagger.core.version>
     </properties>
     
     <dependencies>
@@ -34,6 +34,16 @@
             <groupId>org.summerboot</groupId>
             <artifactId>jexpress</artifactId>
             <version>${jexpress.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.freemarker</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.openhtmltopdf</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
         <dependency>

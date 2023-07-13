@@ -68,7 +68,7 @@
         <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
           <collectionProp name="HeaderManager.headers">
             <elementProp name="" elementType="Header">
-              <stringProp name="Header.name">UID</stringProp>
+              <stringProp name="Header.name">OLG-RDL</stringProp>
               <stringProp name="Header.value">123</stringProp>
             </elementProp>
           </collectionProp>

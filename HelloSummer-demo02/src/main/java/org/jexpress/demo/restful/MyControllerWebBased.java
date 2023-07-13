@@ -7,7 +7,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import java.io.File;
 import org.summerboot.jexpress.boot.annotation.Controller;
-import org.summerboot.jexpress.nio.server.NioConfig;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 import org.summerboot.jexpress.nio.server.ws.rs.WebResourceController;
 
@@ -15,8 +14,8 @@ import org.summerboot.jexpress.nio.server.ws.rs.WebResourceController;
 @Controller(implTag = "WebBased")// to enable it, start application with -use WebBased or -use RoleBased WebBased to enable both role and web based controllers. 404 error will be responsed as html when extends WebResourceController
 public class MyControllerWebBased extends WebResourceController {
 
-    private static final File WELCOME_PAGE1 = new File(NioConfig.cfg.getDocrootDir() + File.separator + "page1.html").getAbsoluteFile();
-    private static final File WELCOME_PAGE2 = new File(NioConfig.cfg.getDocrootDir() + File.separator + "page2.html").getAbsoluteFile();
+    private static final String WELCOME_PAGE1 = "pages" + File.separator + "page1.html";
+    private static final String WELCOME_PAGE2 = "pages" + File.separator + "page2.html";
 
     @GET
     @Path("/")

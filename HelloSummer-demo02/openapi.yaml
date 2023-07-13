@@ -409,15 +409,18 @@ components:
           type: string
         enabled:
           type: boolean
-        tenantId:
-          type: number
+        tokenTtlSec:
+          type: integer
+          format: int64
+        tenantName:
+          type: string
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
-        tenantName:
-          type: string
+        tenantId:
+          type: number
         uid:
           type: string
     Err:
@@ -568,37 +571,6 @@ components:
                     type: string
             message:
               type: string
-            suppressed:
-              type: array
-              items:
-                type: object
-                properties:
-                  stackTrace:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        classLoaderName:
-                          type: string
-                        moduleName:
-                          type: string
-                        moduleVersion:
-                          type: string
-                        methodName:
-                          type: string
-                        fileName:
-                          type: string
-                        lineNumber:
-                          type: integer
-                          format: int32
-                        nativeMethod:
-                          type: boolean
-                        className:
-                          type: string
-                  message:
-                    type: string
-                  localizedMessage:
-                    type: string
             localizedMessage:
               type: string
         level:
