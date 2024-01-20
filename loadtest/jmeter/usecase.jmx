@@ -49,7 +49,7 @@
             </elementProp>
             <elementProp name="jwt" elementType="Argument">
               <stringProp name="Argument.name">jwt</stringProp>
-              <stringProp name="Argument.value">eyJhbGciOiJSUzUxMiJ9.eyJqdGkiOiIxLjQ1Nl90emhhbmdfMTY4ODUwNTc0NTE3MSIsInN1YiI6InR6aGFuZyIsImF1ZCI6IkFkbWluR3JvdXAsRW1wbG95ZWVHcm91cCIsImNhbGxlcklkIjo0NTYsInRlbmFudElkIjoxLCJ0ZW5hbnROYW1lIjoiakV4cHJlc3MgT3JnIiwiZXhwIjoxNjg4NTkyMTQ1LCJpYXQiOjE2ODg1MDU3NDV9.MAXhIFC4mnzqaSgE2l9hB6J6tUvnPpzajdWH-qLdXXd9QlE8YL7y-rnFruSGSoWnMMkp40BkodGSTbCYzOgqh6bTqgqBOqlg5KbB59JJvHdl_AB50I0VBF3hAX6lvcL_LHOE3umRVvT0ZRkKDfuVrl0oKsQBxmFKlLY2SUqaGf_-_tnm7FOCcwjszvXDD9pvOmCi7oeO27MaT73hPbA51I7fNomcJdiamoNIoKBdrkRrPpCF4NmeKwLzhSH1zt2KnhDT9jF2NKexO2EReFFbEKor5RpWf0fbXJLBBOnND-KPcqwAyzfhzA1s12ptI7E0QVNDAbekIMlgtkHtG1PvVh_C0FbaSd9194gu5fW-rZU6TZb2zTBejOH9MCczWjt_PG9ikwoNDPLCjJeBR8znlS6JKcQr8-4lrfAsKiV_o3PEAR9Qs1Q_Kg9SCV-7GIny2OHx5slM6_OmdVb5wHxjYAUhwRwLIfUiF6-iYn-HIDdyNKBhlKpTfWrGP0BPVFz6Zc8hgdFBBftZjNvU7gwudmgnhJ7vMWirXAJKrgYUgUC5fmPN3LTPn6XcEQx3Yu_FTHR3Y6vKrzUKSABzWpEaId4hUfeKKAx851IUU0o_BJdMszVQPxmfx2KX_PV_-JrPyOKDnSy6jCUzlowklQ3qosut0XqX0WGKKP_8UX-L-ts</stringProp>
+              <stringProp name="Argument.value">eyJhbGciOiJSUzUxMiJ9.eyJqdGkiOiIxLjQ1Nl90emhhbmdfMTY5MDQ3MTM0MjE1NCIsInN1YiI6InR6aGFuZyIsImF1ZCI6IkFkbWluR3JvdXAsRW1wbG95ZWVHcm91cCIsImNhbGxlcklkIjo0NTYsInRlbmFudElkIjoxLCJ0ZW5hbnROYW1lIjoiakV4cHJlc3MgT3JnIiwiZXhwIjoxNjkwNTU3NzQyLCJpYXQiOjE2OTA0NzEzNDJ9.Ku5g3xfsHgx-XBWNLQW3R-WXduN1JeB9eKRPA7IDZcl8APaFGRB6QnC4fp5d8m2htgjcsf8MOw6kIs2PhxaHPGHHdi8CLnTvvGhb5eVHGpzOHjMZf_wSVlRK6S_YeTqR4seAp947aWbpRa9ZXwTkUPViEV2a6lpCDroFyzRCH5QhY9R4Rr8brrGWcy13wP-hMk3WS0Gh4aDcQzZKD10iI4NXJBLmq4JIujUG3WXLNECcAKzFkJ3goMq-1c6Is_fXhsIuA3sK1IBR17O20p45LSkQ0fa8hze4x6lC7EY-5-gxSId_wAwqd0nHcNujdZeTot-iiLhbzirtcodgl3W-s4wQTkhmS9f_NOgwHmOpXdA9UppbgWiYMrIo42LYCrZidrm5RW5cZ_ro4akHfGPWyGk2l8O68w8VDU3x1ky1NOE6f0KcioL11MOVDNyLslGRnmChRpfupsVbBbSW_LQP9guwFKOE_0q4HsfE2wCQAlxFudAsusEXQUsqUURZQNOUsUsoKdnCLphg2O8q6ptPwQJJiemkXAGITfCE16U3fzVUnMMXW8p1GwfxvPUGs8uUKa_TIipaD4-SoqAiHlgEaoYWDrO6ARnO92Y-h8iBtd2nLJL04aVeO0n6Mt0-AWFCuPIAzW5tTml8UF_ptr78FKAASQmWUA03GGPsPHgWAmg</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="context-root2" elementType="Argument">
@@ -482,7 +482,7 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="web page request" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="web page request" enabled="false">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -506,6 +506,64 @@
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Accept</stringProp>
                 <stringProp name="Header.value">*.*</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1225623840">{&quot;name&quot;:&quot;Hello Summer&quot;,&quot;value&quot;:123,</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">34</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CRLF injection log" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">twenty-one%0a%0aINFO:+User+logged+out%3dbadguy&#xd;
+{&#xd;
+   &quot;name&quot;:&quot;John&quot;,&#xd;
+   &quot;age&quot;:30,&#xd;
+   &quot;address&quot;:{&#xd;
+      &quot;street&quot;:&quot;10 Main Street&quot;,&#xd;
+      &quot;city&quot;:&quot;New York&quot;&#xd;
+   }&#xd;
+}张</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/hellosummer2/CRLF</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">*.*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">aa</stringProp>
+                <stringProp name="Header.value">twenty-one%0a%0aINFO:+User+logged+out%3dbadguy</stringProp>
               </elementProp>
             </collectionProp>
           </HeaderManager>
@@ -687,6 +745,60 @@
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${context-root2}/account2/123</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">34</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/hellosummer2/hello/{name}" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;creditCardNumber&quot; : &quot;123456&quot;,&#xd;
+  &quot;shoppingList&quot; : [ &quot;a&quot;, &quot;b&quot; ]&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${context-root2}/hello/abc@gmail.com</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>

@@ -26,6 +26,9 @@ public class MyConfig extends BootConfig {
     @JsonIgnore
     @Config(key = "my.licenseKey", validate = Config.Validate.Encrypted, required = true)
     protected volatile String licenseKey;
+    
+    @Config(key = "my.licenseKeys", defaultValue = "0 0/5 14,18 * * ? ; 0 10,44 14 ? 3 WED", collectionDelimiter=";")
+    protected volatile String[] licenseKesy;
 
     @Override
     protected void loadCustomizedConfigs(File cfgFile, boolean isNotMock, ConfigUtil helper, Properties props) throws Exception {

@@ -5,7 +5,7 @@ import java.net.URISyntaxException;
 import org.summerboot.jexpress.boot.SummerApplication;
 import org.summerboot.jexpress.boot.annotation.Version;
 
-@Version(value = {"Hello Summer v2.0.0", "jex32.3.7"}, logFileName = "hellosummerv2")
+@Version(value = {"Hello Summer v2.0.0", "jex2.3.9"}, logFileName = "hellosummerv2")
 public class Main {
 
     public static void main(String... args) throws URISyntaxException, IOException {

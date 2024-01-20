@@ -2,11 +2,9 @@
 2. goto run folder> cd run
 3. start app> java -jar hellosummer.jar
 4. verify 
-	json> curl http://localhost:8211/hellosummer/hello/456 -H "Accept":"application/json"
-	xml> curl http://localhost:8211/hellosummer/hello/456 -H "Accept":"application/xml"
-5. stop by Ctrl+C, enable ssl, then start again
-	json> curl https://localhost:8211/hellosummer/hello/456 -H "Accept":"application/json"
-	xml> curl https://localhost:8211/hellosummer/hello/456 -H "Accept":"application/xml"
+	json> curl -k https://localhost:8311/hellosummer1/hello/John-Doe -H "Accept":"application/json
+	xml> curl -k https://localhost:8311/hellosummer1/hello/John-Doe -H "Accept":"application/xml"
+
 
 ################################
 # update cfg_nio.preperties    #

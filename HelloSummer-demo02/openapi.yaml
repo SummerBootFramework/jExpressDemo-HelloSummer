@@ -9,7 +9,6 @@ info:
 servers:
 - url: https://localhost:8311
   description: Local Development server
-  variables: {}
 paths:
   /hellosummer2/hello/{name}:
     get:
@@ -19,6 +18,7 @@ paths:
         in: path
         required: true
         schema:
+          pattern: "[a-zA-Z0-9_+&*-]*@gmail.com"
           type: string
       responses:
         default:
@@ -79,6 +79,21 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ResponseDto'
+  /hellosummer2/CRLF:
+    post:
+      operationId: testCRLF
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+      responses:
+        default:
+          description: default response
+          content:
+            '*/*':
+              schema:
+                type: string
   /hellosummer/helloAdmin/admin:
     get:
       operationId: adminOnly
@@ -409,20 +424,20 @@ components:
           type: string
         enabled:
           type: boolean
+        tenantName:
+          type: string
+        uid:
+          type: string
         tokenTtlSec:
           type: integer
           format: int64
-        tenantName:
-          type: string
+        tenantId:
+          type: number
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
-        tenantId:
-          type: number
-        uid:
-          type: string
     Err:
       type: object
       properties:
@@ -431,8 +446,6 @@ components:
         errorTag:
           type: string
         errorDesc:
-          type: string
-        cause:
           type: string
       description: The optional error list
     HttpHeaders:
@@ -491,6 +504,8 @@ components:
         requestHeaders:
           $ref: '#/components/schemas/HttpHeaders'
         requestBody:
+          type: string
+        txId:
           type: string
         hit:
           type: integer
@@ -589,9 +604,8 @@ components:
       type: object
       properties:
         ref:
-          type: integer
+          type: string
           description: The index of requests received by current server since start
-          format: int64
         errors:
           type: array
           description: The optional error list
@@ -603,8 +617,7 @@ components:
         name:
           type: string
         value:
-          type: integer
-          format: int64
+          type: string
         receivedTime:
           type: string
           format: date-time

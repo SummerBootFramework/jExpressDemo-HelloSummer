@@ -40,6 +40,8 @@ public class MainRunner implements SummerInitializer, SummerRunner {
         if (context.getCli().hasOption(CLI_CMD)) {
             System.out.println("my cli is called");
         }
+//        Throwable ex = new RuntimeException("test exception");
+//        log.error("test ex", ex);
 
         log.debug("beforeStart=" + context.getConfigDir());
         SummerRunner plugin = context.getGuiceInjector().getInstance(Key.get(SummerRunner.class, Names.named("myplugin")));

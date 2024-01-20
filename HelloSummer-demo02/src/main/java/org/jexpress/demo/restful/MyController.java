@@ -6,6 +6,7 @@ import io.netty.handler.codec.http.HttpResponseStatus;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -13,7 +14,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jexpress.demo.app.MyConfig;
 import org.jexpress.demo.restful.vo.AppPOI;
 import org.summerboot.jexpress.boot.annotation.Controller;
@@ -22,26 +24,43 @@ import org.summerboot.jexpress.boot.instrumentation.HealthInspector;
 import org.summerboot.jexpress.boot.instrumentation.HealthMonitor;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 
+import java.util.List;
+
 @Singleton
 @Controller
 @Path("/hellosummer2")
 public class MyController {
 
+    protected Logger log = LogManager.getLogger(this.getClass());
+
     @Inject
-    HealthInspector healthInspector;
+    private HealthInspector healthInspector;
+
+    private final String a = "[a-zA-Z0-9_+&*-]*@gmail.com";
 
     @GET
     @Path("/hello/{name}")
     @Produces({MediaType.TEXT_PLAIN})
-    public String hello(@NotNull @PathParam("name") String myName) {// both Nonnull or NotNull works   
+    public String hello(@NotNull @PathParam("name") @Pattern(regexp = a) String myName) {// both Nonnull or NotNull works
         HealthMonitor.setHealthStatus(false, "test", healthInspector);
         return "Hello " + myName;
     }
 
     @POST
+    @Path("/CRLF")
+    public String testCRLF(String body) {
+        log.error("body={}", body);
+        log.error("body=" + body);
+        log.error(body);
+        return body;
+    }
+
+    @POST
     @Path("/account1/{name}")
-    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})// require request header Content-Type: application/json or Content-Type: application/xml
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})// require request header Accept: application/json or Accept: application/xml
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+// require request header Content-Type: application/json or Content-Type: application/xml
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+// require request header Accept: application/json or Accept: application/xml
     public ResponseDto hello_no_validation_unprotected_logging(@PathParam("name") String myName, RequestDto request) {
         return new ResponseDto("secret: " + MyConfig.cfg.getLicenseKey(), "shared");
     }
@@ -65,7 +84,8 @@ public class MyController {
     @POST
     @Path("/account2/{name}")
     //@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})// require request header Content-Type: application/json or Content-Type: application/xml
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})// require request header Accept: application/json or Accept: application/xml
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+// require request header Accept: application/json or Accept: application/xml
     @Log(hideJsonStringFields = {"creditCardNumber", "clientPrivacy"}, hideJsonArrayFields = "secretList")
     public ResponseDto hello_auto_validation_protected_logging_markWithPOI(@NotNull @PathParam("name") String myName, @NotNull @Valid RequestDto request, final ServiceContext context) {
         context.poi(AppPOI.DB_BEGIN);// about POI, see section8.3

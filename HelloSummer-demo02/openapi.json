@@ -11,8 +11,7 @@
   },
   "servers" : [ {
     "url" : "https://localhost:8311",
-    "description" : "Local Development server",
-    "variables" : { }
+    "description" : "Local Development server"
   } ],
   "paths" : {
     "/hellosummer2/hello/{name}" : {
@@ -23,6 +22,7 @@
           "in" : "path",
           "required" : true,
           "schema" : {
+            "pattern" : "[a-zA-Z0-9_+&*-]*@gmail.com",
             "type" : "string"
           }
         } ],
@@ -117,6 +117,32 @@
               "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hellosummer2/CRLF" : {
+      "post" : {
+        "operationId" : "testCRLF",
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "string"
                 }
               }
             }
@@ -614,12 +640,18 @@
           "enabled" : {
             "type" : "boolean"
           },
+          "tenantName" : {
+            "type" : "string"
+          },
+          "uid" : {
+            "type" : "string"
+          },
           "tokenTtlSec" : {
             "type" : "integer",
             "format" : "int64"
           },
-          "tenantName" : {
-            "type" : "string"
+          "tenantId" : {
+            "type" : "number"
           },
           "groups" : {
             "uniqueItems" : true,
@@ -627,12 +659,6 @@
             "items" : {
               "type" : "string"
             }
-          },
-          "tenantId" : {
-            "type" : "number"
-          },
-          "uid" : {
-            "type" : "string"
           }
         }
       },
@@ -646,9 +672,6 @@
             "type" : "string"
           },
           "errorDesc" : {
-            "type" : "string"
-          },
-          "cause" : {
             "type" : "string"
           }
         },
@@ -725,6 +748,9 @@
             "$ref" : "#/components/schemas/HttpHeaders"
           },
           "requestBody" : {
+            "type" : "string"
+          },
+          "txId" : {
             "type" : "string"
           },
           "hit" : {
@@ -869,9 +895,8 @@
         "type" : "object",
         "properties" : {
           "ref" : {
-            "type" : "integer",
-            "description" : "The index of requests received by current server since start",
-            "format" : "int64"
+            "type" : "string",
+            "description" : "The index of requests received by current server since start"
           },
           "errors" : {
             "type" : "array",
@@ -889,8 +914,7 @@
             "type" : "string"
           },
           "value" : {
-            "type" : "integer",
-            "format" : "int64"
+            "type" : "string"
           },
           "receivedTime" : {
             "type" : "string",
