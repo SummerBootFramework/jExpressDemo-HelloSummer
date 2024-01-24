@@ -55,7 +55,7 @@
         <Logger level="info" name="io.netty.util.internal.CleanerJava9" includeLocation="true"/>
         <Logger level="trace" name="org.summerboot.jexpress.boot" includeLocation="true"/>
         <Logger level="info" name="org.summerboot.jexpress.nio.client.HttpClientConfig" includeLocation="true"/>
-        <Logger level="info" name="org.summerboot.jexpress.nio.server.NioServerHttpInitializer" includeLocation="true"/> 
+        <Logger level="trace" name="org.summerboot.jexpress.nio.server。NioServerHttpRequestHandler" includeLocation="true"/> 
         <Logger level="debug" name="org.summerboot.jexpress.nio.server.NioServer" includeLocation="true"/>
         <Logger level="debug" name="org.summerboot.jexpress.nio.grpc.GRPCServer" includeLocation="true"/>
         
@@ -66,7 +66,7 @@
             <AppenderRef ref="Console"/>
         </Logger>
         
-        <Logger level="info" name="org.summerboot.jexpress.nio.server.BootHttpRequestHandler" includeLocation="false" additivity="false">
+        <Logger level="trace" name="org.summerboot.jexpress.nio.server.BootHttpRequestHandler" includeLocation="false" additivity="false">
             <AppenderRef ref="RequestLogFile"/>
             <!-- -->
             <AppenderRef ref="Console"/>

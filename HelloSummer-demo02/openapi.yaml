@@ -424,15 +424,15 @@ components:
           type: string
         enabled:
           type: boolean
+        tenantId:
+          type: number
         tenantName:
-          type: string
-        uid:
           type: string
         tokenTtlSec:
           type: integer
           format: int64
-        tenantId:
-          type: number
+        uid:
+          type: string
         groups:
           uniqueItems: true
           type: array

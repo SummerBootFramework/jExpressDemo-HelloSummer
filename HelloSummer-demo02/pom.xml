@@ -12,14 +12,14 @@
     <properties>
         <!-- common properties and dependencies -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <maven.clean.version>3.3.2</maven.clean.version>
         <maven.compiler.version>3.12.1</maven.compiler.version>
         <maven.dependency.version>3.6.1</maven.dependency.version>
         <maven.jar.version>3.3.0</maven.jar.version>
         <maven.resources.version>3.3.1</maven.resources.version>
-        <jexpress.version>2.3.14-SNAPSHOT</jexpress.version>
+        <jexpress.version>2.4.1</jexpress.version>
         <swagger.core.version>2.2.20</swagger.core.version>
         <elastic-apm.version>1.45.0</elastic-apm.version>
         <testng.version>7.9.0</testng.version>
@@ -91,7 +91,7 @@
     </repositories>
 
     <build>
-        <finalName>${artifactId}</finalName>
+        <!--<finalName>${artifactId}</finalName>-->
         <!-- gRPC -->
         <extensions>
             <!-- https://mvnrepository.com/artifact/kr.motd.maven/os-maven-plugin -->
@@ -161,16 +161,19 @@
                             <directory>run</directory>
                             <includes>
                                 <include>*.jar</include>
+                                <include>lib/*/*</include>
                                 <include>lib/*</include>
                                 <include>lib</include>
+                                <include>**/log/*/*</include>
                                 <include>**/log/*</include>
                                 <include>**/log</include>
+                                <include>**/tempupload/*/*</include>
                                 <include>**/tempupload/*</include>
                                 <include>**/tempupload</include>
                             </includes>
                             <excludes>
                                 <exclude>plugin/*.jar</exclude>
-                            </excludes>>
+                            </excludes>
                             <followSymlinks>false</followSymlinks>
                         </fileset>
                         <fileset>
