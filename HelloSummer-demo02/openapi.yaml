@@ -424,8 +424,6 @@ components:
           type: string
         enabled:
           type: boolean
-        tenantId:
-          type: number
         tenantName:
           type: string
         tokenTtlSec:
@@ -433,6 +431,8 @@ components:
           format: int64
         uid:
           type: string
+        tenantId:
+          type: number
         groups:
           uniqueItems: true
           type: array

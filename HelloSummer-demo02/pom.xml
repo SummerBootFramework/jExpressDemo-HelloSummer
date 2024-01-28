@@ -161,15 +161,12 @@
                             <directory>run</directory>
                             <includes>
                                 <include>*.jar</include>
-                                <include>lib/*/*</include>
-                                <include>lib/*</include>
+                                <include>lib/**</include>
                                 <include>lib</include>
-                                <include>**/log/*/*</include>
-                                <include>**/log/*</include>
+                                <include>**/log/**</include>
                                 <include>**/log</include>
-                                <include>**/tempupload/*/*</include>
-                                <include>**/tempupload/*</include>
-                                <include>**/tempupload</include>
+                                <include>**/temp/**</include>
+                                <include>**/temp</include>
                             </includes>
                             <excludes>
                                 <exclude>plugin/*.jar</exclude>
