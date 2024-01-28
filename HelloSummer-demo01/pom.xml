@@ -138,7 +138,8 @@
                         <fileset>
                             <directory>src/test</directory>
                             <includes>
-                                <include>**/tempupload</include>
+                                <include>**/temp/**</include>
+                                <include>**/temp</include>
                             </includes>
                             <followSymlinks>false</followSymlinks>
                         </fileset>
