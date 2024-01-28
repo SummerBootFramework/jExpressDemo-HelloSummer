@@ -189,7 +189,6 @@
                             </includes>
                             <followSymlinks>false</followSymlinks>
                         </fileset>
-
                     </filesets>
                 </configuration>
             </plugin>
