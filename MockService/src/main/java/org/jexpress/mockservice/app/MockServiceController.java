@@ -37,10 +37,10 @@ public class MockServiceController {
     @Path("")
     public String mockService(String body, @Parameter(hidden = true) final ServiceContext context) throws IOException {
         String filePath = "mock_response" + context.uri() + "_" + context.method();
-        Properties responseHeaders = Utils.loadProperties(filePath + ".properties");
+        Properties responseHeaders = Utils.loadProperties(filePath + ".properties", true);
         HttpResponseStatus status = Utils.setResponseHeaders(responseHeaders, context);
         context.status(status);
-        return Utils.loadFileContent(filePath + ".txt");
+        return Utils.loadFileContent(filePath + ".txt", true);
     }
 
 }

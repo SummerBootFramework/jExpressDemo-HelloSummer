@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -46,9 +47,16 @@ public class Utils {
         return status;
     }
 
-    public static Properties loadProperties(String fileName) throws IOException {
+    public static Properties loadProperties(String fileName, boolean createIfNotExist) throws IOException {
         File fileEntry = new File(fileName).getAbsoluteFile();
         if (!fileEntry.exists()) {
+            if (createIfNotExist) {
+                fileEntry.getParentFile().mkdirs();
+                //fileEntry.createNewFile();
+                try (FileWriter writer = new FileWriter(fileEntry);) {
+                    writer.write(KEY_RESPONSE_STATUS_CODE + "=200");
+                }
+            }
             return null;
         }
         Properties props = new Properties();
@@ -58,8 +66,15 @@ public class Utils {
         return props;
     }
 
-    public static String loadFileContent(String fileName) throws IOException {
+    public static String loadFileContent(String fileName, boolean createIfNotExist) throws IOException {
         File fileEntry = new File(fileName).getAbsoluteFile();
+        if (!fileEntry.exists()) {
+            if (createIfNotExist) {
+                fileEntry.getParentFile().mkdirs();
+                fileEntry.createNewFile();
+            }
+            return null;
+        }
         return Files.readString(Paths.get(fileEntry.getAbsolutePath()));
     }
 

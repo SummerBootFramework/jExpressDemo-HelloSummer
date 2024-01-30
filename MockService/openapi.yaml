@@ -308,20 +308,20 @@ components:
           type: string
         enabled:
           type: boolean
-        tenantId:
-          type: number
+        tenantName:
+          type: string
+        uid:
+          type: string
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
+        tenantId:
+          type: number
         tokenTtlSec:
           type: integer
           format: int64
-        uid:
-          type: string
-        tenantName:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http
