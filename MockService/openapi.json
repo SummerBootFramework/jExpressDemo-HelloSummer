@@ -83,6 +83,9 @@
     },
     "/jexpress/mockservice/jwt/{roleName}/{id}/{issuer}/{subject}/{ttlMinutes}" : {
       "post" : {
+        "tags" : [ "Mock Service" ],
+        "summary" : "Generate mock JWT",
+        "description" : "Generate mock JWT with user inputs",
         "operationId" : "generateJWT",
         "parameters" : [ {
           "name" : "roleName",
@@ -126,17 +129,56 @@
           }
         } ],
         "responses" : {
-          "default" : {
-            "description" : "default response",
+          "201" : {
+            "description" : "success and return JWT token in header X-AuthToken",
+            "headers" : {
+              "X-AuthToken" : {
+                "description" : "Generated JWT",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            },
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "type" : "string"
+                  "$ref" : "#/components/schemas/Caller"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "type" : "string"
+                  "$ref" : "#/components/schemas/Caller"
+                }
+              }
+            }
+          },
+          "4XX" : {
+            "description" : "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "5XX" : {
+            "description" : "Something happened on the server side. The client can continue and try again with the request without modification.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
                 }
               }
             }
