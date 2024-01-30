@@ -4,6 +4,7 @@ import com.google.inject.Singleton;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.headers.Header;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -29,8 +30,8 @@ import org.summerboot.jexpress.security.auth.Caller;
  */
 @Singleton
 @Controller
-@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+//@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+//@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 @Path("/jexpress/mockservice")
 public class NonFunctionalServiceController extends BootController {
 
@@ -38,7 +39,7 @@ public class NonFunctionalServiceController extends BootController {
 
     private static final String X_AUTH_TOKEN = "X-AuthToken";
 
-    // curl -v -k https://localhost:8211/jexpress/mockservice/jwt/10 -X POST -H "application/json;charset=UTF-8" -X POST -d "roleName=AppAdmin&id=myid&issuer=myissuer&subject=mysubject"
+    // curl -v -k https://localhost:8211/jexpress/mockservice/jwt/10 -X POST -H "application/x-www-form-urlencoded; charset=UTF-8" -X POST -d "roleName=AppAdmin&id=myid&issuer=myissuer&subject=mysubject"
     @POST
     @Path("/jwt/{ttlMinutes}")
     @Log(requestBody = false, responseHeader = false)
@@ -46,8 +47,8 @@ public class NonFunctionalServiceController extends BootController {
             tags = {"Mock Service"},
             summary = "Generate mock JWT",
             description = "Generate mock JWT with user inputs",
-            //                        parameters = {
-            //                            @Parameter(name = "", in = ParameterIn.HEADER, required = true, description = "")},
+//                                    parameters = {
+//                                        @Parameter(name = "", in = ParameterIn.DEFAULT, required = true, description = "")},
             responses = {
                 @ApiResponse(responseCode = "201", description = "success and return JWT token in header " + X_AUTH_TOKEN,
                         headers = {
