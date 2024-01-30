@@ -65,6 +65,9 @@ public class Utils {
 
     public static String generateJWT(String roleName, String id, String issuer, String subject, int ttlMinutes) {
         RoleMapping rm = AuthConfig.cfg.getRole(roleName);
+        if (rm == null) {
+            throw new IllegalArgumentException("Role (" + roleName + ") not defined in " + AuthConfig.cfg.getCfgFile());
+        }
         Set<String> g = rm.getGroups();
         String groupNames = FormatterUtil.toCSV(g);
 

@@ -81,45 +81,13 @@
         } ]
       }
     },
-    "/jexpress/mockservice/jwt/{roleName}/{id}/{issuer}/{subject}/{ttlMinutes}" : {
+    "/jexpress/mockservice/jwt/{ttlMinutes}" : {
       "post" : {
         "tags" : [ "Mock Service" ],
         "summary" : "Generate mock JWT",
         "description" : "Generate mock JWT with user inputs",
         "operationId" : "generateJWT",
         "parameters" : [ {
-          "name" : "roleName",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
-            "type" : "string"
-          }
-        }, {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
-            "type" : "string"
-          }
-        }, {
-          "name" : "issuer",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
-            "type" : "string"
-          }
-        }, {
-          "name" : "subject",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
-            "type" : "string"
-          }
-        }, {
           "name" : "ttlMinutes",
           "in" : "path",
           "required" : true,
@@ -128,6 +96,56 @@
             "format" : "int32"
           }
         } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "roleName" : {
+                    "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
+                    "type" : "string"
+                  },
+                  "issuer" : {
+                    "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
+                    "type" : "string"
+                  },
+                  "subject" : {
+                    "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
+                    "type" : "string"
+                  }
+                }
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "roleName" : {
+                    "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
+                    "type" : "string"
+                  },
+                  "issuer" : {
+                    "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
+                    "type" : "string"
+                  },
+                  "subject" : {
+                    "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses" : {
           "201" : {
             "description" : "success and return JWT token in header X-AuthToken",
@@ -506,11 +524,15 @@
           "tenantId" : {
             "type" : "number"
           },
+          "tenantName" : {
+            "type" : "string"
+          },
           "uid" : {
             "type" : "string"
           },
-          "tenantName" : {
-            "type" : "string"
+          "tokenTtlSec" : {
+            "type" : "integer",
+            "format" : "int64"
           },
           "groups" : {
             "uniqueItems" : true,
@@ -518,10 +540,6 @@
             "items" : {
               "type" : "string"
             }
-          },
-          "tokenTtlSec" : {
-            "type" : "integer",
-            "format" : "int64"
           }
         }
       }

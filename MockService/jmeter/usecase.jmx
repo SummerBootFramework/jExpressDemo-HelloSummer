@@ -409,13 +409,42 @@
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Mock JWT" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="roleName" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">AppAdmin</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">roleName</stringProp>
+              </elementProp>
+              <elementProp name="id" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">myid</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">id</stringProp>
+              </elementProp>
+              <elementProp name="issuer" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">myissuer</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">issuer</stringProp>
+              </elementProp>
+              <elementProp name="subject" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">mysubject</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">subject</stringProp>
+              </elementProp>
+            </collectionProp>
           </elementProp>
           <stringProp name="HTTPSampler.domain"></stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">${context-root}/jwt/AppAdmin/myid/myissuer/mysubject/10</stringProp>
+          <stringProp name="HTTPSampler.path">${context-root}/jwt/10</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -442,19 +471,12 @@
                 <stringProp name="Header.name">Content-Type</stringProp>
                 <stringProp name="Header.value">application/json;charset=UTF-8</stringProp>
               </elementProp>
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Accept</stringProp>
-                <stringProp name="Header.value">application/json</stringProp>
-              </elementProp>
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">Bearer eyJhbGciOiJSUzUxMiJ9.eyJqdGkiOiIxMjM0NTYuMF9DaGFuZ3NraV8xNzA1NDQwNjkyOTQ2IiwiaXNzIjoiTEctTVJJUyIsInN1YiI6IkNoYW5nc2tpIiwiYXVkIjoiU3RvcmVVc2VycyIsImNhbGxlcklkIjowLCJ0ZW5hbnRJZCI6MTIzNDU2LCJ0ZW5hbnROYW1lIjoiQ2hhbmdza2lfc3RvcmUxIiwiZXhwIjoxNzA1NDQ0MjkyLCJpYXQiOjE3MDU0NDA2OTJ9.fV4whJZoShKOop0y-englyIdOHuDOsfQPGvtwMkO0b6BCZ9daadrIp0rPW-Pn-7Sua89RtbC9_d77HZNqF8mY8XZuBMBGfLXsNQ7GvEI5N-vvrHRqUZZjyeuzLZ0BsLLJMbgrEJHIZH8BvLLrCsEd3GzBUI5tEdbTddPIzh7FLuD-w6Z6rEMWbTlQbdRk_fpNSwmQhe9tKoZvCDUREXPyGXOiIUkP3mo6-ZAzRHW7mDkOl8jJGqFvoYC-755Hk-Z8giLehhKnAdTiMrSMQI5on8bVJ5AAmHPQMTZ48PVLSqiAlTHsdsIDng1G3szKX99XmGt4vphHYwcEq5q_rK3HkW86UwjML-FHiSDIiMTIFeKTPSRSOet9hkGKhSeyvm3vjZ9_xvqwnmbwoYJPL2GiCtYJ6GJAigScaSVAA76kjDOecQR6GsRZWABqCoR5YQUp3MR00HFUDLtl09e1GfoJ9GcRoQBX5YlNii8T42hmXh2YsdzJ_taJU5Y-59xHVK41uVn48fgLBJChjLqZfl7kD3INRoRNLnOPZHO_6VHez1nPZ9F40asZV5WxsHkBXvbCAAX2x7FxOEUAuAZyW4W58zbf0tlizqAM8QC8br5eboFiowWOkbGe8zYDADv8xLoLCU9ZxC1rAh7GvZ7k3DW6jCvWGFXNEQHABKPgostnRI</stringProp>
-              </elementProp>
             </collectionProp>
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Mock post" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Mock post" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
@@ -485,7 +507,6 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <stringProp name="HTTPSampler.domain"></stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
@@ -529,7 +550,7 @@
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Mock get" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Mock get" enabled="false">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">

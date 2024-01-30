@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.constraints.Pattern;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
@@ -37,9 +38,9 @@ public class NonFunctionalServiceController extends BootController {
 
     private static final String X_AUTH_TOKEN = "X-AuthToken";
 
-    // curl -v -k https://localhost:8211/jexpress/mockservice/jwt/AppAdmin/myid/myissuer/mysubject/10 -X POST
+    // curl -v -k https://localhost:8211/jexpress/mockservice/jwt/10 -X POST -H "application/json;charset=UTF-8" -X POST -d "roleName=AppAdmin&id=myid&issuer=myissuer&subject=mysubject"
     @POST
-    @Path("/jwt/{roleName}/{id}/{issuer}/{subject}/{ttlMinutes}")
+    @Path("/jwt/{ttlMinutes}")
     @Log(requestBody = false, responseHeader = false)
     @Operation(
             tags = {"Mock Service"},
@@ -62,10 +63,10 @@ public class NonFunctionalServiceController extends BootController {
                 )
             }
     )
-    public void generateJWT(@PathParam("roleName") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String roleName,
-            @PathParam("id") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String id,
-            @PathParam("issuer") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String issuer,
-            @PathParam("subject") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String subject,
+    public void generateJWT(@FormParam("roleName") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String roleName,
+            @FormParam("id") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String id,
+            @FormParam("issuer") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String issuer,
+            @FormParam("subject") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String subject,
             @PathParam("ttlMinutes") int ttlMinutes,
             @Parameter(hidden = true) final ServiceContext context) {
         String jwt = Utils.generateJWT(roleName, id, issuer, subject, ttlMinutes);
