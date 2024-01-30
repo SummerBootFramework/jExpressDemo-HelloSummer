@@ -47,8 +47,6 @@ public class NonFunctionalServiceController extends BootController {
             tags = {"Mock Service"},
             summary = "Generate mock JWT",
             description = "Generate mock JWT with user inputs",
-//                                    parameters = {
-//                                        @Parameter(name = "", in = ParameterIn.DEFAULT, required = true, description = "")},
             responses = {
                 @ApiResponse(responseCode = "201", description = "success and return JWT token in header " + X_AUTH_TOKEN,
                         headers = {
