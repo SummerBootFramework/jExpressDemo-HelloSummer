@@ -506,6 +506,9 @@
           "tenantId" : {
             "type" : "number"
           },
+          "uid" : {
+            "type" : "string"
+          },
           "tenantName" : {
             "type" : "string"
           },
@@ -519,9 +522,6 @@
           "tokenTtlSec" : {
             "type" : "integer",
             "format" : "int64"
-          },
-          "uid" : {
-            "type" : "string"
           }
         }
       }

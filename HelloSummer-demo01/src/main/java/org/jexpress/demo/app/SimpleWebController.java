@@ -17,10 +17,10 @@ public class SimpleWebController {
 
     private static final String USER_INPUT_VALIDATION_REGEX = "[a-zA-Z\\#\\-' ]{1,10}";
 
-    // 200 JSON: curl -k https://localhost:8311/hellosummer1/hello/John-Doe -H "Accept: application/json" -H "Authorization: Bearer abcdefg"
-    // 200 XML: curl -k https://localhost:8311/hellosummer1/hello/John-Doe -H "Accept: application/xml"
-    // 400: curl -k https://localhost:8311/hellosummer1/hello/John.Doe -H "Accept: application/json"
-    // 400: curl -k https://localhost:8311/hellosummer1/hello/John.Doe -H "Accept: application/xml"
+    // 200 JSON: curl -v -k https://localhost:8311/hellosummer1/hello/John-Doe -H "Accept: application/json" -H "Authorization: Bearer abcdefg"
+    // 200 XML: curl -v -k https://localhost:8311/hellosummer1/hello/John-Doe -H "Accept: application/xml"
+    // 400: curl -v -k https://localhost:8311/hellosummer1/hello/John.Doe -H "Accept: application/json"
+    // 400: curl -v -k https://localhost:8311/hellosummer1/hello/John.Doe -H "Accept: application/xml"
     @GET
     @Path("/hello/{name}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

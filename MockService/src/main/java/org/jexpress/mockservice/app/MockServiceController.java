@@ -27,8 +27,8 @@ import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 public class MockServiceController {
 
-    // curl -k https://localhost:8211/service1/action1 -H "Accept: application/json" -H "Authorization: Bearer abcdefg"
-    // curl -k https://localhost:8211/service1/action1 -H "Accept: application/json" -H "Authorization: Bearer abcdefg" -X POST -d '{json}'
+    // curl -v -k https://localhost:8211/service1/action1 -H "Accept: application/json" -H "Authorization: Bearer abcdefg"
+    // curl -v -k https://localhost:8211/service1/action1 -H "Accept: application/json" -H "Authorization: Bearer abcdefg" -X POST -d '{json}'
     @GET
     @POST
     @PUT

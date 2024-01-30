@@ -37,7 +37,7 @@ import java.time.OffsetDateTime;
 )
 public class MyControllerRoleBased extends BootController {
 
-    // curl -k https://localhost:8311/hellosummer/ping
+    // curl -v -k https://localhost:8311/hellosummer/ping
     //@Ping //this annotation will override BootController.ping()
     @GET
     @Path("/ping")
@@ -46,8 +46,8 @@ public class MyControllerRoleBased extends BootController {
     }
 
     /*
-     * curl -k https://localhost:8311/hellosummer/hello/234 -H "Accept":"application/xml"
-     * curl -k https://localhost:8311/hellosummer/hello/234 -H "Accept":"application/json"
+     * curl -v -k https://localhost:8311/hellosummer/hello/234 -H "Accept":"application/xml"
+     * curl -v -k https://localhost:8311/hellosummer/hello/234 -H "Accept":"application/json"
      */
     @GET
     @Path("/hello/anonymous")

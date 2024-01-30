@@ -16,6 +16,7 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import org.summerboot.jexpress.boot.annotation.Controller;
+import org.summerboot.jexpress.boot.annotation.Log;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 import org.summerboot.jexpress.nio.server.domain.ServiceError;
 import org.summerboot.jexpress.nio.server.ws.rs.BootController;
@@ -36,8 +37,10 @@ public class NonFunctionalServiceController extends BootController {
 
     private static final String X_AUTH_TOKEN = "X-AuthToken";
 
+    // curl -v -k https://localhost:8211/jexpress/mockservice/jwt/AppAdmin/myid/myissuer/mysubject/10 -X POST
     @POST
     @Path("/jwt/{roleName}/{id}/{issuer}/{subject}/{ttlMinutes}")
+    @Log(requestBody = false, responseHeader = false)
     @Operation(
             tags = {"Mock Service"},
             summary = "Generate mock JWT",

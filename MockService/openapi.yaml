@@ -355,6 +355,8 @@ components:
           type: boolean
         tenantId:
           type: number
+        uid:
+          type: string
         tenantName:
           type: string
         groups:
@@ -365,8 +367,6 @@ components:
         tokenTtlSec:
           type: integer
           format: int64
-        uid:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http
