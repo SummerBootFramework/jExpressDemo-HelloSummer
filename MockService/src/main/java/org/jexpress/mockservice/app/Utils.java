@@ -1,5 +1,7 @@
 package org.jexpress.mockservice.app;
 
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,8 +11,14 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.Properties;
+import java.util.Set;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
+import org.summerboot.jexpress.security.JwtUtil;
+import org.summerboot.jexpress.security.auth.AuthConfig;
+import org.summerboot.jexpress.security.auth.RoleMapping;
+import org.summerboot.jexpress.util.FormatterUtil;
 
 /**
  *
@@ -53,5 +61,18 @@ public class Utils {
     public static String loadFileContent(String fileName) throws IOException {
         File fileEntry = new File(fileName).getAbsoluteFile();
         return Files.readString(Paths.get(fileEntry.getAbsolutePath()));
+    }
+
+    public static String generateJWT(String roleName, String id, String issuer, String subject, int ttlMinutes) {
+        RoleMapping rm = AuthConfig.cfg.getRole(roleName);
+        Set<String> g = rm.getGroups();
+        String groupNames = FormatterUtil.toCSV(g);
+
+        JwtBuilder jb = Jwts.builder()
+                .setId(id)
+                .setIssuer(issuer)
+                .setSubject(subject)
+                .setAudience(groupNames);
+        return JwtUtil.createJWT(AuthConfig.cfg.getJwtSigningKey(), jb, Duration.ofMinutes(ttlMinutes));
     }
 }

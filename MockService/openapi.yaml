@@ -55,6 +55,50 @@ paths:
                 $ref: '#/components/schemas/ServiceError'
       security:
       - BearerAuth: []
+  /jexpress/mockservice/jwt/{roleName}/{id}/{issuer}/{subject}/{ttlMinutes}:
+    post:
+      operationId: generateJWT
+      parameters:
+      - name: roleName
+        in: path
+        required: true
+        schema:
+          pattern: "[a-zA-Z\\.\\-' ]{1,10}"
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          pattern: "[a-zA-Z\\.\\-' ]{1,10}"
+          type: string
+      - name: issuer
+        in: path
+        required: true
+        schema:
+          pattern: "[a-zA-Z\\.\\-' ]{1,10}"
+          type: string
+      - name: subject
+        in: path
+        required: true
+        schema:
+          pattern: "[a-zA-Z\\.\\-' ]{1,10}"
+          type: string
+      - name: ttlMinutes
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
   /jexpress/mockservice/inspection:
     get:
       tags:
@@ -283,8 +327,6 @@ components:
           type: number
         tenantName:
           type: string
-        uid:
-          type: string
         groups:
           uniqueItems: true
           type: array
@@ -293,6 +335,8 @@ components:
         tokenTtlSec:
           type: integer
           format: int64
+        uid:
+          type: string
   securitySchemes:
     BearerAuth:
       type: http
