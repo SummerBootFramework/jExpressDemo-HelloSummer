@@ -78,19 +78,19 @@ public class Utils {
         return Files.readString(Paths.get(fileEntry.getAbsolutePath()));
     }
 
-    public static String generateJWT(String roleName, String id, String issuer, String subject, int ttlMinutes) {
-        RoleMapping rm = AuthConfig.cfg.getRole(roleName);
-        if (rm == null) {
-            throw new IllegalArgumentException("Role (" + roleName + ") not defined in " + AuthConfig.cfg.getCfgFile());
-        }
-        Set<String> g = rm.getGroups();
-        String groupNames = FormatterUtil.toCSV(g);
+    public static String generateJWT(String id, String issuer, String subject, String audience, int ttlMinutes) {
+//        RoleMapping rm = AuthConfig.cfg.getRole(roleName);
+//        if (rm == null) {
+//            throw new IllegalArgumentException("Role (" + roleName + ") not defined in " + AuthConfig.cfg.getCfgFile());
+//        }
+//        Set<String> g = rm.getGroups();
+//        String audience = FormatterUtil.toCSV(g);
 
         JwtBuilder jb = Jwts.builder()
                 .setId(id)
                 .setIssuer(issuer)
                 .setSubject(subject)
-                .setAudience(groupNames);
+                .setAudience(audience);
         return JwtUtil.createJWT(AuthConfig.cfg.getJwtSigningKey(), jb, Duration.ofMinutes(ttlMinutes));
     }
 }

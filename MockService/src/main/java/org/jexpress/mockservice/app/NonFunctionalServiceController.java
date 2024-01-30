@@ -37,7 +37,7 @@ public class NonFunctionalServiceController extends BootController {
 
     private static final String X_AUTH_TOKEN = "X-AuthToken";
 
-    // curl -v -k https://localhost:8211/jexpress/mockservice/jwt/10 -X POST -H "application/x-www-form-urlencoded; charset=UTF-8" -X POST -d "roleName=AppAdmin&id=myid&issuer=myissuer&subject=mysubject"
+    // curl -v -k https://localhost:8211/jexpress/mockservice/jwt/10 -X POST -H "application/x-www-form-urlencoded; charset=UTF-8" -X POST -d "id=myid&issuer=myissuer&subject=mysubject&audience=myaudience"
     @POST
     @Path("/jwt/{ttlMinutes}")
     @Log(requestBody = false, responseHeader = false)
@@ -60,13 +60,13 @@ public class NonFunctionalServiceController extends BootController {
                 )
             }
     )
-    public void generateJWT(@FormParam("roleName") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String roleName,
+    public void generateJWT(@PathParam("ttlMinutes") int ttlMinutes,
             @FormParam("id") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String id,
             @FormParam("issuer") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String issuer,
             @FormParam("subject") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String subject,
-            @PathParam("ttlMinutes") int ttlMinutes,
+            @FormParam("audience") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String audience,
             @Parameter(hidden = true) final ServiceContext context) {
-        String jwt = Utils.generateJWT(roleName, id, issuer, subject, ttlMinutes);
+        String jwt = Utils.generateJWT(id, issuer, subject, audience, ttlMinutes);
         context.responseHeader(X_AUTH_TOKEN, jwt).status(HttpResponseStatus.CREATED);
     }
 

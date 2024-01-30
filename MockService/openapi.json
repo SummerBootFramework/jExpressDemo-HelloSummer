@@ -33,7 +33,12 @@
           "401" : {
             "description" : "caller is not in Admin role",
             "content" : {
-              "*/*" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ServiceError"
                 }
@@ -43,7 +48,12 @@
           "4XX" : {
             "description" : "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
             "content" : {
-              "*/*" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ServiceError"
                 }
@@ -53,7 +63,12 @@
           "5XX" : {
             "description" : "Something happened on the server side. The client can continue and try again with the request without modification.",
             "content" : {
-              "*/*" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ServiceError"
                 }
@@ -87,10 +102,6 @@
               "schema" : {
                 "type" : "object",
                 "properties" : {
-                  "roleName" : {
-                    "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
-                    "type" : "string"
-                  },
                   "id" : {
                     "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
                     "type" : "string"
@@ -100,6 +111,10 @@
                     "type" : "string"
                   },
                   "subject" : {
+                    "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
+                    "type" : "string"
+                  },
+                  "audience" : {
                     "pattern" : "[a-zA-Z\\.\\-' ]{1,10}",
                     "type" : "string"
                   }
@@ -121,7 +136,12 @@
               }
             },
             "content" : {
-              "*/*" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Caller"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/Caller"
                 }
@@ -131,7 +151,12 @@
           "4XX" : {
             "description" : "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
             "content" : {
-              "*/*" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ServiceError"
                 }
@@ -141,7 +166,12 @@
           "5XX" : {
             "description" : "Something happened on the server side. The client can continue and try again with the request without modification.",
             "content" : {
-              "*/*" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ServiceError"
                 }
@@ -237,7 +267,12 @@
               }
             },
             "content" : {
-              "*/*" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Caller"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/Caller"
                 }
@@ -247,7 +282,12 @@
           "401" : {
             "description" : "Invalid username or password",
             "content" : {
-              "*/*" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ServiceError"
                 }
@@ -257,7 +297,12 @@
           "4XX" : {
             "description" : "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
             "content" : {
-              "*/*" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ServiceError"
                 }
@@ -267,7 +312,12 @@
           "5XX" : {
             "description" : "Something happened on the server side. The client can continue and try again with the request without modification.",
             "content" : {
-              "*/*" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ServiceError"
                 }
@@ -290,7 +340,12 @@
           "4XX" : {
             "description" : "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
             "content" : {
-              "*/*" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ServiceError"
                 }
@@ -300,7 +355,12 @@
           "5XX" : {
             "description" : "Something happened on the server side. The client can continue and try again with the request without modification.",
             "content" : {
-              "*/*" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ServiceError"
                 }
@@ -326,7 +386,12 @@
           "5XX" : {
             "description" : "The service status is unhealthy if response code is not 200",
             "content" : {
-              "*/*" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ServiceError"
                 }
@@ -433,11 +498,8 @@
           "enabled" : {
             "type" : "boolean"
           },
-          "tenantName" : {
-            "type" : "string"
-          },
-          "uid" : {
-            "type" : "string"
+          "tenantId" : {
+            "type" : "number"
           },
           "groups" : {
             "uniqueItems" : true,
@@ -446,8 +508,11 @@
               "type" : "string"
             }
           },
-          "tenantId" : {
-            "type" : "number"
+          "tenantName" : {
+            "type" : "string"
+          },
+          "uid" : {
+            "type" : "string"
           },
           "tokenTtlSec" : {
             "type" : "integer",
