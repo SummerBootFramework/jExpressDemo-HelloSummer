@@ -173,7 +173,7 @@ $(document).ready(function() {
     });
 
     // Creates APDEX table
-    createTable($("#apdexTable"), {"supportsControllersDiscrimination": true, "overall": {"data": [0.9999955, 500, 1500, "Total"], "isController": false}, "titles": ["Apdex", "T (Toleration threshold)", "F (Frustration threshold)", "Label"], "items": [{"data": [0.999996, 500, 1500, "ping_with_delay_post_bodydata"], "isController": false}, {"data": [0.999995, 500, 1500, "ping_with_delay_get"], "isController": false}]}, function(index, item){
+    createTable($("#apdexTable"), {"supportsControllersDiscrimination": true, "overall": {"data": [0.99999575, 500, 1500, "Total"], "isController": false}, "titles": ["Apdex", "T (Toleration threshold)", "F (Frustration threshold)", "Label"], "items": [{"data": [1.0, 500, 1500, "ping_with_delay_post_bodydata"], "isController": false}, {"data": [0.9999915, 500, 1500, "ping_with_delay_get"], "isController": false}]}, function(index, item){
         switch(index){
             case 0:
                 item = item.toFixed(3);
@@ -187,7 +187,7 @@ $(document).ready(function() {
     }, [[0, 0]], 3);
 
     // Create statistics table
-    createTable($("#statisticsTable"), {"supportsControllersDiscrimination": true, "overall": {"data": ["Total", 2000000, 0, 0.0, 1.2776875000000563, 0, 764, 0.0, 1.0, 1.0, 8.0, 68166.3258350375, 5791.474948875256, 12115.499318336742], "isController": false}, "titles": ["Label", "#Samples", "FAIL", "Error %", "Average", "Min", "Max", "Median", "90th pct", "95th pct", "99th pct", "Transactions/s", "Received", "Sent"], "items": [{"data": ["ping_with_delay_post_bodydata", 1000000, 0, 0.0, 1.0909619999999443, 0, 721, 0.0, 1.0, 2.0, 8.0, 34489.894460922944, 2963.975305235566, 6938.396737255984], "isController": false}, {"data": ["ping_with_delay_get", 1000000, 0, 0.0, 1.4644129999999989, 0, 764, 0.0, 1.0, 2.0, 14.0, 34083.16291751875, 2862.4531356509883, 5258.925528289025], "isController": false}]}, function(index, item){
+    createTable($("#statisticsTable"), {"supportsControllersDiscrimination": true, "overall": {"data": ["Total", 2000000, 0, 0.0, 1.5361614999999793, 0, 621, 1.0, 1.0, 2.0, 8.0, 68397.11364180432, 10583.14737868062, 11889.342019766766], "isController": false}, "titles": ["Label", "#Samples", "FAIL", "Error %", "Average", "Min", "Max", "Median", "90th pct", "95th pct", "99th pct", "Transactions/s", "Received", "Sent"], "items": [{"data": ["ping_with_delay_post_bodydata", 1000000, 0, 0.0, 1.3367350000000076, 0, 408, 1.0, 1.0, 2.0, 10.0, 34789.86919009184, 5417.055481959279, 6862.845289451711], "isController": false}, {"data": ["ping_with_delay_get", 1000000, 0, 0.0, 1.7355880000000374, 0, 621, 1.0, 1.0, 2.0, 14.0, 34198.55682090216, 5258.163870133118, 5143.142334393488], "isController": false}]}, function(index, item){
         switch(index){
             // Errors pct
             case 3:
