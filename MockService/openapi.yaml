@@ -283,13 +283,13 @@ components:
           type: number
         uid:
           type: string
-        tenantName:
-          type: string
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
+        tenantName:
+          type: string
         tokenTtlSec:
           type: integer
           format: int64
