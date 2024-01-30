@@ -433,10 +433,6 @@
           "enabled" : {
             "type" : "boolean"
           },
-          "tokenTtlSec" : {
-            "type" : "integer",
-            "format" : "int64"
-          },
           "tenantId" : {
             "type" : "number"
           },
@@ -446,6 +442,10 @@
             "items" : {
               "type" : "string"
             }
+          },
+          "tokenTtlSec" : {
+            "type" : "integer",
+            "format" : "int64"
           },
           "uid" : {
             "type" : "string"

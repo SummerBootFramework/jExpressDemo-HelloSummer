@@ -308,9 +308,6 @@ components:
           type: string
         enabled:
           type: boolean
-        tokenTtlSec:
-          type: integer
-          format: int64
         tenantId:
           type: number
         groups:
@@ -318,6 +315,9 @@ components:
           type: array
           items:
             type: string
+        tokenTtlSec:
+          type: integer
+          format: int64
         uid:
           type: string
         tenantName:
