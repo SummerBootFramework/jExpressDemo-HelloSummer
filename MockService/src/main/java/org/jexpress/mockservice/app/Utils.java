@@ -14,12 +14,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Properties;
-import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 import org.summerboot.jexpress.security.JwtUtil;
 import org.summerboot.jexpress.security.auth.AuthConfig;
-import org.summerboot.jexpress.security.auth.RoleMapping;
-import org.summerboot.jexpress.util.FormatterUtil;
 
 /**
  *
@@ -28,6 +26,20 @@ import org.summerboot.jexpress.util.FormatterUtil;
 public class Utils {
 
     public static final String KEY_RESPONSE_STATUS_CODE = "Response_Status_Code";
+    public static final String KEY_RESPONSE_DELAY_SECOND = "Response_Delay_Second";
+
+    public static final String RSPONSE_HEADER_FILE_CONTENT = """
+                                                             ####################
+                                                             # Response Ctrl    #
+                                                             ####################
+                                                             Response_Status_Code=200  
+                                                             Response_Delay_Second=0
+                                                             
+                                                             ####################
+                                                             # Response Headers #
+                                                             ####################
+                                                             #header1=value1
+                                                             """;
 
     public static HttpResponseStatus setResponseHeaders(Properties responseHeaders, ServiceContext context) {
         HttpResponseStatus status = HttpResponseStatus.OK;
@@ -40,9 +52,22 @@ public class Utils {
             status = HttpResponseStatus.valueOf(code);
             responseHeaders.remove(KEY_RESPONSE_STATUS_CODE);
         }
+        int delay = 0;
+        String responseDelaySecond = responseHeaders.getProperty(KEY_RESPONSE_DELAY_SECOND);
+        if (responseStatusCode != null) {
+            delay = Integer.parseInt(responseDelaySecond);
+            responseHeaders.remove(KEY_RESPONSE_DELAY_SECOND);
+        }
         for (Object key : responseHeaders.keySet()) {
             Object value = responseHeaders.get(key);
             context.responseHeader(key.toString(), value);
+        }
+        if (delay > 0) {
+            try {
+                TimeUnit.SECONDS.sleep(delay);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
         }
         return status;
     }
@@ -54,7 +79,7 @@ public class Utils {
                 fileEntry.getParentFile().mkdirs();
                 //fileEntry.createNewFile();
                 try (FileWriter writer = new FileWriter(fileEntry);) {
-                    writer.write(KEY_RESPONSE_STATUS_CODE + "=200");
+                    writer.write(RSPONSE_HEADER_FILE_CONTENT);
                 }
             }
             return null;

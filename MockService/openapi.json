@@ -511,12 +511,12 @@
           "tenantName" : {
             "type" : "string"
           },
-          "uid" : {
-            "type" : "string"
-          },
           "tokenTtlSec" : {
             "type" : "integer",
             "format" : "int64"
+          },
+          "uid" : {
+            "type" : "string"
           }
         }
       }
