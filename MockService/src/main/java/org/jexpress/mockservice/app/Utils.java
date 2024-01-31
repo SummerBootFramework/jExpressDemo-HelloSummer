@@ -54,7 +54,7 @@ public class Utils {
         }
         int delay = 0;
         String responseDelaySecond = responseHeaders.getProperty(KEY_RESPONSE_DELAY_SECOND);
-        if (responseStatusCode != null) {
+        if (responseDelaySecond != null) {
             delay = Integer.parseInt(responseDelaySecond);
             responseHeaders.remove(KEY_RESPONSE_DELAY_SECOND);
         }

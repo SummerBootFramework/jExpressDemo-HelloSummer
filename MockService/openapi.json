@@ -498,6 +498,16 @@
           "enabled" : {
             "type" : "boolean"
           },
+          "uid" : {
+            "type" : "string"
+          },
+          "tokenTtlSec" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "tenantName" : {
+            "type" : "string"
+          },
           "tenantId" : {
             "type" : "number"
           },
@@ -507,16 +517,6 @@
             "items" : {
               "type" : "string"
             }
-          },
-          "tenantName" : {
-            "type" : "string"
-          },
-          "tokenTtlSec" : {
-            "type" : "integer",
-            "format" : "int64"
-          },
-          "uid" : {
-            "type" : "string"
           }
         }
       }
