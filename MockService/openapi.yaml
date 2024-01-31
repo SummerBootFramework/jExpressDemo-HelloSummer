@@ -9,7 +9,7 @@ servers:
 - url: https://localhost:8211
   description: Local Development server
 paths:
-  /jexpress/mockservice/status:
+  /mockservice/status:
     put:
       tags:
       - App Admin
@@ -55,7 +55,7 @@ paths:
                 $ref: '#/components/schemas/ServiceError'
       security:
       - BearerAuth: []
-  /jexpress/mockservice/jwt/{ttlMinutes}:
+  /mockservice/jwt/{ttlMinutes}:
     post:
       tags:
       - Mock Service
@@ -123,7 +123,7 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ServiceError'
-  /jexpress/mockservice/inspection:
+  /mockservice/inspection:
     get:
       tags:
       - App Admin
@@ -157,7 +157,7 @@ paths:
                 $ref: '#/components/schemas/ServiceError'
       security:
       - BearerAuth: []
-  /jexpress/mockservice/j_security_check:
+  /mockservice/j_security_check:
     post:
       tags:
       - App User Authentication
@@ -221,7 +221,7 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ServiceError'
-  /jexpress/mockservice/logout:
+  /mockservice/logout:
     delete:
       tags:
       - App User Authentication
@@ -253,7 +253,7 @@ paths:
                 $ref: '#/components/schemas/ServiceError'
       security:
       - BearerAuth: []
-  /jexpress/mockservice/ping:
+  /mockservice/ping:
     get:
       tags:
       - Load Balancing
@@ -278,7 +278,7 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ServiceError'
-  /jexpress/mockservice/version:
+  /mockservice/version:
     get:
       tags:
       - App Admin
@@ -347,20 +347,20 @@ components:
           type: string
         enabled:
           type: boolean
+        tenantId:
+          type: number
         uid:
           type: string
         tokenTtlSec:
           type: integer
           format: int64
-        tenantName:
-          type: string
-        tenantId:
-          type: number
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
+        tenantName:
+          type: string
   securitySchemes:
     BearerAuth:
       type: http

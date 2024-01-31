@@ -30,14 +30,14 @@ import org.summerboot.jexpress.security.auth.Caller;
 @Controller
 //@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-@Path("/jexpress/mockservice")
+@Path("/mockservice")
 public class NonFunctionalServiceController extends BootController {
 
     private static final String USER_INPUT_VALIDATION_REGEX = "[a-zA-Z\\.\\-' ]{1,10}";
 
     private static final String X_AUTH_TOKEN = "X-AuthToken";
 
-    // curl -v -k https://localhost:8211/jexpress/mockservice/jwt/10 -X POST -H "application/x-www-form-urlencoded; charset=UTF-8" -X POST -d "id=myid&issuer=myissuer&subject=mysubject&audience=myaudience"
+    // curl -v -k https://localhost:8211/mockservice/jwt/10 -X POST -H "application/x-www-form-urlencoded; charset=UTF-8" -X POST -d "id=myid&issuer=myissuer&subject=mysubject&audience=myaudience"
     @POST
     @Path("/jwt/{ttlMinutes}")
     @Log(requestBody = false, responseHeader = false)

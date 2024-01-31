@@ -13,7 +13,7 @@
     "description" : "Local Development server"
   } ],
   "paths" : {
-    "/jexpress/mockservice/status" : {
+    "/mockservice/status" : {
       "put" : {
         "tags" : [ "App Admin" ],
         "summary" : "Graceful shutdown by changing service status",
@@ -81,7 +81,7 @@
         } ]
       }
     },
-    "/jexpress/mockservice/jwt/{ttlMinutes}" : {
+    "/mockservice/jwt/{ttlMinutes}" : {
       "post" : {
         "tags" : [ "Mock Service" ],
         "summary" : "Generate mock JWT",
@@ -181,7 +181,7 @@
         }
       }
     },
-    "/jexpress/mockservice/inspection" : {
+    "/mockservice/inspection" : {
       "get" : {
         "tags" : [ "App Admin" ],
         "summary" : "Run application self inspection",
@@ -230,7 +230,7 @@
         } ]
       }
     },
-    "/jexpress/mockservice/j_security_check" : {
+    "/mockservice/j_security_check" : {
       "post" : {
         "tags" : [ "App User Authentication" ],
         "summary" : "User login",
@@ -327,7 +327,7 @@
         }
       }
     },
-    "/jexpress/mockservice/logout" : {
+    "/mockservice/logout" : {
       "delete" : {
         "tags" : [ "App User Authentication" ],
         "summary" : "User logout",
@@ -373,7 +373,7 @@
         } ]
       }
     },
-    "/jexpress/mockservice/ping" : {
+    "/mockservice/ping" : {
       "get" : {
         "tags" : [ "Load Balancing" ],
         "summary" : "ping service status",
@@ -401,7 +401,7 @@
         }
       }
     },
-    "/jexpress/mockservice/version" : {
+    "/mockservice/version" : {
       "get" : {
         "tags" : [ "App Admin" ],
         "summary" : "Check application version",
@@ -498,6 +498,9 @@
           "enabled" : {
             "type" : "boolean"
           },
+          "tenantId" : {
+            "type" : "number"
+          },
           "uid" : {
             "type" : "string"
           },
@@ -505,18 +508,15 @@
             "type" : "integer",
             "format" : "int64"
           },
-          "tenantName" : {
-            "type" : "string"
-          },
-          "tenantId" : {
-            "type" : "number"
-          },
           "groups" : {
             "uniqueItems" : true,
             "type" : "array",
             "items" : {
               "type" : "string"
             }
+          },
+          "tenantName" : {
+            "type" : "string"
           }
         }
       }
