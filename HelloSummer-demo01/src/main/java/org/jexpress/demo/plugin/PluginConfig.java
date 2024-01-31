@@ -1,8 +1,10 @@
 package org.jexpress.demo.plugin;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.File;
 import java.util.Properties;
+
 import org.summerboot.jexpress.boot.config.BootConfig;
 import org.summerboot.jexpress.boot.config.ConfigUtil;
 import org.summerboot.jexpress.boot.config.annotation.Config;

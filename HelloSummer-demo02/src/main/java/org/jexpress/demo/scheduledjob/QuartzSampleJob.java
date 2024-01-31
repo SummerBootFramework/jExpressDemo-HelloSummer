@@ -2,15 +2,17 @@ package org.jexpress.demo.scheduledjob;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import java.util.concurrent.TimeUnit;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.summerboot.jexpress.boot.annotation.Scheduled;
 import org.summerboot.jexpress.integration.cache.AuthTokenCache;
 
+import java.util.concurrent.TimeUnit;
+
 //@Scheduled(cron="0 15 10 ? * 6L 2012-2015")// cron expression: Fire at 10:15am on every last Friday of every month during the years 2012, 2013, 2014 and 2015
-@Scheduled(daysOfMonth = 1, daysOfMonthField = "Configurable_DaysOfMonth", hour = 2, minute = 3)// monthly: every 2:03am 1st day of the month
+@Scheduled(daysOfMonth = 1, daysOfMonthField = "Configurable_DaysOfMonth", hour = 2, minute = 3)
+// monthly: every 2:03am 1st day of the month
 //@Scheduled(daysOfWeek=1, hour=14, minute=15)// weekly: 2:15pm every Sunday
 //@Scheduled(daysOfWeek={1, 6, 7}, hour=14, minute=15)// weekly: 2:15pm every Sunday, Friday and Saturday
 //@Scheduled(hour = 14, minute = 15, second = 16)// daily: 2:15:16pm everyday

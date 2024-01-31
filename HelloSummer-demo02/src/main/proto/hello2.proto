@@ -9,14 +9,14 @@ option java_outer_classname = "Hello2Proto";
 package hello2.rpc;
 
 message Hello2Request {
-    string firstName = 1;
-    string lastName = 2;
+  string firstName = 1;
+  string lastName = 2;
 }
 
 message Hello2Response {
-    string greeting = 1;
+  string greeting = 1;
 }
 
 service Hello2Service {
-    rpc hello2(Hello2Request) returns (Hello2Response);
+  rpc hello2(Hello2Request) returns (Hello2Response);
 }

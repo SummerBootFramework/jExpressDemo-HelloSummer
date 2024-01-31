@@ -2,7 +2,6 @@ package org.jexpress.demo.restful;
 
 import com.google.inject.Singleton;
 import io.grpc.ServerInterceptor;
-import javax.naming.NamingException;
 import org.summerboot.jexpress.boot.annotation.Service;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 import org.summerboot.jexpress.security.auth.Authenticator;
@@ -10,6 +9,8 @@ import org.summerboot.jexpress.security.auth.AuthenticatorListener;
 import org.summerboot.jexpress.security.auth.BootAuthenticator;
 import org.summerboot.jexpress.security.auth.Caller;
 import org.summerboot.jexpress.security.auth.User;
+
+import javax.naming.NamingException;
 
 @Singleton
 @Service(binding = {Authenticator.class, ServerInterceptor.class})

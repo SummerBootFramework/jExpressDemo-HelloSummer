@@ -10,9 +10,9 @@ import org.summerboot.jexpress.integration.jpa.EntityEx;
 @Entity
 @Table(name = "tenant")
 @NamedQueries({
-    @NamedQuery(name = "Tenant.findAll", query = "SELECT c FROM Tenant c"),
-    @NamedQuery(name = "Tenant.findByOid", query = "SELECT c FROM Tenant c WHERE c.ldapId = :oid"),
-    @NamedQuery(name = "Tenant.findByDN", query = "SELECT c FROM Tenant c WHERE c.dn like :dn")})
+        @NamedQuery(name = "Tenant.findAll", query = "SELECT c FROM Tenant c"),
+        @NamedQuery(name = "Tenant.findByOid", query = "SELECT c FROM Tenant c WHERE c.ldapId = :oid"),
+        @NamedQuery(name = "Tenant.findByDN", query = "SELECT c FROM Tenant c WHERE c.dn like :dn")})
 public class Tenant extends EntityEx {
 
     private static final long serialVersionUID = 1L;

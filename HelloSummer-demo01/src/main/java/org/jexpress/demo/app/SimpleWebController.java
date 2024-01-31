@@ -24,7 +24,7 @@ public class SimpleWebController {
     @GET
     @Path("/hello/{name}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    @Log(requestHeader = false, requestBody = false, responseHeader = false, responseBody = true, hideJsonStringFields="value")
+    @Log(requestHeader = false, requestBody = false, responseHeader = false, responseBody = true, hideJsonStringFields = "value")
     //@RolesAllowed({"Employee"})
     public MyResponse hello(@PathParam("name") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String name) {
         return new MyResponse(SimpleWebController.class.getName(), "GET Hello " + name);

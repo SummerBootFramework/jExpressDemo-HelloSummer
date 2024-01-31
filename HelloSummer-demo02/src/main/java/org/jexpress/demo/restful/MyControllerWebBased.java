@@ -5,13 +5,15 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
-import java.io.File;
 import org.summerboot.jexpress.boot.annotation.Controller;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 import org.summerboot.jexpress.nio.server.ws.rs.WebResourceController;
 
+import java.io.File;
+
 @Singleton
-@Controller(implTag = "WebBased")// to enable it, start application with -use WebBased or -use RoleBased WebBased to enable both role and web based controllers. 404 error will be responsed as html when extends WebResourceController
+@Controller(implTag = "WebBased")
+// to enable it, start application with -use WebBased or -use RoleBased WebBased to enable both role and web based controllers. 404 error will be responsed as html when extends WebResourceController
 public class MyControllerWebBased extends WebResourceController {
 
     private static final String WELCOME_PAGE1 = "pages" + File.separator + "page1.html";

@@ -2,21 +2,22 @@ package org.jexpress.demo.grpc.client;
 
 import io.grpc.ManagedChannel;
 import io.grpc.NameResolverProvider;
-import java.io.IOException;
-import java.net.URI;
-import javax.annotation.Nullable;
-import javax.net.ssl.KeyManagerFactory;
-import javax.net.ssl.TrustManagerFactory;
 import org.jexpress.demo.grpc.proto.generated1.Hello1Request;
 import org.jexpress.demo.grpc.proto.generated1.Hello1Response;
 import org.jexpress.demo.grpc.proto.generated1.Hello1ServiceGrpc;
 import org.summerboot.jexpress.nio.grpc.BearerAuthCredential;
 import org.summerboot.jexpress.nio.grpc.GRPCClient;
 
+import javax.annotation.Nullable;
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.TrustManagerFactory;
+import java.io.IOException;
+import java.net.URI;
+
 public class Hello1Client extends GRPCClient<Hello1Client> {
 
     public Hello1Client(NameResolverProvider nameResolverProvider, URI uri, @Nullable KeyManagerFactory keyManagerFactory, @Nullable TrustManagerFactory trustManagerFactory,
-            @Nullable String overrideAuthority, @Nullable Iterable<String> ciphers, @Nullable String... tlsVersionProtocols) throws IOException {
+                        @Nullable String overrideAuthority, @Nullable Iterable<String> ciphers, @Nullable String... tlsVersionProtocols) throws IOException {
         super(nameResolverProvider, uri, keyManagerFactory, trustManagerFactory, overrideAuthority, ciphers, tlsVersionProtocols);
     }
 

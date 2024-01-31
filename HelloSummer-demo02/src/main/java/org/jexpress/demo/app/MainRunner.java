@@ -2,14 +2,15 @@ package org.jexpress.demo.app;
 
 import com.google.inject.Key;
 import com.google.inject.name.Names;
-import java.io.File;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.summerboot.jexpress.boot.SummerInitializer;
 import org.summerboot.jexpress.boot.SummerRunner;
 import org.summerboot.jexpress.boot.annotation.Order;
-import org.summerboot.jexpress.boot.SummerInitializer;
+
+import java.io.File;
 
 @Order(1)
 public class MainRunner implements SummerInitializer, SummerRunner {
