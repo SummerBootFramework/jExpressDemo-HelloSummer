@@ -3,6 +3,9 @@ package org.jexpress.mockservice.app;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.netty.handler.codec.http.HttpResponseStatus;
+import org.summerboot.jexpress.nio.server.domain.ServiceContext;
+import org.summerboot.jexpress.security.JwtUtil;
+import org.summerboot.jexpress.security.auth.AuthConfig;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,10 +19,6 @@ import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-
-import org.summerboot.jexpress.nio.server.domain.ServiceContext;
-import org.summerboot.jexpress.security.JwtUtil;
-import org.summerboot.jexpress.security.auth.AuthConfig;
 
 /**
  * @author 魏泽北
@@ -73,8 +72,12 @@ public class Utils {
         return status;
     }
 
+    public static String escape4Filename(String s) {
+        return s.replaceAll("[?]", "_");
+    }
+
     public static Properties loadProperties(String fileName, boolean createIfNotExist) throws IOException {
-        File fileEntry = new File(fileName).getAbsoluteFile();
+        File fileEntry = new File(escape4Filename(fileName)).getAbsoluteFile();
         if (!fileEntry.exists()) {
             if (createIfNotExist) {
                 fileEntry.getParentFile().mkdirs();
@@ -93,7 +96,7 @@ public class Utils {
     }
 
     public static String loadFileContent(String fileName, boolean createIfNotExist) throws IOException {
-        File fileEntry = new File(fileName).getAbsoluteFile();
+        File fileEntry = new File(escape4Filename(fileName)).getAbsoluteFile();
         if (!fileEntry.exists()) {
             if (createIfNotExist) {
                 fileEntry.getParentFile().mkdirs();

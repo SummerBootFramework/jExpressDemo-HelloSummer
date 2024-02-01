@@ -349,18 +349,18 @@ components:
           type: boolean
         tenantId:
           type: number
-        uid:
-          type: string
         tokenTtlSec:
           type: integer
           format: int64
+        tenantName:
+          type: string
+        uid:
+          type: string
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
-        tenantName:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http

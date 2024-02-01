@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4ca15abe-a9cb-4874-8850-799df63dc7b3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/nbactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbactions.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi.json" beforeDir="false" afterPath="$PROJECT_DIR$/openapi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/configuration/cfg_auth.properties" beforeDir="false" afterPath="$PROJECT_DIR$/run/configuration/cfg_auth.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/configuration/cfg_nio.properties" beforeDir="false" afterPath="$PROJECT_DIR$/run/configuration/cfg_nio.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/configuration/cfg_smtp.properties" beforeDir="false" afterPath="$PROJECT_DIR$/run/configuration/cfg_smtp.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/configuration/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/run/configuration/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/jexpress/demo/app/SimpleWebController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jexpress/demo/app/SimpleWebController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/jexpress/demo/plugin/PluginConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jexpress/demo/plugin/PluginConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/jexpress/demo/plugin/PluginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jexpress/demo/plugin/PluginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/.idea/sonarlint/issuestore/9/d/9deb94316951f6c08097dd158bca82b23d401122" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/.idea/sonarlint/issuestore/9/d/9deb94316951f6c08097dd158bca82b23d401122" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/nbactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/nbactions.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/openapi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/openapi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/openapi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/openapi.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration/cfg_auth.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration/cfg_auth.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration/cfg_grpc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration/cfg_grpc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration/cfg_grpcclient.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration/cfg_grpcclient.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration/cfg_nio.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration/cfg_nio.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration/cfg_smtp.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration/cfg_smtp.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8424/cfg_auth.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8424/cfg_auth.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8424/cfg_db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8424/cfg_db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8424/cfg_grpc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8424/cfg_grpc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8424/cfg_grpcclient.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8424/cfg_grpcclient.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8424/cfg_nio.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8424/cfg_nio.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8424/cfg_smtp.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8424/cfg_smtp.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8424/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8424/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8425/cfg_auth.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8425/cfg_auth.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8425/cfg_db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8425/cfg_db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8425/cfg_grpc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8425/cfg_grpc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8425/cfg_grpcclient.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8425/cfg_grpcclient.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8425/cfg_nio.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8425/cfg_nio.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8425/cfg_smtp.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/configuration_two-way_8425/cfg_smtp.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/docroot/errorpages/400.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/docroot/errorpages/400.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/docroot/errorpages/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/docroot/errorpages/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/docroot/websocket_client.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/run/standalone_dev/docroot/websocket_client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/app/MainRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/app/MainRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/app/MyConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/app/MyConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/cache/CacheImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/cache/CacheImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/db/DBConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/db/DBConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/db/domain/FileLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/db/domain/FileLocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/db/domain/Tenant.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/db/domain/Tenant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/grpc/client/Hello1Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/grpc/client/Hello1Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/grpc/client/Hello2Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/grpc/client/Hello2Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/grpc/impl/Hello1ServiceImpl_A.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/grpc/impl/Hello1ServiceImpl_A.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/grpc/impl/Hello2ServiceImpl_A.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/grpc/impl/Hello2ServiceImpl_A.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/restful/MyAuthenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/restful/MyAuthenticator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/restful/MyControllerWebBased.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/restful/MyControllerWebBased.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/restful/MyHealthInspector.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/restful/MyHealthInspector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/scheduledjob/QuartzSampleJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/scheduledjob/QuartzSampleJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/websocket/ChatRoomWebSocketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/websocket/ChatRoomWebSocketHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/websocket/ChatRoomWebSocketHandler2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/java/org/jexpress/demo/websocket/ChatRoomWebSocketHandler2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/proto/hello1.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/proto/hello1.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/proto/hello2.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/main/proto/hello2.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/test/java/test/integration/db/DBTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/test/java/test/integration/db/DBTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/test/java/test/integration/grpc/GrpcTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/test/java/test/integration/grpc/GrpcTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloSummer-demo02/src/test/resources/config/cfg_db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloSummer-demo02/src/test/resources/config/cfg_db.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2bj4CCv5T4aa4pUAqUCYtol36hW" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/projects/framework/SummerBoot/jExpressDemo-HelloSummer/MockService"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="HelloSummer-demo01" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="HelloSummer-demo01" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-azul-21.0.1-8336523bb0d9-e7c94848" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4ca15abe-a9cb-4874-8850-799df63dc7b3" name="Changes" comment="" />
+      <created>1706715025022</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1706715025022</updated>
+    </task>
+    <servers />
+  </component>
+</project>

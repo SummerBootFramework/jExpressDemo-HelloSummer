@@ -640,18 +640,8 @@
           "enabled" : {
             "type" : "boolean"
           },
-          "tenantName" : {
-            "type" : "string"
-          },
-          "tokenTtlSec" : {
-            "type" : "integer",
-            "format" : "int64"
-          },
           "uid" : {
             "type" : "string"
-          },
-          "tenantId" : {
-            "type" : "number"
           },
           "groups" : {
             "uniqueItems" : true,
@@ -659,6 +649,16 @@
             "items" : {
               "type" : "string"
             }
+          },
+          "tenantId" : {
+            "type" : "number"
+          },
+          "tenantName" : {
+            "type" : "string"
+          },
+          "tokenTtlSec" : {
+            "type" : "integer",
+            "format" : "int64"
           }
         }
       },

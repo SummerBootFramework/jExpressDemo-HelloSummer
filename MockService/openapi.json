@@ -501,12 +501,15 @@
           "tenantId" : {
             "type" : "number"
           },
-          "uid" : {
-            "type" : "string"
-          },
           "tokenTtlSec" : {
             "type" : "integer",
             "format" : "int64"
+          },
+          "tenantName" : {
+            "type" : "string"
+          },
+          "uid" : {
+            "type" : "string"
           },
           "groups" : {
             "uniqueItems" : true,
@@ -514,9 +517,6 @@
             "items" : {
               "type" : "string"
             }
-          },
-          "tenantName" : {
-            "type" : "string"
           }
         }
       }
