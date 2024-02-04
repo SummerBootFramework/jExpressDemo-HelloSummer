@@ -426,18 +426,18 @@ components:
           type: boolean
         uid:
           type: string
+        tokenTtlSec:
+          type: integer
+          format: int64
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
-        tenantId:
-          type: number
         tenantName:
           type: string
-        tokenTtlSec:
-          type: integer
-          format: int64
+        tenantId:
+          type: number
     Err:
       type: object
       properties:

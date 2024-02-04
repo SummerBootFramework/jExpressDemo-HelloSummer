@@ -15,6 +15,8 @@ import jakarta.ws.rs.core.MediaType;
 
 import java.io.IOException;
 import java.util.Properties;
+import javax.script.ScriptException;
+import org.apache.commons.lang3.StringUtils;
 
 import org.summerboot.jexpress.boot.annotation.Controller;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
@@ -28,6 +30,16 @@ import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 public class MockServiceController {
 
+    public static final String JS_FILE_CONTENT = """
+            // @param requestBody as String
+            // @param requestHeader as Map<String, String>
+            // @return a postfix string, to append at the end of the response file name, which content will send back as response
+            // example:
+            // var isJson = header["Content-Type"].includes('json');
+            // var json = JSON.parse(requestBody);
+            // return isJson ? 'json' : 'xml';
+            """;
+
     // curl -v -k https://localhost:8211/service1/action1 -H "Accept: application/json" -H "Authorization: Bearer abcdefg"
     // curl -v -k https://localhost:8211/service1/action1 -H "Accept: application/json" -H "Authorization: Bearer abcdefg" -X POST -d '{"name":"John Done","title":"Boss"}'
     @GET
@@ -36,12 +48,25 @@ public class MockServiceController {
     @PATCH
     @DELETE
     @Path("")
-    public String mockService(String body, @Parameter(hidden = true) final ServiceContext context) throws IOException {
+    public String mockService(String body, @Parameter(hidden = true) final ServiceContext context) throws IOException, ScriptException, NoSuchMethodException {
         String filePath = "mock_response" + context.uri() + "_" + context.method();
-        Properties responseHeaders = Utils.loadProperties(filePath + ".properties", true);
+        String fileName = filePath + ".js";
+        context.memo("js.file", fileName);
+        String jsCode = Utils.loadFileContent(fileName, true, JS_FILE_CONTENT);
+        String postFix = JavaScriptUtil.ruleEngine(jsCode, body, context.requestHeaders().entries(), context);
+        if (!StringUtils.isBlank(postFix)) {
+            filePath += "_case_" + postFix;
+        }
+
+        fileName = filePath + ".properties";
+        context.memo("response.header.file", fileName);
+        Properties responseHeaders = Utils.loadProperties(fileName, true);
         HttpResponseStatus status = Utils.setResponseHeaders(responseHeaders, context);
         context.status(status);
-        return Utils.loadFileContent(filePath + ".txt", true);
+
+        fileName = filePath + ".txt";
+        context.memo("response.body.file", fileName);
+        return Utils.loadFileContent(fileName, true, null);
     }
 
 }

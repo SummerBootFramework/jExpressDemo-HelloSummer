@@ -19,6 +19,7 @@ import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author 魏泽北
@@ -95,12 +96,18 @@ public class Utils {
         return props;
     }
 
-    public static String loadFileContent(String fileName, boolean createIfNotExist) throws IOException {
+    public static String loadFileContent(String fileName, boolean createIfNotExist, String defaultContent) throws IOException {
         File fileEntry = new File(escape4Filename(fileName)).getAbsoluteFile();
         if (!fileEntry.exists()) {
             if (createIfNotExist) {
                 fileEntry.getParentFile().mkdirs();
-                fileEntry.createNewFile();
+                if (StringUtils.isBlank(defaultContent)) {
+                    fileEntry.createNewFile();
+                } else {
+                    try (FileWriter writer = new FileWriter(fileEntry);) {
+                        writer.write(defaultContent);
+                    }
+                }
             }
             return null;
         }
