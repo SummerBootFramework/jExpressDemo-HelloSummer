@@ -14,6 +14,10 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Properties;
 import javax.script.ScriptException;
 import org.apache.commons.lang3.StringUtils;
@@ -30,16 +34,6 @@ import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 public class MockServiceController {
 
-    public static final String JS_FILE_CONTENT = """
-            // @param requestBody as String
-            // @param requestHeader as Map<String, String>
-            // @return a postfix string, to append at the end of the response file name, which content will send back as response
-            // example:
-            // var isJson = header["Content-Type"].includes('json');
-            // var json = JSON.parse(requestBody);
-            // return isJson ? 'json' : 'xml';
-            """;
-
     // curl -v -k https://localhost:8211/service1/action1 -H "Accept: application/json" -H "Authorization: Bearer abcdefg"
     // curl -v -k https://localhost:8211/service1/action1 -H "Accept: application/json" -H "Authorization: Bearer abcdefg" -X POST -d '{"name":"John Done","title":"Boss"}'
     @GET
@@ -49,11 +43,15 @@ public class MockServiceController {
     @DELETE
     @Path("")
     public String mockService(String body, @Parameter(hidden = true) final ServiceContext context) throws IOException, ScriptException, NoSuchMethodException {
-        String filePath = "mock_response" + context.uri() + "_" + context.method();
+        String url = context.uri();
+        Map<String, String> queryParam = new LinkedHashMap();
+        String action = parseUrlQueryParam(url, queryParam);
+
+        String filePath = "mock_response" + action + "_" + context.method();
         String fileName = filePath + ".js";
         context.memo("js.file", fileName);
-        String jsCode = Utils.loadFileContent(fileName, true, JS_FILE_CONTENT);
-        String postFix = Utils.javascriptRuleEngine(jsCode, body, context.requestHeaders().entries(), context);
+        String jsCode = Utils.loadFileContent(fileName, true, Utils.JS_FILE_CONTENT);
+        String postFix = Utils.javascriptRuleEngine(jsCode, context.requestHeaders().entries(), queryParam, body, context);
         if (!StringUtils.isBlank(postFix)) {
             filePath += "_case_" + postFix;
         }
@@ -67,6 +65,23 @@ public class MockServiceController {
         fileName = filePath + ".txt";
         context.memo("response.body.file", fileName);
         return Utils.loadFileContent(fileName, true, null);
+    }
+
+    public static String parseUrlQueryParam(String url, Map<String, String> queryParam) {
+        String[] request = url.split("\\?", 2);
+        String action = request[0];
+        if (request.length < 2) {
+            return action;
+        }
+        String queryParamString = URLDecoder.decode(request[1], StandardCharsets.UTF_8);
+        String[] pairs = queryParamString.split("&");
+
+        for (String param : pairs) {
+            String[] keyValuePair = param.split("=", 2);
+            queryParam.put(keyValuePair[0], keyValuePair[1]);
+        }
+
+        return action;
     }
 
 }

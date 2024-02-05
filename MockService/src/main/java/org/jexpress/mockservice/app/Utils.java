@@ -28,6 +28,8 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 import org.apache.commons.lang3.StringUtils;
 import org.graalvm.polyglot.Context;
+import org.summerboot.jexpress.boot.BootConstant;
+import static org.summerboot.jexpress.util.FormatterUtil.EMPTY_STR_ARRAY;
 
 /**
  * @author 魏泽北
@@ -140,17 +142,41 @@ public class Utils {
 
     private static final String JS_CODE1 = """                         
                         var app = {                        
-                         ruleEngine: function(requestBody, requestHeader) {
+                         ruleEngine: function(requestHeader, queryParam, requestBody) {
                         """;
     private static final String JS_CODE2 = """                         
                          }
                         }
                         """;
+    public static final String JS_FILE_CONTENT = """
+            // @param requestHeader as Map<String, String>
+            // @param queryParam as Map<String, String>
+            // @param requestBody as String
+            // @return a postfix string, to append at the end of the response file name, which content will send back as response
+            // example:
+            // var isJson = requestHeader["Content-Type"].includes('json');
+            // var json = JSON.parse(requestBody);
+            // var value1 = queryParam.key1;
+            // return isJson ? 'json' : 'xml';
+            """;
 
-    public static String javascriptRuleEngine(String jsCode, String requestBody, List<Map.Entry<String, String>> listOfEntry, final ServiceContext context) throws ScriptException, NoSuchMethodException {
+    public static String javascriptRuleEngine(String jsCode, List<Map.Entry<String, String>> listOfEntry, Map<String, String> queryParam, String requestBody, final ServiceContext context) throws ScriptException, NoSuchMethodException {
         if (StringUtils.isBlank(jsCode)) {
             return null;
         }
+        String[] jsLines = StringUtils.isBlank(jsCode) ? EMPTY_STR_ARRAY : jsCode.split("\\r?\\n");
+        StringBuilder sb = new StringBuilder();
+        for (String jsLine : jsLines) {
+            if (StringUtils.isBlank(jsLine)) {
+                continue;
+            }
+            String trimed = jsLine.trim();
+            if (trimed.startsWith("//") || trimed.startsWith("#")) {
+                continue;
+            }
+            sb.append(jsLine).append(BootConstant.BR);
+        }
+
         Map<String, String> requestHeader = new HashMap();
         for (Map.Entry<String, String> entry : listOfEntry) {
             requestHeader.put(entry.getKey(), entry.getValue());
@@ -159,7 +185,7 @@ public class Utils {
                 Context.newBuilder("js")
                         .allowAllAccess(true)
         );
-        jsCode = JS_CODE1 + jsCode + JS_CODE2;
+        jsCode = JS_CODE1 + sb.toString() + JS_CODE2;
         if (context != null) {
             context.memo("jsCode", jsCode);
         }
@@ -167,7 +193,7 @@ public class Utils {
         Invocable invocable = (Invocable) graalEngine;
         Object thiz = graalEngine.get("app");
 
-        Object result = invocable.invokeMethod(thiz, "ruleEngine", requestBody, requestHeader);
+        Object result = invocable.invokeMethod(thiz, "ruleEngine", requestHeader, queryParam, requestBody);
         return result == null ? null : result.toString();
     }
 }
