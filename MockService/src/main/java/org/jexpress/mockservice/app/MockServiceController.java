@@ -53,7 +53,7 @@ public class MockServiceController {
         String fileName = filePath + ".js";
         context.memo("js.file", fileName);
         String jsCode = Utils.loadFileContent(fileName, true, JS_FILE_CONTENT);
-        String postFix = JavaScriptUtil.ruleEngine(jsCode, body, context.requestHeaders().entries(), context);
+        String postFix = Utils.javascriptRuleEngine(jsCode, body, context.requestHeaders().entries(), context);
         if (!StringUtils.isBlank(postFix)) {
             filePath += "_case_" + postFix;
         }
