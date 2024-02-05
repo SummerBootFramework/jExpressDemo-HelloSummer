@@ -198,6 +198,7 @@ public class Utils {
         return result == null ? null : result.toString();
     }
 
+    @Deprecated
     public static String parseUrlQueryParam(String url, Map<String, String> queryParam) {
         String[] request = url.split("\\?", 2);
         String action = request[0];
@@ -209,6 +210,9 @@ public class Utils {
 
         for (String param : pairs) {
             String[] keyValuePair = param.split("=", 2);
+            if (keyValuePair.length < 2) {
+                continue;
+            }
             queryParam.put(keyValuePair[0], keyValuePair[1]);
         }
 
