@@ -14,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -195,5 +196,22 @@ public class Utils {
 
         Object result = invocable.invokeMethod(thiz, "ruleEngine", requestHeader, queryParam, requestBody);
         return result == null ? null : result.toString();
+    }
+
+    public static String parseUrlQueryParam(String url, Map<String, String> queryParam) {
+        String[] request = url.split("\\?", 2);
+        String action = request[0];
+        if (request.length < 2) {
+            return action;
+        }
+        String queryParamString = URLDecoder.decode(request[1], StandardCharsets.UTF_8);
+        String[] pairs = queryParamString.split("&");
+
+        for (String param : pairs) {
+            String[] keyValuePair = param.split("=", 2);
+            queryParam.put(keyValuePair[0], keyValuePair[1]);
+        }
+
+        return action;
     }
 }

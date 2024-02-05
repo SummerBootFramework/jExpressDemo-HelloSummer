@@ -43,16 +43,15 @@ public class MockServiceController {
     @DELETE
     @Path("")
     public String mockService(String body, @Parameter(hidden = true) final ServiceContext context) throws IOException, ScriptException, NoSuchMethodException {
-        String url = context.uri();
         Map<String, String> queryParam = new LinkedHashMap();
-        String action = parseUrlQueryParam(url, queryParam);
-
+        String action = Utils.parseUrlQueryParam(context.uri(), queryParam);
         String filePath = "mock_response" + action + "_" + context.method();
+
         String fileName = filePath + ".js";
         context.memo("js.file", fileName);
         String jsCode = Utils.loadFileContent(fileName, true, Utils.JS_FILE_CONTENT);
         String postFix = Utils.javascriptRuleEngine(jsCode, context.requestHeaders().entries(), queryParam, body, context);
-        if (!StringUtils.isBlank(postFix)) {
+        if (StringUtils.isNotBlank(postFix)) {
             filePath += "_case_" + postFix;
         }
 
@@ -65,23 +64,6 @@ public class MockServiceController {
         fileName = filePath + ".txt";
         context.memo("response.body.file", fileName);
         return Utils.loadFileContent(fileName, true, null);
-    }
-
-    public static String parseUrlQueryParam(String url, Map<String, String> queryParam) {
-        String[] request = url.split("\\?", 2);
-        String action = request[0];
-        if (request.length < 2) {
-            return action;
-        }
-        String queryParamString = URLDecoder.decode(request[1], StandardCharsets.UTF_8);
-        String[] pairs = queryParamString.split("&");
-
-        for (String param : pairs) {
-            String[] keyValuePair = param.split("=", 2);
-            queryParam.put(keyValuePair[0], keyValuePair[1]);
-        }
-
-        return action;
     }
 
 }

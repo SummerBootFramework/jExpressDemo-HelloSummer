@@ -82,10 +82,13 @@ components:
           type: string
         enabled:
           type: boolean
-        tenantId:
-          type: number
+        tokenTtlSec:
+          type: integer
+          format: int64
         uid:
           type: string
+        tenantId:
+          type: number
         groups:
           uniqueItems: true
           type: array
@@ -93,9 +96,6 @@ components:
             type: string
         tenantName:
           type: string
-        tokenTtlSec:
-          type: integer
-          format: int64
     Err:
       type: object
       properties:
