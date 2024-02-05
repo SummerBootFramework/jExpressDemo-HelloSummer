@@ -30,7 +30,7 @@ import org.summerboot.jexpress.security.auth.Caller;
 //@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 @Path("/mockservice")
-public class NonFunctionalServiceController extends BootController {
+public class NonFunctionalServiceController /*extends BootController*/ {
 
     private static final String USER_INPUT_VALIDATION_REGEX = "[a-zA-Z\\.\\-' ]{1,10}";
 
