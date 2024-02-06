@@ -14,7 +14,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -141,14 +140,8 @@ public class Utils {
         return JwtUtil.createJWT(AuthConfig.cfg.getJwtSigningKey(), jb, Duration.ofMinutes(ttlMinutes));
     }
 
-    private static final String JS_CODE1 = """                         
-                        var app = {                        
-                         ruleEngine: function(requestHeader, queryParam, requestBody) {
-                        """;
-    private static final String JS_CODE2 = """                         
-                         }
-                        }
-                        """;
+    private static final String JS_CODE1 = BootConstant.BR + "function ruleEngine(requestHeader, queryParam, requestBody) {" + BootConstant.BR;
+    private static final String JS_CODE2 = "}";
     public static final String JS_FILE_CONTENT = """
             // @param requestHeader as Map<String, String>
             // @param queryParam as Map<String, String>
@@ -192,30 +185,7 @@ public class Utils {
         }
         graalEngine.eval(jsCode);
         Invocable invocable = (Invocable) graalEngine;
-        Object thiz = graalEngine.get("app");
-
-        Object result = invocable.invokeMethod(thiz, "ruleEngine", requestHeader, queryParam, requestBody);
+        Object result = invocable.invokeFunction("ruleEngine", requestHeader, queryParam, requestBody);
         return result == null ? null : result.toString();
-    }
-
-    @Deprecated
-    public static String parseUrlQueryParam(String url, Map<String, String> queryParam) {
-        String[] request = url.split("\\?", 2);
-        String action = request[0];
-        if (request.length < 2) {
-            return action;
-        }
-        String queryParamString = URLDecoder.decode(request[1], StandardCharsets.UTF_8);
-        String[] pairs = queryParamString.split("&");
-
-        for (String param : pairs) {
-            String[] keyValuePair = param.split("=", 2);
-            if (keyValuePair.length < 2) {
-                continue;
-            }
-            queryParam.put(keyValuePair[0], keyValuePair[1]);
-        }
-
-        return action;
     }
 }

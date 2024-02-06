@@ -82,20 +82,20 @@ components:
           type: string
         enabled:
           type: boolean
-        tokenTtlSec:
-          type: integer
-          format: int64
-        uid:
-          type: string
         tenantId:
           type: number
+        tenantName:
+          type: string
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
-        tenantName:
+        uid:
           type: string
+        tokenTtlSec:
+          type: integer
+          format: int64
     Err:
       type: object
       properties:

@@ -14,8 +14,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
 import java.io.IOException;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -24,6 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import org.summerboot.jexpress.boot.annotation.Controller;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
+import org.summerboot.jexpress.util.FormatterUtil;
 
 /**
  * @author 魏泽北
@@ -44,7 +43,7 @@ public class MockServiceController {
     @Path("")
     public String mockService(String body, @Parameter(hidden = true) final ServiceContext context) throws IOException, ScriptException, NoSuchMethodException {
         Map<String, String> queryParam = new LinkedHashMap();
-        String action = Utils.parseUrlQueryParam(context.uri(), queryParam);
+        String action = FormatterUtil.parseUrlQueryParam(context.uri(), queryParam);
         String filePath = "mock_response" + action + "_" + context.method();
 
         String fileName = filePath + ".js";

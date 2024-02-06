@@ -762,7 +762,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">service1/action1?a=b b&amp;c c=d d&amp;ee=1?23</stringProp>
+          <stringProp name="HTTPSampler.path">service1/action1?a=b b&amp;c c=d d&amp;ee=1?23&amp;key1=a b</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
