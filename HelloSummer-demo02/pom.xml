@@ -19,7 +19,7 @@
         <maven.dependency.version>3.6.1</maven.dependency.version>
         <maven.jar.version>3.3.0</maven.jar.version>
         <maven.resources.version>3.3.1</maven.resources.version>
-        <jexpress.version>2.4.1</jexpress.version>
+        <jexpress.version>2.4.2</jexpress.version>
         <swagger.core.version>2.2.20</swagger.core.version>
         <elastic-apm.version>1.45.0</elastic-apm.version>
         <testng.version>7.9.0</testng.version>
