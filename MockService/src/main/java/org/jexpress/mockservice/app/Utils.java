@@ -14,6 +14,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -140,12 +143,13 @@ public class Utils {
         return JwtUtil.createJWT(AuthConfig.cfg.getJwtSigningKey(), jb, Duration.ofMinutes(ttlMinutes));
     }
 
-    private static final String JS_CODE1 = BootConstant.BR + "function ruleEngine(requestHeader, queryParam, requestBody) {" + BootConstant.BR;
+    private static final String JS_CODE1 = BootConstant.BR + "function ruleEngine(requestHeader, queryParam, requestBody, remoteAddress) {" + BootConstant.BR;
     private static final String JS_CODE2 = "}";
     public static final String JS_FILE_CONTENT = """
             // @param requestHeader as Map<String, String>
             // @param queryParam as Map<String, String>
             // @param requestBody as String
+            // @param remoteAddress as String
             // @return a postfix string, to append at the end of the response file name, which content will send back as response
             // example:
             // var isJson = requestHeader["Content-Type"].includes('json');
@@ -158,6 +162,7 @@ public class Utils {
         if (StringUtils.isBlank(jsCode)) {
             return null;
         }
+        
 
         Map<String, String> requestHeader = new HashMap();
         for (Map.Entry<String, String> entry : headers) {
@@ -177,14 +182,19 @@ public class Utils {
             sb.append(jsLine).append(BootConstant.BR);
         }
         String jsFunctionCode = JS_CODE1 + sb.toString() + JS_CODE2;
+        
+        String remoteAddress = null;
         if (context != null) {
             context.memo("jsCode", jsFunctionCode);
+            InetSocketAddress saddr = (InetSocketAddress)context.remoteIP();
+            InetAddress addr = saddr.getAddress();
+            remoteAddress = addr.getCanonicalHostName();
         }
 
         ScriptEngine graalEngine = GraalJSScriptEngine.create(null, Context.newBuilder("js").allowAllAccess(true));
         graalEngine.eval(jsFunctionCode);
         Invocable invocable = (Invocable) graalEngine;
-        Object result = invocable.invokeFunction("ruleEngine", requestHeader, queryParam, requestBody);
+        Object result = invocable.invokeFunction("ruleEngine", requestHeader, queryParam, requestBody, remoteAddress);
         return result == null ? null : result.toString();
     }
 }
