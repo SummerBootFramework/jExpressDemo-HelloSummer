@@ -154,10 +154,16 @@ public class Utils {
             // return isJson ? 'json' : 'xml';
             """;
 
-    public static String javascriptRuleEngine(String jsCode, List<Map.Entry<String, String>> listOfEntry, Map<String, String> queryParam, String requestBody, final ServiceContext context) throws ScriptException, NoSuchMethodException {
+    public static String javascriptRuleEngine(String jsCode, List<Map.Entry<String, String>> headers, Map<String, String> queryParam, String requestBody, final ServiceContext context) throws ScriptException, NoSuchMethodException {
         if (StringUtils.isBlank(jsCode)) {
             return null;
         }
+
+        Map<String, String> requestHeader = new HashMap();
+        for (Map.Entry<String, String> entry : headers) {
+            requestHeader.put(entry.getKey(), entry.getValue());
+        }
+
         String[] jsLines = StringUtils.isBlank(jsCode) ? EMPTY_STR_ARRAY : jsCode.split("\\r?\\n");
         StringBuilder sb = new StringBuilder();
         for (String jsLine : jsLines) {
@@ -170,20 +176,13 @@ public class Utils {
             }
             sb.append(jsLine).append(BootConstant.BR);
         }
-
-        Map<String, String> requestHeader = new HashMap();
-        for (Map.Entry<String, String> entry : listOfEntry) {
-            requestHeader.put(entry.getKey(), entry.getValue());
-        }
-        ScriptEngine graalEngine = GraalJSScriptEngine.create(null,
-                Context.newBuilder("js")
-                        .allowAllAccess(true)
-        );
-        jsCode = JS_CODE1 + sb.toString() + JS_CODE2;
+        String jsFunctionCode = JS_CODE1 + sb.toString() + JS_CODE2;
         if (context != null) {
-            context.memo("jsCode", jsCode);
+            context.memo("jsCode", jsFunctionCode);
         }
-        graalEngine.eval(jsCode);
+
+        ScriptEngine graalEngine = GraalJSScriptEngine.create(null, Context.newBuilder("js").allowAllAccess(true));
+        graalEngine.eval(jsFunctionCode);
         Invocable invocable = (Invocable) graalEngine;
         Object result = invocable.invokeFunction("ruleEngine", requestHeader, queryParam, requestBody);
         return result == null ? null : result.toString();
