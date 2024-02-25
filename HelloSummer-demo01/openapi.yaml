@@ -8,7 +8,22 @@ paths:
         in: path
         required: true
         schema:
-          pattern: "[a-zA-Z\\#\\-' ]{1,10}"
+          type: string
+      - name: "key !@#$%^&*()_+-=[]\\{}|;':\",./<>? 中文 "
+        in: query
+        schema:
+          type: string
+      - name: color
+        in: path
+        required: true
+        style: matrix
+        schema:
+          type: string
+      - name: color2
+        in: path
+        required: true
+        style: matrix
+        schema:
           type: string
       responses:
         default:
