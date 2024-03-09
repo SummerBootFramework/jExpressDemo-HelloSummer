@@ -47,5 +47,7 @@ public class MainRunner implements SummerInitializer, SummerRunner {
         log.debug("beforeStart=" + context.getConfigDir());
         SummerRunner plugin = context.getGuiceInjector().getInstance(Key.get(SummerRunner.class, Names.named("myplugin")));
         plugin.run(null);
+
+        //MqttClient.send("hello mqtt1", "hello mqtt2");
     }
 }

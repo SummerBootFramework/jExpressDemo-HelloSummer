@@ -637,6 +637,8 @@ components:
     Caller:
       type: object
       properties:
+        enabled:
+          type: boolean
         id:
           type: number
         type:
@@ -644,20 +646,18 @@ components:
           format: int32
         displayName:
           type: string
-        enabled:
-          type: boolean
+        tenantName:
+          type: string
+        tokenTtlSec:
+          type: integer
+          format: int64
+        tenantId:
+          type: number
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
-        tenantName:
-          type: string
-        tenantId:
-          type: number
-        tokenTtlSec:
-          type: integer
-          format: int64
         uid:
           type: string
     Err:
@@ -802,10 +802,10 @@ components:
                   lineNumber:
                     type: integer
                     format: int32
-                  nativeMethod:
-                    type: boolean
                   className:
                     type: string
+                  nativeMethod:
+                    type: boolean
             message:
               type: string
             localizedMessage:
