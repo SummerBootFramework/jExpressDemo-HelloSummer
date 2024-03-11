@@ -49,5 +49,7 @@ public class MainRunner implements SummerInitializer, SummerRunner {
         plugin.run(null);
 
         //MqttClient.send("hello mqtt1", "hello mqtt2");
+        //HttpClient httpClient = new HttpClient();
+        //httpClient.send("hello http1", "hello http2");
     }
 }

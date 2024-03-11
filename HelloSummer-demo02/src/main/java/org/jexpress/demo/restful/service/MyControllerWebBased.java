@@ -1,4 +1,4 @@
-package org.jexpress.demo.restful;
+package org.jexpress.demo.restful.service;
 
 import com.google.inject.Singleton;
 import jakarta.validation.constraints.NotNull;

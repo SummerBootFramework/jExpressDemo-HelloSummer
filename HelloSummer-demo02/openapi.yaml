@@ -646,19 +646,19 @@ components:
           format: int32
         displayName:
           type: string
-        tenantName:
+        uid:
           type: string
-        tokenTtlSec:
-          type: integer
-          format: int64
-        tenantId:
-          type: number
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
-        uid:
+        tenantId:
+          type: number
+        tokenTtlSec:
+          type: integer
+          format: int64
+        tenantName:
           type: string
     Err:
       type: object
@@ -775,7 +775,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Memo'
-        attributes:
+        sessionAttributes:
           type: object
           additionalProperties:
             type: object

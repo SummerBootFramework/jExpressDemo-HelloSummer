@@ -953,15 +953,8 @@
           "displayName" : {
             "type" : "string"
           },
-          "tenantName" : {
+          "uid" : {
             "type" : "string"
-          },
-          "tokenTtlSec" : {
-            "type" : "integer",
-            "format" : "int64"
-          },
-          "tenantId" : {
-            "type" : "number"
           },
           "groups" : {
             "uniqueItems" : true,
@@ -970,7 +963,14 @@
               "type" : "string"
             }
           },
-          "uid" : {
+          "tenantId" : {
+            "type" : "number"
+          },
+          "tokenTtlSec" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "tenantName" : {
             "type" : "string"
           }
         }
@@ -1133,7 +1133,7 @@
               "$ref" : "#/components/schemas/Memo"
             }
           },
-          "attributes" : {
+          "sessionAttributes" : {
             "type" : "object",
             "additionalProperties" : {
               "type" : "object"

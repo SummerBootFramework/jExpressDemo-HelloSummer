@@ -1,4 +1,4 @@
-package org.jexpress.demo.restful;
+package org.jexpress.demo.restful.service;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -17,7 +17,7 @@ import jakarta.ws.rs.core.MediaType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jexpress.demo.app.MyConfig;
-import org.jexpress.demo.restful.vo.AppPOI;
+import org.jexpress.demo.restful.service.vo.AppPOI;
 import org.summerboot.jexpress.boot.annotation.Controller;
 import org.summerboot.jexpress.boot.annotation.Log;
 import org.summerboot.jexpress.boot.instrumentation.HealthInspector;
@@ -129,9 +129,12 @@ public class MyController {
 
     public static class ResponseDto {
 
-        private final String clientPrivacy;
-        private final String clientNonPrivacy;
-        private final List<String> secretList = List.of("aa", "bb");
+        private String clientPrivacy;
+        private String clientNonPrivacy;
+        private List<String> secretList = List.of("aa", "bb");
+
+        public ResponseDto() {
+        }
 
         public ResponseDto(String clientPrivacy, String clientNonPrivacy) {
             this.clientPrivacy = clientPrivacy;
@@ -142,13 +145,24 @@ public class MyController {
             return clientPrivacy;
         }
 
+        public void setClientPrivacy(String clientPrivacy) {
+            this.clientPrivacy = clientPrivacy;
+        }
+
         public String getClientNonPrivacy() {
             return clientNonPrivacy;
+        }
+
+        public void setClientNonPrivacy(String clientNonPrivacy) {
+            this.clientNonPrivacy = clientNonPrivacy;
         }
 
         public List<String> getSecretList() {
             return secretList;
         }
 
+        public void setSecretList(List<String> secretList) {
+            this.secretList = secretList;
+        }
     }
 }

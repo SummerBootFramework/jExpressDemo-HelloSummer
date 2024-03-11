@@ -1,4 +1,4 @@
-package org.jexpress.demo.restful.vo;
+package org.jexpress.demo.restful.service.vo;
 
 import org.summerboot.jexpress.boot.BootPOI;
 import org.summerboot.jexpress.boot.annotation.Unique;

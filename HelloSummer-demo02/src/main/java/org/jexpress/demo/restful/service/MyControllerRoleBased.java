@@ -1,4 +1,4 @@
-package org.jexpress.demo.restful;
+package org.jexpress.demo.restful.service;
 
 import com.google.inject.Singleton;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;

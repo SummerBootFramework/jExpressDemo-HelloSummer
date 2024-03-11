@@ -1,4 +1,4 @@
-package org.jexpress.demo.restful.vo;
+package org.jexpress.demo.restful.service.vo;
 
 import io.netty.handler.codec.http.HttpResponseStatus;
 import org.summerboot.jexpress.boot.BootErrorCode;
