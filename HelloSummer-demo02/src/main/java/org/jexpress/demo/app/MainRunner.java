@@ -1,5 +1,6 @@
 package org.jexpress.demo.app;
 
+import com.google.inject.Injector;
 import com.google.inject.Key;
 import com.google.inject.name.Names;
 import org.apache.commons.cli.Option;
@@ -32,7 +33,7 @@ public class MainRunner implements SummerInitializer, SummerRunner {
     }
 
     @Override
-    public void initApp(File configDir) {
+    public void initApp(File configDir, Injector guiceInjector) {
         log.info(configDir);
     }
 

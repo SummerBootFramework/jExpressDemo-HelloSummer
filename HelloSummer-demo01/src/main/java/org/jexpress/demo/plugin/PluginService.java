@@ -1,5 +1,6 @@
 package org.jexpress.demo.plugin;
 
+import com.google.inject.Injector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,7 +24,7 @@ public class PluginService implements SummerInitializer, SummerRunner {
     }
 
     @Override
-    public void initApp(File configDir) {
+    public void initApp(File configDir, Injector guiceInjector) {
         log.info(configDir);
     }
 
