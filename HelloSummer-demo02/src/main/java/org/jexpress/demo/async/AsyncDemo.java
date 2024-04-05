@@ -39,7 +39,7 @@ public class AsyncDemo {
                     System.out.println(OffsetDateTime.now() + " task1 exceptionally(ex=" + ex + ")");
                     Err e = new Err(task1Time, "task1", ex.toString(), ex);
                     context.error(e);
-                    return "task1.ex=" + ex;
+                    return null;
                 })
                 .whenComplete((v, ex) -> {
                     System.out.println(OffsetDateTime.now() + " task1 whenComplete(v=" + v + ", ex=" + ex + ")");
@@ -59,9 +59,14 @@ public class AsyncDemo {
                     context.error(e);
                     return -1;
                 })
-                .whenComplete((v, ex) -> {
+                .handle((v, ex) -> {
                     System.out.println(OffsetDateTime.now() + " task2 whenComplete(v=" + v + ", ex=" + ex + ")");
+                    if (ex != null) {
+                        Err e = new Err(task2Time, "task2", ex.toString(), ex);
+                        context.error(e);
+                    }
                     list2.add(v);
+                    return v;
                 });
         System.out.println(OffsetDateTime.now() + " task2 built, time cost=" + (System.currentTimeMillis() - start));
 
