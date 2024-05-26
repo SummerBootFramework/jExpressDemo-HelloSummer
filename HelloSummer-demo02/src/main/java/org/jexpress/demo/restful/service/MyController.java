@@ -24,6 +24,7 @@ import org.summerboot.jexpress.boot.instrumentation.HealthInspector;
 import org.summerboot.jexpress.boot.instrumentation.HealthMonitor;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @Singleton
@@ -98,6 +99,13 @@ public class MyController {
 
         context.status(HttpResponseStatus.CREATED);// override, default is 200 OK
         return new ResponseDto("secret: " + MyConfig.cfg.getLicenseKey(), "shared");
+    }
+
+    @GET
+    @Path("/time")
+    public String time() {
+        System.out.println("testempty");
+        return "" + OffsetDateTime.now();
     }
 
     public static class RequestDto {

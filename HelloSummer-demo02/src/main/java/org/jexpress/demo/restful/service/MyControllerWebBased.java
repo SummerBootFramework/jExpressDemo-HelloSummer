@@ -12,7 +12,7 @@ import org.summerboot.jexpress.nio.server.ws.rs.WebResourceController;
 import java.io.File;
 
 @Singleton
-@Controller(implTag = "WebBased")
+@Controller//(implTag = "WebBased")
 // to enable it, start application with -use WebBased or -use RoleBased WebBased to enable both role and web based controllers. 404 error will be responsed as html when extends WebResourceController
 public class MyControllerWebBased extends WebResourceController {
 

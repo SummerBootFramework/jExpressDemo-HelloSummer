@@ -20,17 +20,17 @@
         <maven.jar.version>3.3.0</maven.jar.version>
         <maven.resources.version>3.3.1</maven.resources.version>
         <maven-surefire.version>3.2.5</maven-surefire.version>
-        <jexpress.version>2.4.5-SNAPSHOT</jexpress.version>
-        <swagger.core.version>2.2.21</swagger.core.version>
-        <elastic-apm.version>1.47.1</elastic-apm.version>
-        <testng.version>7.9.0</testng.version>
+        <jexpress.version>2.4.7</jexpress.version>
+        <swagger.core.version>2.2.22</swagger.core.version>
+        <elastic-apm.version>1.49.0</elastic-apm.version>
+        <testng.version>7.10.2</testng.version>
 
         <!-- application properties and dependencies-->
         <main.class>${api.package}.app.Main</main.class>
         <api.package>org.jexpress.demo</api.package>
         <!-- protobuf and gRPC -->
-        <protobuf.version>4.26.0</protobuf.version>
-        <grpc.version>1.62.2</grpc.version>
+        <protobuf.version>4.27.0</protobuf.version>
+        <grpc.version>1.64.0</grpc.version>
         <jdbc.version>8.3.0</jdbc.version>
     </properties>
 

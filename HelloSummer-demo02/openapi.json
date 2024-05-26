@@ -150,6 +150,23 @@
         }
       }
     },
+    "/hellosummer2/time" : {
+      "get" : {
+        "operationId" : "time",
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/hellosummer/helloAdmin/admin" : {
       "get" : {
         "operationId" : "adminOnly",
@@ -241,99 +258,6 @@
             }
           }
         }
-      }
-    },
-    "/hellosummer/status" : {
-      "put" : {
-        "tags" : [ "App Admin" ],
-        "summary" : "Graceful shutdown by changing service status",
-        "description" : "pause service if pause param is true, otherwise resume service",
-        "operationId" : "changeStatus",
-        "parameters" : [ {
-          "name" : "pause",
-          "in" : "query",
-          "schema" : {
-            "type" : "boolean"
-          }
-        } ],
-        "responses" : {
-          "204" : {
-            "description" : "success"
-          },
-          "400" : {
-            "description" : "All other 4xx code. The client cannot continue and should not re-try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized. The client should sign-on again, but not retransmit the same request again",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "403" : {
-            "description" : "Client has  no permission. Client should not retransmit the same request again.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "404" : {
-            "description" : "Not Found. The client should not retransmit the same request again.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "501" : {
-            "description" : "Not Implemented. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "503" : {
-            "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "BearerAuth" : [ ]
-        } ]
       }
     },
     "/hellosummer/helloAdmin/employee" : {
@@ -816,6 +740,99 @@
         }
       }
     },
+    "/hellosummer/status" : {
+      "put" : {
+        "tags" : [ "App Admin" ],
+        "summary" : "Graceful shutdown by changing service status",
+        "description" : "pause service if pause param is true, otherwise resume service",
+        "operationId" : "pause",
+        "parameters" : [ {
+          "name" : "pause",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "success"
+          },
+          "400" : {
+            "description" : "All other 4xx code. The client cannot continue and should not re-try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized. The client should sign-on again, but not retransmit the same request again",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Client has  no permission. Client should not retransmit the same request again.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found. The client should not retransmit the same request again.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "501" : {
+            "description" : "Not Implemented. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "BearerAuth" : [ ]
+        } ]
+      }
+    },
     "/hellosummer/version" : {
       "get" : {
         "tags" : [ "App Admin" ],
@@ -940,9 +957,6 @@
       "Caller" : {
         "type" : "object",
         "properties" : {
-          "enabled" : {
-            "type" : "boolean"
-          },
           "id" : {
             "type" : "number"
           },
@@ -953,7 +967,16 @@
           "displayName" : {
             "type" : "string"
           },
+          "enabled" : {
+            "type" : "boolean"
+          },
+          "tenantId" : {
+            "type" : "number"
+          },
           "uid" : {
+            "type" : "string"
+          },
+          "tenantName" : {
             "type" : "string"
           },
           "groups" : {
@@ -962,12 +985,6 @@
             "items" : {
               "type" : "string"
             }
-          },
-          "tenantId" : {
-            "type" : "number"
-          },
-          "tenantName" : {
-            "type" : "string"
           },
           "tokenTtlSec" : {
             "type" : "integer",
@@ -1102,11 +1119,8 @@
             "type" : "string"
           },
           "data" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string",
-              "format" : "byte"
-            }
+            "type" : "string",
+            "format" : "byte"
           },
           "txt" : {
             "type" : "string"
@@ -1169,11 +1183,11 @@
                       "type" : "integer",
                       "format" : "int32"
                     },
-                    "className" : {
-                      "type" : "string"
-                    },
                     "nativeMethod" : {
                       "type" : "boolean"
+                    },
+                    "className" : {
+                      "type" : "string"
                     }
                   }
                 }

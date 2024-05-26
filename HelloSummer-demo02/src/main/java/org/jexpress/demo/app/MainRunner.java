@@ -32,8 +32,16 @@ public class MainRunner implements SummerInitializer, SummerRunner {
         log.info("Log4J2 log stirng={} int={}", "abc", 123, ex);
     }
 
+    /**
+     * @param configDir
+     */
     @Override
-    public void initApp(File configDir, Injector guiceInjector) {
+    public void initAppBeforeIoC(File configDir) {
+        log.info(configDir);
+    }
+
+    @Override
+    public void initAppAfterIoC(File configDir, Injector guiceInjector) {
         log.info(configDir);
     }
 

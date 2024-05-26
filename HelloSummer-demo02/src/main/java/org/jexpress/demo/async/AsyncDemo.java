@@ -9,21 +9,22 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class AsyncDemo {
-    public static void main(String[] args) throws JsonProcessingException {
+    public static void main(String[] args) throws JsonProcessingException, ExecutionException, InterruptedException {
         asyncMethod();
     }
 
-    public static void asyncMethod() throws JsonProcessingException {
+    public static void asyncMethod() throws JsonProcessingException, ExecutionException, InterruptedException {
 
         List<Object> list1 = new ArrayList();
         List<Object> list2 = new ArrayList();
 
         int task1Time = 10;
-        boolean task1Success = false;
+        boolean task1Success = true;
         int task2Time = 5;
-        boolean task2Success = false;
+        boolean task2Success = true;
 
         ServiceContext context = ServiceContext.build(0);
 
@@ -71,6 +72,12 @@ public class AsyncDemo {
         System.out.println(OffsetDateTime.now() + " task2 built, time cost=" + (System.currentTimeMillis() - start));
 
         CompletableFuture.allOf(classAFuture, classBFuture).join();
+        System.out.println(OffsetDateTime.now() + " allOf.join, time cost=" + (System.currentTimeMillis() - start));
+
+        String a = classAFuture.get();
+        System.out.println(OffsetDateTime.now() + " a=" + a + ", time cost=" + (System.currentTimeMillis() - start));
+        Integer b = classBFuture.get();
+        System.out.println(OffsetDateTime.now() + " b=" + b + ", time cost=" + (System.currentTimeMillis() - start));
 
         System.out.println(OffsetDateTime.now() + " allpyList=" + list1 + "；completeList=" + list2 + ", time cost=" + (System.currentTimeMillis() - start));
         System.out.println(BeanUtil.toJson(context.error(), true, false));

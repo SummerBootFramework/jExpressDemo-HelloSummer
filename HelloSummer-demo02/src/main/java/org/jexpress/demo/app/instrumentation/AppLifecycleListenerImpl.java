@@ -23,12 +23,13 @@ public class AppLifecycleListenerImpl extends AppLifecycleHandler {
     }
 
     /**
-     * @param healthOk
+     * @param retryIndex
      * @param reason
+     * @param nextInspectionIntervalSeconds
      */
     @Override
-    public void onHealthInspectionDone(boolean healthOk, String reason) {
-        super.onHealthInspectionDone(healthOk, reason);
-        System.out.println("Health inspection done: healthOk=" + healthOk + ", reason=" + reason);
+    public void onHealthInspectionFailed(int retryIndex, String reason, int nextInspectionIntervalSeconds) {
+        super.onHealthInspectionFailed(retryIndex, reason, nextInspectionIntervalSeconds);
+        System.out.println("Health inspection failed: " + reason);
     }
 }
