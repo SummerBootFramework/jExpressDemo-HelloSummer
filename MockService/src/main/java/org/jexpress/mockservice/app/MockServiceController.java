@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 /**
  * @author 魏泽北
@@ -44,7 +45,8 @@ public class MockServiceController {
     public String mockService(String body, @Parameter(hidden = true) final ServiceContext context) throws IOException, ScriptException, NoSuchMethodException {
         Map<String, String> queryParam = new LinkedHashMap();
         String action = FormatterUtil.parseUrlQueryParam(context.uri(), queryParam);
-        if (!WhitelistConfig.cfg.getWhteList().contains(action)) {
+        Set<String> whiteList = WhitelistConfig.cfg.getWhteList();
+        if (whiteList != null && !whiteList.contains(action)) {
             Err e = new Err(400, "", "URI " + action + " is not in whitelist", null, null);
             context.error(e).status(HttpResponseStatus.FORBIDDEN);
             return null;

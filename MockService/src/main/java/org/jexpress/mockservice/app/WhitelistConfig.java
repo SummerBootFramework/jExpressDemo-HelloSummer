@@ -7,7 +7,6 @@ import org.summerboot.jexpress.boot.config.annotation.ConfigHeader;
 import org.summerboot.jexpress.boot.config.annotation.ImportResource;
 
 import java.io.File;
-import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
@@ -33,8 +32,8 @@ public class WhitelistConfig extends BootConfig {
     }
 
     @ConfigHeader(title = "My Header description")
-    @Config(key = "whitelist", desc = "CSV of URIs to whitelist, e.g. /service1/action1,/service1/action2")
-    protected volatile Set<String> whteList = new HashSet<>();
+    @Config(key = "whitelist", desc = "accept all if not specified, or specify a CSV of URIs to whitelist, e.g. /service1/action1,/service1/action2")
+    protected volatile Set<String> whteList;
 
     public Set<String> getWhteList() {
         return whteList;
