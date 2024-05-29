@@ -3,11 +3,16 @@ package org.jexpress.mockservice.app;
 import com.oracle.truffle.js.scriptengine.GraalJSScriptEngine;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
-import io.netty.handler.codec.http.HttpResponseStatus;
+import org.apache.commons.lang3.StringUtils;
+import org.graalvm.polyglot.Context;
+import org.summerboot.jexpress.boot.BootConstant;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 import org.summerboot.jexpress.security.JwtUtil;
 import org.summerboot.jexpress.security.auth.AuthConfig;
 
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -16,7 +21,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -25,13 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-import javax.script.Invocable;
-import javax.script.ScriptEngine;
-import javax.script.ScriptException;
-import org.apache.commons.lang3.StringUtils;
-import org.graalvm.polyglot.Context;
-import org.summerboot.jexpress.boot.BootConstant;
+
 import static org.summerboot.jexpress.util.FormatterUtil.EMPTY_STR_ARRAY;
 
 /**
@@ -39,52 +37,6 @@ import static org.summerboot.jexpress.util.FormatterUtil.EMPTY_STR_ARRAY;
  */
 public class Utils {
 
-    public static final String KEY_RESPONSE_STATUS_CODE = "Response_Status_Code";
-    public static final String KEY_RESPONSE_DELAY_SECOND = "Response_Delay_Second";
-
-    public static final String RSPONSE_HEADER_FILE_CONTENT = """
-            ####################
-            # Response Ctrl    #
-            ####################
-            Response_Status_Code=200  
-            Response_Delay_Second=0
-                                                                         
-            ####################
-            # Response Headers #
-            ####################
-            #header1=value1
-            """;
-
-    public static HttpResponseStatus setResponseHeaders(Properties responseHeaders, ServiceContext context) {
-        HttpResponseStatus status = HttpResponseStatus.OK;
-        if (responseHeaders == null) {
-            return status;
-        }
-        String responseStatusCode = responseHeaders.getProperty(KEY_RESPONSE_STATUS_CODE);
-        if (responseStatusCode != null) {
-            int code = Integer.parseInt(responseStatusCode);
-            status = HttpResponseStatus.valueOf(code);
-            responseHeaders.remove(KEY_RESPONSE_STATUS_CODE);
-        }
-        int delay = 0;
-        String responseDelaySecond = responseHeaders.getProperty(KEY_RESPONSE_DELAY_SECOND);
-        if (responseDelaySecond != null) {
-            delay = Integer.parseInt(responseDelaySecond);
-            responseHeaders.remove(KEY_RESPONSE_DELAY_SECOND);
-        }
-        for (Object key : responseHeaders.keySet()) {
-            Object value = responseHeaders.get(key);
-            context.responseHeader(key.toString(), value);
-        }
-        if (delay > 0) {
-            try {
-                TimeUnit.SECONDS.sleep(delay);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-        }
-        return status;
-    }
 
     public static String escape4Filename(String s) {
         return s.replaceAll("[?]", "_");
@@ -97,7 +49,7 @@ public class Utils {
                 fileEntry.getParentFile().mkdirs();
                 //fileEntry.createNewFile();
                 try (FileWriter writer = new FileWriter(fileEntry);) {
-                    writer.write(RSPONSE_HEADER_FILE_CONTENT);
+                    writer.write(ResponseSettings.RSPONSE_HEADER_FILE_CONTENT);
                 }
             }
             return null;
@@ -143,8 +95,8 @@ public class Utils {
         return JwtUtil.createJWT(AuthConfig.cfg.getJwtSigningKey(), jb, Duration.ofMinutes(ttlMinutes));
     }
 
-    private static final String JS_CODE1 = BootConstant.BR + "function ruleEngine(requestHeader, queryParam, requestBody, remoteAddress) {" + BootConstant.BR;
-    private static final String JS_CODE2 = "}";
+    private static final String JS_CODE_PREFIX = BootConstant.BR + "function ruleEngine(requestHeader, queryParam, requestBody, remoteAddress) {" + BootConstant.BR;
+    private static final String JS_CODE_POSTFIF = "}";
     public static final String JS_FILE_CONTENT = """
             // @param requestHeader as Map<String, String>
             // @param queryParam as Map<String, String>
@@ -152,17 +104,29 @@ public class Utils {
             // @param remoteAddress as String
             // @return a postfix string, to append at the end of the response file name, which content will send back as response
             // example:
-            // var isJson = requestHeader["Content-Type"].includes('json');
-            // var json = JSON.parse(requestBody);
-            // var value1 = queryParam.key1;
-            // return isJson ? 'json' : 'xml';
+            // var headerValue = requestHeader["Content-Type"];
+            // var queryParamValue = queryParam.key1;
+            // var jsonObject = JSON.parse(requestBody);
+            // return headerValue.includes('json') ? 'json' : 'xml';
+            """;
+
+    public static final String JS_RESPONSE_FILE_CONTENT = """
+            // @param requestHeader as Map<String, String>
+            // @param queryParam as Map<String, String>
+            // @param requestBody as String
+            // @param remoteAddress as String
+            // @return a mocked response content
+            // example:
+            // var headerValue = requestHeader["Content-Type"];
+            // var queryParamValue = queryParam.key1;
+            // var jsonObject = JSON.parse(requestBody);
+            // return 'mocked response content';
             """;
 
     public static String javascriptRuleEngine(String jsCode, List<Map.Entry<String, String>> headers, Map<String, String> queryParam, String requestBody, final ServiceContext context) throws ScriptException, NoSuchMethodException {
         if (StringUtils.isBlank(jsCode)) {
             return null;
         }
-        
 
         Map<String, String> requestHeader = new HashMap();
         for (Map.Entry<String, String> entry : headers) {
@@ -181,12 +145,12 @@ public class Utils {
             }
             sb.append(jsLine).append(BootConstant.BR);
         }
-        String jsFunctionCode = JS_CODE1 + sb.toString() + JS_CODE2;
-        
+        String jsFunctionCode = JS_CODE_PREFIX + sb.toString() + JS_CODE_POSTFIF;
+
         String remoteAddress = null;
         if (context != null) {
             context.memo("jsCode", jsFunctionCode);
-            InetSocketAddress saddr = (InetSocketAddress)context.remoteIP();
+            InetSocketAddress saddr = (InetSocketAddress) context.remoteIP();
             InetAddress addr = saddr.getAddress();
             remoteAddress = addr.getCanonicalHostName();
         }

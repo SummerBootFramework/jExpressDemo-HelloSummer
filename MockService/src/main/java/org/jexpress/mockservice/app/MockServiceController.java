@@ -63,13 +63,21 @@ public class MockServiceController {
 
         fileName = filePath + ".properties";
         context.memo("response.header.file", fileName);
-        Properties responseHeaders = Utils.loadProperties(fileName, true);
-        HttpResponseStatus status = Utils.setResponseHeaders(responseHeaders, context);
-        context.status(status);
+        Properties properties = Utils.loadProperties(fileName, true);
+        ResponseSettings responseSettings = new ResponseSettings(properties, context);
+        responseSettings.apply();
+        boolean runResponseFileAsJson = responseSettings.isRunResponseFileAsJson();
 
-        fileName = filePath + ".txt";
+        fileName = filePath + "." + (runResponseFileAsJson ? "js" : "txt");
         context.memo("response.body.file", fileName);
-        return Utils.loadFileContent(fileName, true, null);
+        String defaultFileContent = runResponseFileAsJson ? Utils.JS_FILE_CONTENT : null;
+        String responseContent = Utils.loadFileContent(fileName, true, defaultFileContent);
+        if (!runResponseFileAsJson) {
+            return responseContent;
+        }
+        jsCode = responseContent;
+        responseContent = Utils.javascriptRuleEngine(jsCode, context.requestHeaders().entries(), queryParam, body, context);
+        return responseContent;
     }
 
 }
