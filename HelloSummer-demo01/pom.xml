@@ -20,9 +20,9 @@
         <maven.jar.version>3.3.0</maven.jar.version>
         <maven.resources.version>3.3.1</maven.resources.version>
         <maven-surefire.version>3.2.5</maven-surefire.version>
-        <jexpress.version>2.4.8-SNAPSHOT</jexpress.version>
+        <jexpress.version>2.4.8</jexpress.version>
         <swagger.core.version>2.2.22</swagger.core.version>
-        <elastic-apm.version>1.49.0</elastic-apm.version>
+        <elastic-apm.version>1.50.0</elastic-apm.version>
         <testng.version>7.10.2</testng.version>
 
         <!-- application properties and dependencies-->

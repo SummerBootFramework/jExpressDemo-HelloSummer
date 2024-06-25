@@ -957,6 +957,9 @@
       "Caller" : {
         "type" : "object",
         "properties" : {
+          "enabled" : {
+            "type" : "boolean"
+          },
           "id" : {
             "type" : "number"
           },
@@ -967,24 +970,21 @@
           "displayName" : {
             "type" : "string"
           },
-          "enabled" : {
-            "type" : "boolean"
-          },
-          "tenantId" : {
-            "type" : "number"
-          },
-          "uid" : {
-            "type" : "string"
-          },
-          "tenantName" : {
-            "type" : "string"
-          },
           "groups" : {
             "uniqueItems" : true,
             "type" : "array",
             "items" : {
               "type" : "string"
             }
+          },
+          "uid" : {
+            "type" : "string"
+          },
+          "tenantId" : {
+            "type" : "number"
+          },
+          "tenantName" : {
+            "type" : "string"
           },
           "tokenTtlSec" : {
             "type" : "integer",
@@ -1183,11 +1183,11 @@
                       "type" : "integer",
                       "format" : "int32"
                     },
-                    "nativeMethod" : {
-                      "type" : "boolean"
-                    },
                     "className" : {
                       "type" : "string"
+                    },
+                    "nativeMethod" : {
+                      "type" : "boolean"
                     }
                   }
                 }

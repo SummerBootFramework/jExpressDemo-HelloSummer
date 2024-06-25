@@ -6,7 +6,7 @@
     "contact" : {
       "name" : "summerboot.org"
     },
-    "version" : "SummerBoot.jExpress 2.4.7"
+    "version" : "SummerBoot.jExpress 2.4.8"
   },
   "servers" : [ {
     "url" : "https://localhost:8211",
@@ -884,9 +884,6 @@
           "displayName" : {
             "type" : "string"
           },
-          "uid" : {
-            "type" : "string"
-          },
           "groups" : {
             "uniqueItems" : true,
             "type" : "array",
@@ -894,12 +891,15 @@
               "type" : "string"
             }
           },
-          "tenantId" : {
-            "type" : "number"
+          "uid" : {
+            "type" : "string"
           },
           "tokenTtlSec" : {
             "type" : "integer",
             "format" : "int64"
+          },
+          "tenantId" : {
+            "type" : "number"
           },
           "tenantName" : {
             "type" : "string"
