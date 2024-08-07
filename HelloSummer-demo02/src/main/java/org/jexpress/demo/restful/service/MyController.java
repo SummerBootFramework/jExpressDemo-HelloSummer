@@ -1,6 +1,5 @@
 package org.jexpress.demo.restful.service;
 
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import jakarta.validation.Valid;
@@ -20,8 +19,6 @@ import org.jexpress.demo.app.MyConfig;
 import org.jexpress.demo.restful.service.vo.AppPOI;
 import org.summerboot.jexpress.boot.annotation.Controller;
 import org.summerboot.jexpress.boot.annotation.Log;
-import org.summerboot.jexpress.boot.instrumentation.HealthInspector;
-import org.summerboot.jexpress.boot.instrumentation.HealthMonitor;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 
 import java.time.OffsetDateTime;
@@ -34,8 +31,6 @@ public class MyController {
 
     protected Logger log = LogManager.getLogger(this.getClass());
 
-    @Inject
-    private HealthInspector healthInspector;
 
     private final String a = "[a-zA-Z0-9_+&*-]*@gmail.com";
 
@@ -43,7 +38,6 @@ public class MyController {
     @Path("/hello/{name}")
     @Produces({MediaType.TEXT_PLAIN})
     public String hello(@NotNull @PathParam("name") @Pattern(regexp = a) String myName) {// both Nonnull or NotNull works
-        HealthMonitor.setHealthStatus(false, "test", healthInspector);
         return "Hello " + myName;
     }
 

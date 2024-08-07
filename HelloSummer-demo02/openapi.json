@@ -229,9 +229,18 @@
         }
       }
     },
-    "/hellosummer/hello/anonymous" : {
+    "/hellosummer/hello/anonymous/{number}" : {
       "get" : {
         "operationId" : "anonymous",
+        "parameters" : [ {
+          "name" : "number",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
         "requestBody" : {
           "content" : {
             "*/*" : {
@@ -970,6 +979,16 @@
           "displayName" : {
             "type" : "string"
           },
+          "tenantName" : {
+            "type" : "string"
+          },
+          "tokenTtlSec" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "tenantId" : {
+            "type" : "number"
+          },
           "groups" : {
             "uniqueItems" : true,
             "type" : "array",
@@ -979,16 +998,6 @@
           },
           "uid" : {
             "type" : "string"
-          },
-          "tenantId" : {
-            "type" : "number"
-          },
-          "tenantName" : {
-            "type" : "string"
-          },
-          "tokenTtlSec" : {
-            "type" : "integer",
-            "format" : "int64"
           }
         }
       },
@@ -1090,6 +1099,10 @@
           "startTs" : {
             "type" : "integer",
             "format" : "int64"
+          },
+          "startDateTime" : {
+            "type" : "string",
+            "format" : "date-time"
           },
           "caller" : {
             "$ref" : "#/components/schemas/Caller"

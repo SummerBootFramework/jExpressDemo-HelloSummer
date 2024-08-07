@@ -9,12 +9,17 @@ import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import org.jexpress.demo.app.instrumentation.HealthChecker;
 import org.summerboot.jexpress.boot.annotation.Controller;
+import org.summerboot.jexpress.boot.annotation.Deamon;
+import org.summerboot.jexpress.boot.instrumentation.HealthMonitor;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 import org.summerboot.jexpress.nio.server.ws.rs.BootController;
 
+import java.io.IOException;
 import java.time.OffsetDateTime;
 
 @Singleton
@@ -50,9 +55,19 @@ public class MyControllerRoleBased extends BootController {
      * curl -v -k https://localhost:8311/hellosummer/hello/234 -H "Accept":"application/json"
      */
     @GET
-    @Path("/hello/anonymous")
+    @Path("/hello/anonymous/{number}")
+    @Deamon
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Pong anonymous(ServiceContext context) {
+    public Pong anonymous(@PathParam("number") int number, ServiceContext context) throws IOException {
+        HealthChecker.a = number;
+        switch (number) {
+            case 1 -> {
+                throw new IOException("test 1");
+            }
+            case 2 -> {
+                HealthMonitor.inspect();
+            }
+        }
         return new Pong("Hello stranger: " + context.caller(), context.txId());
     }
 

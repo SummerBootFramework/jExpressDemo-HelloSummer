@@ -1,12 +1,14 @@
 package org.jexpress.demo.cache;
 
 import com.google.inject.Singleton;
+import org.summerboot.jexpress.boot.annotation.Inspector;
 import org.summerboot.jexpress.boot.annotation.Service;
 import org.summerboot.jexpress.integration.cache.AuthTokenCache;
 import org.summerboot.jexpress.integration.cache.SimpleLocalCacheImpl;
 
 @Singleton
 @Service(binding = AuthTokenCache.class)
+@Inspector
 public class CacheImpl extends SimpleLocalCacheImpl<String, String> implements AuthTokenCache {
 
     @Override

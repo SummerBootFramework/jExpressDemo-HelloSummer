@@ -140,9 +140,16 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Pong'
-  /hellosummer/hello/anonymous:
+  /hellosummer/hello/anonymous/{number}:
     get:
       operationId: anonymous
+      parameters:
+      - name: number
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
       requestBody:
         content:
           '*/*':
@@ -656,6 +663,13 @@ components:
           format: int32
         displayName:
           type: string
+        tenantName:
+          type: string
+        tokenTtlSec:
+          type: integer
+          format: int64
+        tenantId:
+          type: number
         groups:
           uniqueItems: true
           type: array
@@ -663,13 +677,6 @@ components:
             type: string
         uid:
           type: string
-        tenantId:
-          type: number
-        tenantName:
-          type: string
-        tokenTtlSec:
-          type: integer
-          format: int64
     Err:
       type: object
       properties:
@@ -745,6 +752,9 @@ components:
         startTs:
           type: integer
           format: int64
+        startDateTime:
+          type: string
+          format: date-time
         caller:
           $ref: '#/components/schemas/Caller'
         callerId:

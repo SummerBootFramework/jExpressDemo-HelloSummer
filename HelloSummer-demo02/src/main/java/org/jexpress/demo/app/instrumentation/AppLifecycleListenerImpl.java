@@ -19,17 +19,18 @@ public class AppLifecycleListenerImpl extends AppLifecycleHandler {
     @Override
     public void onApplicationStatusUpdated(boolean healthOk, boolean paused, boolean serviceStatusChanged, String reason) {
         super.onApplicationStatusUpdated(healthOk, paused, serviceStatusChanged, reason);
-        System.out.println("Application status updated: healthOk=" + healthOk + ", paused=" + paused + ", serviceStatusChanged=" + serviceStatusChanged + ", reason=" + reason);
+        System.out.println("My application status updated");
     }
 
     /**
+     * @param healthOk
+     * @param paused
      * @param retryIndex
-     * @param reason
      * @param nextInspectionIntervalSeconds
      */
     @Override
-    public void onHealthInspectionFailed(int retryIndex, String reason, int nextInspectionIntervalSeconds) {
-        super.onHealthInspectionFailed(retryIndex, reason, nextInspectionIntervalSeconds);
-        System.out.println("Health inspection failed: " + reason);
+    public void onHealthInspectionFailed(boolean healthOk, boolean paused, long retryIndex, int nextInspectionIntervalSeconds) {
+        super.onHealthInspectionFailed(healthOk, paused, retryIndex, nextInspectionIntervalSeconds);
+        System.out.println("My health inspection failed");
     }
 }

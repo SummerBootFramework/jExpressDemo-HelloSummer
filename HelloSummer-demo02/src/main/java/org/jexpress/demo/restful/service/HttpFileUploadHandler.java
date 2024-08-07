@@ -14,7 +14,6 @@ import org.summerboot.jexpress.nio.server.NioConfig;
 import org.summerboot.jexpress.nio.server.NioHttpUtil;
 import org.summerboot.jexpress.nio.server.domain.Err;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
-import org.summerboot.jexpress.nio.server.domain.ServiceError;
 import org.summerboot.jexpress.security.auth.Authenticator;
 import org.summerboot.jexpress.security.auth.Caller;
 
@@ -36,13 +35,13 @@ public class HttpFileUploadHandler extends BootHttpFileUploadHandler {
     private AuthTokenCache cache = null;
 
     @Override
-    protected boolean isValidRequestPath(HttpMethod method, String httpRequestPath) {
+    protected boolean isValidRequestPath(HttpMethod method, String httpRequestPath, ServiceContext context) {
         return HttpMethod.POST.equals(method) && httpRequestPath.startsWith(AppURI.API_NF_FILE_UPLOAD);
     }
 
     @Override
-    protected Caller authenticate(final HttpHeaders httpHeaders, ServiceContext response) {
-        Caller caller = auth.verifyToken(httpHeaders, cache, null, response);
+    protected Caller authenticate(final HttpHeaders httpHeaders, ServiceContext context) {
+        Caller caller = auth.verifyToken(httpHeaders, cache, null, context);
         if (caller != null && !caller.isInRole("MyRole")) {
             return null;
         }
@@ -50,7 +49,7 @@ public class HttpFileUploadHandler extends BootHttpFileUploadHandler {
     }
 
     @Override
-    protected long getCallerFileUploadSizeLimit_Bytes(Caller caller) {
+    protected long getCallerFileUploadSizeLimit_Bytes(Caller caller, ServiceContext context) {
 //        if (caller == null) {
 //            return 0;
 //        }
@@ -61,7 +60,7 @@ public class HttpFileUploadHandler extends BootHttpFileUploadHandler {
     }
 
     @Override
-    protected void onFileUploaded(ChannelHandlerContext ctx, String fileName, File file, Map<String, String> params, Caller caller) {
+    protected void onFileUploaded(ChannelHandlerContext ctx, String fileName, File file, Map<String, String> params, Caller caller, ServiceContext context) {
         try {
             Path src = file.toPath().toAbsolutePath();
             //Path dest = src.resolveSibling(fileName + "_" + this.hashCode() + "_" + System.currentTimeMillis());
@@ -69,15 +68,16 @@ public class HttpFileUploadHandler extends BootHttpFileUploadHandler {
             File f = dest.toFile();
             f.mkdirs();
             Files.move(src, dest, StandardCopyOption.REPLACE_EXISTING);
-            NioHttpUtil.sendText(ctx, true, null, HttpResponseStatus.OK, fileName, null, null, true, null);
+            context.txt(fileName).status(HttpResponseStatus.OK);
+            NioHttpUtil.sendResponse(ctx, true, context, null, null);
         } catch (IOException ex) {
             Err err = new Err(BootErrorCode.NIO_UNEXPECTED_SERVICE_FAILURE, null, "Failed to uploaded " + fileName, ex);
-            ServiceError e = new ServiceError("").addError(err);
-            NioHttpUtil.sendText(ctx, true, null, HttpResponseStatus.INTERNAL_SERVER_ERROR, e.toJson(), null, null, true, null);
+            context.error(err).status(HttpResponseStatus.INTERNAL_SERVER_ERROR);
+            NioHttpUtil.sendResponse(ctx, true, context, null, null);
         } catch (Throwable ex) {//todo: hide internal info
             Err err = new Err(BootErrorCode.NIO_UNEXPECTED_SERVICE_FAILURE, null, "Failed to uploaded " + fileName, ex);
-            ServiceError e = new ServiceError("").addError(err);
-            NioHttpUtil.sendText(ctx, true, null, HttpResponseStatus.INTERNAL_SERVER_ERROR, e.toJson(), null, null, true, null);
+            context.error(err).status(HttpResponseStatus.INTERNAL_SERVER_ERROR);
+            NioHttpUtil.sendResponse(ctx, true, context, null, null);
         }
     }
 }
