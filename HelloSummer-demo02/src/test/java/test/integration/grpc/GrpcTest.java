@@ -3,11 +3,14 @@ package test.integration.grpc;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import io.grpc.NameResolverProvider;
+import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
 import org.jexpress.demo.app.Main;
+import org.jexpress.demo.grpc.client.GrpcClientConfig1;
 import org.jexpress.demo.grpc.client.Hello1Client;
 import org.jexpress.demo.grpc.client.Hello2Client;
-import org.jexpress.demo.grpc.client.HelloClientConfig;
+import org.summerboot.jexpress.boot.BootConstant;
 import org.summerboot.jexpress.boot.SummerApplication;
+import org.summerboot.jexpress.nio.grpc.GRPCClientConfig;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -64,7 +67,7 @@ public class GrpcTest {
 //                new InetSocketAddress("127.0.0.1", 8881)
 //        );
 //        NameResolverRegistry.getDefaultRegistry().register(nameResolverProvider);
-        HelloClientConfig clientcfg = HelloClientConfig.cfg;
+        GrpcClientConfig1 clientcfg = GrpcClientConfig1.cfg;
         clientcfg.load(new File("run/standalone_dev/configuration_two-way_8424/cfg_grpcclient.properties"), true);
         NameResolverProvider nameResolverProvider = clientcfg.getNameResolverProvider();
         URI uri = clientcfg.getUri();
@@ -78,7 +81,9 @@ public class GrpcTest {
         System.out.println("\n\t client.uri: " + uri);
         System.out.println("\n\t client.servers: " + clientcfg.getLoadBalancingServers());
         System.out.println("\n\n");
-        Hello1Client c1 = new Hello1Client(nameResolverProvider, uri, keyManagerFactory, trustManagerFactory, overrideAuthority, ciphers, tlsVersionProtocols);
+        NettyChannelBuilder cb1 = GrpcClientConfig1.initNettyChannelBuilder(nameResolverProvider, GRPCClientConfig.LoadBalancingPolicy.ROUND_ROBIN, uri, keyManagerFactory, trustManagerFactory, overrideAuthority, ciphers, tlsVersionProtocols);
+
+        Hello1Client c1 = new Hello1Client().withNettyChannelBuilder(cb1);
         try {
             do {
                 try {
@@ -122,7 +127,7 @@ public class GrpcTest {
         Module userOverrideModule = null;
         app = SummerApplication.run(Main.class, userOverrideModule, serverArgs);
         System.out.println("\n\t server started: " + serverArgs);
-        HelloClientConfig clientcfg = HelloClientConfig.cfg;
+        GrpcClientConfig1 clientcfg = GrpcClientConfig1.cfg;
         NameResolverProvider nameResolverProvider = clientcfg.getNameResolverProvider();
         URI uri = clientcfg.getUri();
         System.out.println("\n\t client: " + clientcfg);
@@ -135,8 +140,9 @@ public class GrpcTest {
         String overrideAuthority = clientcfg.getOverrideAuthority();
         Iterable<String> ciphers = clientcfg.getCiphers();
         String[] tlsVersionProtocols = clientcfg.getSslProtocols();
-        Hello1Client c1 = new Hello1Client(nameResolverProvider, uri, keyManagerFactory, trustManagerFactory, overrideAuthority, ciphers, tlsVersionProtocols);
-        Hello2Client c2 = new Hello2Client(nameResolverProvider, uri, keyManagerFactory, trustManagerFactory, overrideAuthority, ciphers, tlsVersionProtocols);
+        NettyChannelBuilder cb1 = GrpcClientConfig1.initNettyChannelBuilder(nameResolverProvider, GRPCClientConfig.LoadBalancingPolicy.ROUND_ROBIN, uri, keyManagerFactory, trustManagerFactory, overrideAuthority, ciphers, tlsVersionProtocols);
+        Hello1Client c1 = new Hello1Client().withNettyChannelBuilder(cb1);
+        Hello2Client c2 = new Hello2Client().withNettyChannelBuilder(cb1);
         String firstName = "John";
         String lastName = "Doe";
         c1.connect();
@@ -144,10 +150,10 @@ public class GrpcTest {
         try {
             String g1 = c1.hello(firstName, lastName);
             System.out.println("g1=" + g1);
-            assertEquals(g1, impleKey2Verify1 + "1 John Doe");
+            assertEquals(g1, BootConstant.APP_ID + " " + impleKey2Verify1 + "1 John Doe");
             String g2 = c2.hello(firstName, lastName);
             System.out.println("g2=" + g2);
-            assertEquals(g2, impleKey2Verify2 + "2 John Doe");
+            assertEquals(g2, BootConstant.APP_ID + " " + impleKey2Verify2 + "2 John Doe");
         } finally {
             c1.disconnect();
             c2.disconnect();

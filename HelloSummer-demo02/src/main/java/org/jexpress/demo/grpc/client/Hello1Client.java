@@ -1,30 +1,25 @@
 package org.jexpress.demo.grpc.client;
 
 import io.grpc.ManagedChannel;
-import io.grpc.NameResolverProvider;
 import org.jexpress.demo.grpc.proto.generated1.Hello1Request;
 import org.jexpress.demo.grpc.proto.generated1.Hello1Response;
 import org.jexpress.demo.grpc.proto.generated1.Hello1ServiceGrpc;
 import org.summerboot.jexpress.nio.grpc.BearerAuthCredential;
 import org.summerboot.jexpress.nio.grpc.GRPCClient;
 
-import javax.annotation.Nullable;
-import javax.net.ssl.KeyManagerFactory;
-import javax.net.ssl.TrustManagerFactory;
-import java.io.IOException;
-import java.net.URI;
+import java.util.concurrent.TimeUnit;
 
 public class Hello1Client extends GRPCClient<Hello1Client> {
-
-    public Hello1Client(NameResolverProvider nameResolverProvider, URI uri, @Nullable KeyManagerFactory keyManagerFactory, @Nullable TrustManagerFactory trustManagerFactory,
-                        @Nullable String overrideAuthority, @Nullable Iterable<String> ciphers, @Nullable String... tlsVersionProtocols) throws IOException {
-        super(nameResolverProvider, uri, keyManagerFactory, trustManagerFactory, overrideAuthority, ciphers, tlsVersionProtocols);
-    }
 
     private Hello1ServiceGrpc.Hello1ServiceBlockingStub blockingStub;
 
     @Override
     protected void onConnected(ManagedChannel channel) {
+        try {
+            TimeUnit.SECONDS.sleep(0);// to test read lock
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
         String jwt = "jwt1";
         BearerAuthCredential bearerAuthCredential = new BearerAuthCredential(jwt);
         this.blockingStub = Hello1ServiceGrpc.newBlockingStub(channel);//.withCallCredentials(bearerAuthCredential);
@@ -35,7 +30,9 @@ public class Hello1Client extends GRPCClient<Hello1Client> {
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .build();
+        lock();
         Hello1Response response = blockingStub.hello1(request);
+        unlock();
         return response.getGreeting();
     }
 

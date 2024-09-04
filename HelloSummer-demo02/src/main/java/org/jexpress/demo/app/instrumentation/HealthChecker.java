@@ -11,7 +11,7 @@ import java.util.List;
 @Inspector
 public class HealthChecker implements HealthInspector<Object> {
 
-    public static int a = 2;
+    public static int a = 0;
 
     /**
      * @param param

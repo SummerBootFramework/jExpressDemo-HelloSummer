@@ -19,9 +19,7 @@ public abstract class Hello2Service extends Hello2ServiceGrpc.Hello2ServiceImplB
     }
 
     @Override
-    public void hello2(
-            Hello2Request request,
-            StreamObserver<Hello2Response> responseObserver) {
+    public void hello2(Hello2Request request, StreamObserver<Hello2Response> responseObserver) {
         counter.incrementHit();
 
         String greeting = hello(request.getFirstName(), request.getLastName());

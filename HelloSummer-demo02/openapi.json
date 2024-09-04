@@ -350,6 +350,16 @@
               }
             }
           },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
           "500" : {
             "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
             "content" : {
@@ -372,6 +382,26 @@
           },
           "503" : {
             "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "507" : {
+            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
             "content" : {
               "text/html" : {
                 "schema" : {
@@ -492,6 +522,16 @@
               }
             }
           },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
           "500" : {
             "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
             "content" : {
@@ -514,6 +554,26 @@
           },
           "503" : {
             "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "507" : {
+            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
             "content" : {
               "*/*" : {
                 "schema" : {
@@ -573,6 +633,16 @@
               }
             }
           },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
           "500" : {
             "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
             "content" : {
@@ -595,6 +665,26 @@
           },
           "503" : {
             "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "507" : {
+            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
             "content" : {
               "*/*" : {
                 "schema" : {
@@ -693,6 +783,16 @@
               }
             }
           },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
           "500" : {
             "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
             "content" : {
@@ -715,6 +815,26 @@
           },
           "503" : {
             "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "507" : {
+            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
             "content" : {
               "*/*" : {
                 "schema" : {
@@ -806,6 +926,16 @@
               }
             }
           },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
           "500" : {
             "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
             "content" : {
@@ -828,6 +958,26 @@
           },
           "503" : {
             "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "507" : {
+            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
             "content" : {
               "*/*" : {
                 "schema" : {
@@ -892,6 +1042,16 @@
               }
             }
           },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
           "500" : {
             "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
             "content" : {
@@ -914,6 +1074,26 @@
           },
           "503" : {
             "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "507" : {
+            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
             "content" : {
               "text/html" : {
                 "schema" : {
@@ -966,6 +1146,16 @@
       "Caller" : {
         "type" : "object",
         "properties" : {
+          "tenantName" : {
+            "type" : "string"
+          },
+          "tokenTtlSec" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "tenantId" : {
+            "type" : "number"
+          },
           "enabled" : {
             "type" : "boolean"
           },
@@ -979,15 +1169,8 @@
           "displayName" : {
             "type" : "string"
           },
-          "tenantName" : {
+          "uid" : {
             "type" : "string"
-          },
-          "tokenTtlSec" : {
-            "type" : "integer",
-            "format" : "int64"
-          },
-          "tenantId" : {
-            "type" : "number"
           },
           "groups" : {
             "uniqueItems" : true,
@@ -995,9 +1178,6 @@
             "items" : {
               "type" : "string"
             }
-          },
-          "uid" : {
-            "type" : "string"
           }
         }
       },

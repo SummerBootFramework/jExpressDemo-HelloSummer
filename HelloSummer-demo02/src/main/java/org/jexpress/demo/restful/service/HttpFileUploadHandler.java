@@ -11,7 +11,6 @@ import org.summerboot.jexpress.boot.annotation.Service;
 import org.summerboot.jexpress.integration.cache.AuthTokenCache;
 import org.summerboot.jexpress.nio.server.BootHttpFileUploadHandler;
 import org.summerboot.jexpress.nio.server.NioConfig;
-import org.summerboot.jexpress.nio.server.NioHttpUtil;
 import org.summerboot.jexpress.nio.server.domain.Err;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 import org.summerboot.jexpress.security.auth.Authenticator;
@@ -26,7 +25,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.Map;
 
 @Service(binding = ChannelHandler.class, named = "MyUpload", type = Service.ChannelHandlerType.FileUpload)
-public class HttpFileUploadHandler extends BootHttpFileUploadHandler {
+public class HttpFileUploadHandler extends BootHttpFileUploadHandler<Object> {
 
     @Inject
     private Authenticator auth;
@@ -60,7 +59,7 @@ public class HttpFileUploadHandler extends BootHttpFileUploadHandler {
     }
 
     @Override
-    protected void onFileUploaded(ChannelHandlerContext ctx, String fileName, File file, Map<String, String> params, Caller caller, ServiceContext context) {
+    protected Object onFileUploaded(ChannelHandlerContext ctx, String fileName, File file, Map<String, String> params, Caller caller, ServiceContext context) {
         try {
             Path src = file.toPath().toAbsolutePath();
             //Path dest = src.resolveSibling(fileName + "_" + this.hashCode() + "_" + System.currentTimeMillis());
@@ -68,16 +67,16 @@ public class HttpFileUploadHandler extends BootHttpFileUploadHandler {
             File f = dest.toFile();
             f.mkdirs();
             Files.move(src, dest, StandardCopyOption.REPLACE_EXISTING);
-            context.txt(fileName).status(HttpResponseStatus.OK);
-            NioHttpUtil.sendResponse(ctx, true, context, null, null);
+            context.status(HttpResponseStatus.OK);
+            return fileName;
         } catch (IOException ex) {
             Err err = new Err(BootErrorCode.NIO_UNEXPECTED_SERVICE_FAILURE, null, "Failed to uploaded " + fileName, ex);
             context.error(err).status(HttpResponseStatus.INTERNAL_SERVER_ERROR);
-            NioHttpUtil.sendResponse(ctx, true, context, null, null);
+            return null;
         } catch (Throwable ex) {//todo: hide internal info
             Err err = new Err(BootErrorCode.NIO_UNEXPECTED_SERVICE_FAILURE, null, "Failed to uploaded " + fileName, ex);
             context.error(err).status(HttpResponseStatus.INTERNAL_SERVER_ERROR);
-            NioHttpUtil.sendResponse(ctx, true, context, null, null);
+            return null;
         }
     }
 }

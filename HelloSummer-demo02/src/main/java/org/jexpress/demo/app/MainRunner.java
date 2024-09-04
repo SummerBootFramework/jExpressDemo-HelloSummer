@@ -7,11 +7,14 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jexpress.demo.grpc.client.GrpcClientConfig1;
+import org.jexpress.demo.grpc.client.Hello1Client;
 import org.summerboot.jexpress.boot.SummerInitializer;
 import org.summerboot.jexpress.boot.SummerRunner;
 import org.summerboot.jexpress.boot.annotation.Order;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 @Order(1)
 public class MainRunner implements SummerInitializer, SummerRunner {
@@ -60,5 +63,30 @@ public class MainRunner implements SummerInitializer, SummerRunner {
         //MqttClient.send("hello mqtt1", "hello mqtt2");
         //HttpClient httpClient = new HttpClient();
         //httpClient.send("hello http1", "hello http2");
+
+        int max = 0;//1000000;
+        for (int i = 0; i < max; i++) {
+            log.debug("load logs " + i);
+        }
+
+        GrpcClientConfig1 grpcCfg1 = GrpcClientConfig1.cfg;
+        Hello1Client c1 = new Hello1Client().withConfig(grpcCfg1);
+        //GrpcClientConfig2 grpcCfg2 = GrpcClientConfig2.cfg;
+        //Hello1Client c2 = new Hello1Client().withConfig(grpcCfg2);
+        c1.connect();
+        //c2.connect();
+        int i = 0;
+        boolean flag = false;
+        while (flag) {
+            try {
+                String response1 = c1.hello("1John" + i, "1Doe" + i);
+                log.info("response1=" + response1);
+                TimeUnit.SECONDS.sleep(6);
+                //String response2 = c2.hello("2John" + i, "2Doe" + i);
+                //log.info("response2=" + response2);
+            } catch (Throwable ex) {
+                log.error("error", ex);
+            }
+        }
     }
 }
