@@ -774,13 +774,6 @@ components:
     Caller:
       type: object
       properties:
-        tenantName:
-          type: string
-        tokenTtlSec:
-          type: integer
-          format: int64
-        tenantId:
-          type: number
         enabled:
           type: boolean
         id:
@@ -790,13 +783,20 @@ components:
           format: int32
         displayName:
           type: string
-        uid:
+        tenantName:
           type: string
+        tenantId:
+          type: number
+        tokenTtlSec:
+          type: integer
+          format: int64
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
+        uid:
+          type: string
     Err:
       type: object
       properties:
