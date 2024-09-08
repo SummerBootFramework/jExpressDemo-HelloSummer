@@ -1159,9 +1159,6 @@
           "displayName" : {
             "type" : "string"
           },
-          "tenantName" : {
-            "type" : "string"
-          },
           "tenantId" : {
             "type" : "number"
           },
@@ -1169,15 +1166,18 @@
             "type" : "integer",
             "format" : "int64"
           },
+          "tenantName" : {
+            "type" : "string"
+          },
+          "uid" : {
+            "type" : "string"
+          },
           "groups" : {
             "uniqueItems" : true,
             "type" : "array",
             "items" : {
               "type" : "string"
             }
-          },
-          "uid" : {
-            "type" : "string"
           }
         }
       },

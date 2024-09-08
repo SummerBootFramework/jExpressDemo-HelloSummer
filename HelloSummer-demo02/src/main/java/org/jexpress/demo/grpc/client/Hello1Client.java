@@ -31,9 +31,14 @@ public class Hello1Client extends GRPCClient<Hello1Client> {
                 .setLastName(lastName)
                 .build();
         lock();
-        Hello1Response response = blockingStub.hello1(request);
-        unlock();
-        return response.getGreeting();
+        String ret = null;
+        try {
+            Hello1Response response = blockingStub.hello1(request);
+            ret = response.getGreeting();
+        } finally {
+            unlock();
+        }
+        return ret;
     }
 
 }

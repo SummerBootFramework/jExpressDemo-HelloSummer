@@ -783,20 +783,20 @@ components:
           format: int32
         displayName:
           type: string
-        tenantName:
-          type: string
         tenantId:
           type: number
         tokenTtlSec:
           type: integer
           format: int64
+        tenantName:
+          type: string
+        uid:
+          type: string
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
-        uid:
-          type: string
     Err:
       type: object
       properties:
