@@ -774,8 +774,6 @@ components:
     Caller:
       type: object
       properties:
-        enabled:
-          type: boolean
         id:
           type: number
         type:
@@ -783,6 +781,8 @@ components:
           format: int32
         displayName:
           type: string
+        enabled:
+          type: boolean
         tenantId:
           type: number
         tokenTtlSec:
@@ -940,10 +940,10 @@ components:
                   lineNumber:
                     type: integer
                     format: int32
-                  className:
-                    type: string
                   nativeMethod:
                     type: boolean
+                  className:
+                    type: string
             message:
               type: string
             localizedMessage:

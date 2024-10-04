@@ -4,7 +4,7 @@ info:
   description: "To change to yours, just add @OpenAPIDefinition.info"
   contact:
     name: summerboot.org
-  version: SummerBoot.jExpress 2.4.8
+  version: jExpress 2.4.15
 servers:
 - url: https://localhost:8211
   description: Local Development server
@@ -115,6 +115,12 @@ paths:
             text/html:
               schema:
                 $ref: '#/components/schemas/ServiceError'
+        "429":
+          description: Too Many Requests
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
         "500":
           description: All other 5xx code. Server errors due to unexpected failures.
             The client can continue and try again with the request without modification.
@@ -132,6 +138,20 @@ paths:
         "503":
           description: Service Unavailable. The client can continue and try again
             with the request without modification.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "504":
+          description: Gateway Timeout. The client can continue and try again with
+            the request without modification.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "507":
+          description: Insufficient Storage. The client should contact the system
+            administrator. Do not try the request again.
           content:
             text/html:
               schema:
@@ -206,6 +226,15 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ServiceError'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
         "500":
           description: All other 5xx code. Server errors due to unexpected failures.
             The client can continue and try again with the request without modification.
@@ -229,6 +258,26 @@ paths:
         "503":
           description: Service Unavailable. The client can continue and try again
             with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "504":
+          description: Gateway Timeout. The client can continue and try again with
+            the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "507":
+          description: Insufficient Storage. The client should contact the system
+            administrator. Do not try the request again.
           content:
             application/json:
               schema:
@@ -285,6 +334,15 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ServiceError'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
         "500":
           description: All other 5xx code. Server errors due to unexpected failures.
             The client can continue and try again with the request without modification.
@@ -308,6 +366,26 @@ paths:
         "503":
           description: Service Unavailable. The client can continue and try again
             with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "504":
+          description: Gateway Timeout. The client can continue and try again with
+            the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "507":
+          description: Insufficient Storage. The client should contact the system
+            administrator. Do not try the request again.
           content:
             application/json:
               schema:
@@ -392,6 +470,15 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ServiceError'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
         "500":
           description: All other 5xx code. Server errors due to unexpected failures.
             The client can continue and try again with the request without modification.
@@ -415,6 +502,26 @@ paths:
         "503":
           description: Service Unavailable. The client can continue and try again
             with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "504":
+          description: Gateway Timeout. The client can continue and try again with
+            the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "507":
+          description: Insufficient Storage. The client should contact the system
+            administrator. Do not try the request again.
           content:
             application/json:
               schema:
@@ -477,6 +584,15 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ServiceError'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
         "500":
           description: All other 5xx code. Server errors due to unexpected failures.
             The client can continue and try again with the request without modification.
@@ -500,6 +616,26 @@ paths:
         "503":
           description: Service Unavailable. The client can continue and try again
             with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "504":
+          description: Gateway Timeout. The client can continue and try again with
+            the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "507":
+          description: Insufficient Storage. The client should contact the system
+            administrator. Do not try the request again.
           content:
             application/json:
               schema:
@@ -572,6 +708,12 @@ paths:
             text/html:
               schema:
                 $ref: '#/components/schemas/ServiceError'
+        "429":
+          description: Too Many Requests
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
         "500":
           description: All other 5xx code. Server errors due to unexpected failures.
             The client can continue and try again with the request without modification.
@@ -593,6 +735,20 @@ paths:
             text/html:
               schema:
                 $ref: '#/components/schemas/ServiceError'
+        "504":
+          description: Gateway Timeout. The client can continue and try again with
+            the request without modification.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "507":
+          description: Insufficient Storage. The client should contact the system
+            administrator. Do not try the request again.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
       security:
       - BearerAuth: []
 components:
@@ -600,8 +756,6 @@ components:
     Caller:
       type: object
       properties:
-        enabled:
-          type: boolean
         id:
           type: number
         type:
@@ -609,6 +763,13 @@ components:
           format: int32
         displayName:
           type: string
+        enabled:
+          type: boolean
+        tenantId:
+          type: number
+        tokenTtlSec:
+          type: integer
+          format: int64
         groups:
           uniqueItems: true
           type: array
@@ -616,11 +777,6 @@ components:
             type: string
         uid:
           type: string
-        tokenTtlSec:
-          type: integer
-          format: int64
-        tenantId:
-          type: number
         tenantName:
           type: string
     Err:

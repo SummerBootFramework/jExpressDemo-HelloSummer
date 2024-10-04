@@ -1,0 +1,6 @@
+download from https://packages.adoptium.net/ui/native/rpm/rhel/8/x86_64/Packages/temurin-21-jdk-21.0.3.0.0.9-1.x86_64.rpm
+rpm -i temurin-21-jdk-21.0.3.0.0.9-1.x86_64.rpmlin
+firewall-cmd --permanent --add-port=8211/tcp
+firewall-cmd --permanent --add-port=8311/tcp
+firewall-cmd --permanent --add-port=8424/tcp
+firewall-cmd --permanent --add-port=8425/tcp
