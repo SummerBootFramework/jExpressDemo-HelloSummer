@@ -12,17 +12,17 @@
     <properties>
         <!-- common properties and dependencies -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.clean.version>3.3.2</maven.clean.version>
-        <maven.compiler.version>3.12.1</maven.compiler.version>
-        <maven.dependency.version>3.6.1</maven.dependency.version>
-        <maven.jar.version>3.3.0</maven.jar.version>
-        <maven.resources.version>3.3.1</maven.resources.version>
-        <maven-surefire.version>3.2.5</maven-surefire.version>
-        <jexpress.version>2.4.15</jexpress.version>
-        <swagger.core.version>2.2.22</swagger.core.version>
-        <elastic-apm.version>1.50.0</elastic-apm.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven-clean.version>3.4.0</maven-clean.version>
+        <maven-compiler.version>3.13.0</maven-compiler.version>
+        <maven-dependency.version>3.8.0</maven-dependency.version>
+        <maven-jar.version>3.4.2</maven-jar.version>
+        <maven-resources.version>3.3.1</maven-resources.version>
+        <maven-surefire.version>3.5.1</maven-surefire.version>
+        <swagger-maven.version>2.2.25</swagger-maven.version>
+        <jexpress.version>2.4.16</jexpress.version>
+        <elastic-apm.version>1.52.0</elastic-apm.version>
         <testng.version>7.10.2</testng.version>
 
         <!-- application properties and dependencies-->
@@ -93,7 +93,7 @@
             <plugin>
                 <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-maven-plugin-jakarta</artifactId>
-                <version>${swagger.core.version}</version>
+                <version>${swagger-maven.version}</version>
                 <configuration>
                     <outputPath>.</outputPath>
                     <outputFileName>openapi</outputFileName>
@@ -117,7 +117,7 @@
             <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-clean-plugin -->
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>${maven.clean.version}</version>
+                <version>${maven-clean.version}</version>
                 <configuration>
                     <filesets>
                         <fileset>
@@ -159,7 +159,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>${maven.dependency.version}</version>
+                <version>${maven-dependency.version}</version>
                 <executions>
                     <execution>
                         <id>copy-dependencies</id>
@@ -183,7 +183,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>${maven.jar.version}</version>
+                <version>${maven-jar.version}</version>
                 <configuration>
                     <outputDirectory>run</outputDirectory>
                     <archive>
@@ -202,7 +202,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.version}</version>
+                <version>${maven-compiler.version}</version>
                 <configuration>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
@@ -217,7 +217,7 @@
             <plugins>
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>${maven.resources.version}</version>
+                    <version>${maven-resources.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>

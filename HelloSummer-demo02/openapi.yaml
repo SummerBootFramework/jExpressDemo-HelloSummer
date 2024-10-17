@@ -774,21 +774,14 @@ components:
     Caller:
       type: object
       properties:
+        enabled:
+          type: boolean
         id:
           type: number
         type:
           type: integer
           format: int32
         displayName:
-          type: string
-        enabled:
-          type: boolean
-        tenantId:
-          type: number
-        tokenTtlSec:
-          type: integer
-          format: int64
-        tenantName:
           type: string
         uid:
           type: string
@@ -797,6 +790,13 @@ components:
           type: array
           items:
             type: string
+        tenantId:
+          type: number
+        tenantName:
+          type: string
+        tokenTtlSec:
+          type: integer
+          format: int64
     Err:
       type: object
       properties:
@@ -940,10 +940,10 @@ components:
                   lineNumber:
                     type: integer
                     format: int32
-                  nativeMethod:
-                    type: boolean
                   className:
                     type: string
+                  nativeMethod:
+                    type: boolean
             message:
               type: string
             localizedMessage:
