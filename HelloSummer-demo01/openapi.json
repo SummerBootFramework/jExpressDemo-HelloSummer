@@ -1,7 +1,7 @@
 {
   "openapi" : "3.0.1",
   "paths" : {
-    "/hellosummer/hello/{name}" : {
+    "/hellosummer1/hello/{name}" : {
       "get" : {
         "operationId" : "hello",
         "parameters" : [ {
@@ -11,14 +11,41 @@
           "schema" : {
             "type" : "string"
           }
+        }, {
+          "name" : "key !@#$%^&*()_+-=[]\\{}|;':\",./<>? 中文 ",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "color",
+          "in" : "path",
+          "required" : true,
+          "style" : "matrix",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "color2",
+          "in" : "path",
+          "required" : true,
+          "style" : "matrix",
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "default" : {
             "description" : "default response",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
-                  "type" : "string"
+                  "$ref" : "#/components/schemas/MyResponse"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MyResponse"
                 }
               }
             }
@@ -26,7 +53,7 @@
         }
       }
     },
-    "/hellosummer/hello/post" : {
+    "/hellosummer1/hello/post" : {
       "post" : {
         "operationId" : "helloPost",
         "requestBody" : {
@@ -42,9 +69,14 @@
           "default" : {
             "description" : "default response",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
-                  "type" : "string"
+                  "$ref" : "#/components/schemas/MyResponse"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MyResponse"
                 }
               }
             }
@@ -60,6 +92,7 @@
           "in" : "path",
           "required" : true,
           "schema" : {
+            "pattern" : "[a-zA-Z\\@\\.' ]{1,10}",
             "type" : "string"
           }
         } ],
@@ -67,9 +100,14 @@
           "default" : {
             "description" : "default response",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
-                  "type" : "string"
+                  "$ref" : "#/components/schemas/MyResponse"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MyResponse"
                 }
               }
             }
@@ -93,9 +131,14 @@
           "default" : {
             "description" : "default response",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
-                  "type" : "string"
+                  "$ref" : "#/components/schemas/MyResponse"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MyResponse"
                 }
               }
             }
@@ -106,6 +149,21 @@
   },
   "components" : {
     "schemas" : {
+      "MyResponse" : {
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "type" : "string"
+          },
+          "value" : {
+            "type" : "string"
+          },
+          "ts" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        }
+      },
       "JsonNode" : {
         "type" : "object"
       }

@@ -8,3 +8,4 @@ del %FOLDER%\%REPORT_NAME%.txt
 C:\Apps\apache-jmeter-5.5\bin\jmeter.bat -n -t %1 -Jserver=%2 -Jport=%3 -Jusers=%4 -JrampUp=%5 -Jloop=%6 -Jdelay=%7 -l "%FOLDER%/%REPORT_NAME%.log" -e -o "%FOLDER%/%REPORT_NAME%" 
 
 rem 10000 users in 10 seconds each repeat 100 times deply 0: jm.bat ping.jmx 192.168.1.17 8211 10000 10 100 0
+rem ./jm.sh ping.jmx 10.0.0.3 8211 10000 10 100 0

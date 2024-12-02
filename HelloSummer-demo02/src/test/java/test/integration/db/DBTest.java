@@ -3,27 +3,30 @@ package test.integration.db;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
-import java.io.File;
-import java.util.List;
 import org.jexpress.demo.db.DBConfig;
+import org.jexpress.demo.db.domain.FileLocation;
+import org.jexpress.demo.db.domain.Tenant;
+import org.summerboot.jexpress.boot.config.ConfigUtil;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.jexpress.demo.db.domain.FileLocation;
-import org.jexpress.demo.db.domain.Tenant;
+
+import java.io.File;
+import java.util.List;
 
 public class DBTest {
 
     public DBTest() {
     }
 
-    private static final File CfgFile_DB = new File("src/test/resources/config/cfg_db.properties");
+    private static final File FILE_CFG__DB = new File("src/test/resources/config/cfg_db.properties");
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        DBConfig.cfg.load(CfgFile_DB, "org.jexpress");
+        ConfigUtil.updatePasswords(FILE_CFG__DB, null, true);
+        DBConfig.cfg.load(FILE_CFG__DB, "org.jexpress");
     }
 
     @AfterClass

@@ -1,0 +1,816 @@
+openapi: 3.0.1
+info:
+  title: Default Admin API
+  description: "To change to yours, just add @OpenAPIDefinition.info"
+  contact:
+    name: summerboot.org
+  version: jExpress 2.4.17
+servers:
+- url: https://localhost:8211
+  description: Local Development server
+paths:
+  /mockservice/jwt/{ttlMinutes}:
+    post:
+      tags:
+      - Mock Service
+      summary: Generate mock JWT
+      description: Generate mock JWT with user inputs
+      operationId: generateJWT
+      parameters:
+      - name: ttlMinutes
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                id:
+                  pattern: "[a-zA-Z\\.\\-' ]{1,10}"
+                  type: string
+                issuer:
+                  pattern: "[a-zA-Z\\.\\-' ]{1,10}"
+                  type: string
+                subject:
+                  pattern: "[a-zA-Z\\.\\-' ]{1,10}"
+                  type: string
+                audience:
+                  pattern: "[a-zA-Z\\.\\-' ]{1,10}"
+                  type: string
+      responses:
+        "201":
+          description: success and return JWT token in header X-AuthToken
+          headers:
+            X-AuthToken:
+              description: Generated JWT
+              style: simple
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Caller'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Caller'
+        "4XX":
+          description: "A fault has taken place on client side. Client should not\
+            \ retransmit the same request again, but fix the error first."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "5XX":
+          description: Something happened on the server side. The client can continue
+            and try again with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+  /mockservice/inspection:
+    get:
+      tags:
+      - App Admin
+      summary: Run application self inspection
+      description: get running application health information
+      operationId: inspect
+      responses:
+        "200":
+          description: inspection success with current version
+        "400":
+          description: All other 4xx code. The client cannot continue and should not
+            re-try again with the request without modification.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "401":
+          description: "Unauthorized. The client should sign-on again, but not retransmit\
+            \ the same request again"
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "403":
+          description: Client has  no permission. Client should not retransmit the
+            same request again.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "404":
+          description: Not Found. The client should not retransmit the same request
+            again.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "429":
+          description: Too Many Requests
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "500":
+          description: All other 5xx code. Server errors due to unexpected failures.
+            The client can continue and try again with the request without modification.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "501":
+          description: Not Implemented. The client can continue and try again with
+            the request without modification.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "503":
+          description: Service Unavailable. The client can continue and try again
+            with the request without modification.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "504":
+          description: Gateway Timeout. The client can continue and try again with
+            the request without modification.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "507":
+          description: Insufficient Storage. The client should contact the system
+            administrator. Do not try the request again.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+      security:
+      - BearerAuth: []
+  /mockservice/login:
+    post:
+      tags:
+      - App Authentication
+      summary: User login
+      description: Accept JSON based parameters for login
+      operationId: longin_JSON
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginVo'
+      responses:
+        "201":
+          description: success and return JWT token in header X-AuthToken
+          headers:
+            X-AuthToken:
+              description: Generated JWT
+              style: simple
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Caller'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Caller'
+        "400":
+          description: All other 4xx code. The client cannot continue and should not
+            re-try again with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "401":
+          description: "Unauthorized. The client should sign-on again, but not retransmit\
+            \ the same request again"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "403":
+          description: Client has  no permission. Client should not retransmit the
+            same request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "404":
+          description: Not Found. The client should not retransmit the same request
+            again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "500":
+          description: All other 5xx code. Server errors due to unexpected failures.
+            The client can continue and try again with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "501":
+          description: Not Implemented. The client can continue and try again with
+            the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "503":
+          description: Service Unavailable. The client can continue and try again
+            with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "504":
+          description: Gateway Timeout. The client can continue and try again with
+            the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "507":
+          description: Insufficient Storage. The client should contact the system
+            administrator. Do not try the request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+    delete:
+      tags:
+      - App Authentication
+      summary: User logout
+      description: User logout
+      operationId: logout
+      responses:
+        "204":
+          description: success
+        "400":
+          description: All other 4xx code. The client cannot continue and should not
+            re-try again with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "401":
+          description: "Unauthorized. The client should sign-on again, but not retransmit\
+            \ the same request again"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "403":
+          description: Client has  no permission. Client should not retransmit the
+            same request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "404":
+          description: Not Found. The client should not retransmit the same request
+            again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "500":
+          description: All other 5xx code. Server errors due to unexpected failures.
+            The client can continue and try again with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "501":
+          description: Not Implemented. The client can continue and try again with
+            the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "503":
+          description: Service Unavailable. The client can continue and try again
+            with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "504":
+          description: Gateway Timeout. The client can continue and try again with
+            the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "507":
+          description: Insufficient Storage. The client should contact the system
+            administrator. Do not try the request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+      security:
+      - BearerAuth: []
+  /mockservice/j_security_check:
+    post:
+      tags:
+      - App Authentication
+      summary: User login
+      description: Accept Form based parameters for login
+      operationId: longin_jSecurityCheck
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+              - j_username
+              type: object
+              properties:
+                j_username:
+                  type: string
+                j_password:
+                  type: string
+      responses:
+        "201":
+          description: success and return JWT token in header X-AuthToken
+          headers:
+            X-AuthToken:
+              description: Generated JWT
+              style: simple
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Caller'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Caller'
+        "400":
+          description: All other 4xx code. The client cannot continue and should not
+            re-try again with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "401":
+          description: "Unauthorized. The client should sign-on again, but not retransmit\
+            \ the same request again"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "403":
+          description: Client has  no permission. Client should not retransmit the
+            same request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "404":
+          description: Not Found. The client should not retransmit the same request
+            again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "500":
+          description: All other 5xx code. Server errors due to unexpected failures.
+            The client can continue and try again with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "501":
+          description: Not Implemented. The client can continue and try again with
+            the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "503":
+          description: Service Unavailable. The client can continue and try again
+            with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "504":
+          description: Gateway Timeout. The client can continue and try again with
+            the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "507":
+          description: Insufficient Storage. The client should contact the system
+            administrator. Do not try the request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+  /mockservice/status:
+    put:
+      tags:
+      - App Admin
+      summary: Graceful shutdown by changing service status
+      description: "pause service if pause param is true, otherwise resume service"
+      operationId: pause
+      parameters:
+      - name: pause
+        in: query
+        schema:
+          type: boolean
+      responses:
+        "204":
+          description: success
+        "400":
+          description: All other 4xx code. The client cannot continue and should not
+            re-try again with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "401":
+          description: "Unauthorized. The client should sign-on again, but not retransmit\
+            \ the same request again"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "403":
+          description: Client has  no permission. Client should not retransmit the
+            same request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "404":
+          description: Not Found. The client should not retransmit the same request
+            again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "500":
+          description: All other 5xx code. Server errors due to unexpected failures.
+            The client can continue and try again with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "501":
+          description: Not Implemented. The client can continue and try again with
+            the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "503":
+          description: Service Unavailable. The client can continue and try again
+            with the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "504":
+          description: Gateway Timeout. The client can continue and try again with
+            the request without modification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "507":
+          description: Insufficient Storage. The client should contact the system
+            administrator. Do not try the request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+      security:
+      - BearerAuth: []
+  /mockservice/ping:
+    get:
+      tags:
+      - Load Balancing
+      summary: ping service status
+      description: "Load Balancer (F5, Nginx, etc) will do the health check via this\
+        \ ping service, if Http Status is not 200(OK), the load Balancer will stop\
+        \ sending new request to this service.<br>Below is an example of F5 config:\
+        \ Basically it's one monitor that does the check to each member in the pool\
+        \ . It will mark each server within the pool member down if it does not receive\
+        \ a 200. <br><i>GET /myservices/myapp/ping HTTP/1.1\\r\\nConnection: Close\\\
+        r\\n\\r\\n</i>"
+      operationId: ping
+      responses:
+        "200":
+          description: The service status is healthy
+        "5XX":
+          description: The service status is unhealthy if response code is not 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+  /mockservice/version:
+    get:
+      tags:
+      - App Admin
+      summary: Check application version
+      description: get running application version information
+      operationId: version
+      responses:
+        "200":
+          description: running application version
+        "400":
+          description: All other 4xx code. The client cannot continue and should not
+            re-try again with the request without modification.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "401":
+          description: "Unauthorized. The client should sign-on again, but not retransmit\
+            \ the same request again"
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "403":
+          description: Client has  no permission. Client should not retransmit the
+            same request again.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "404":
+          description: Not Found. The client should not retransmit the same request
+            again.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "429":
+          description: Too Many Requests
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "500":
+          description: All other 5xx code. Server errors due to unexpected failures.
+            The client can continue and try again with the request without modification.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "501":
+          description: Not Implemented. The client can continue and try again with
+            the request without modification.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "503":
+          description: Service Unavailable. The client can continue and try again
+            with the request without modification.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "504":
+          description: Gateway Timeout. The client can continue and try again with
+            the request without modification.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+        "507":
+          description: Insufficient Storage. The client should contact the system
+            administrator. Do not try the request again.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ServiceError'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    Caller:
+      type: object
+      properties:
+        id:
+          type: number
+        type:
+          type: integer
+          format: int32
+        displayName:
+          type: string
+        enabled:
+          type: boolean
+        tenantId:
+          type: number
+        uid:
+          type: string
+        tenantName:
+          type: string
+        tokenTtlSec:
+          type: integer
+          format: int64
+        groups:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+    Err:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorTag:
+          type: string
+        errorDesc:
+          type: string
+      description: The optional error list
+    ServiceError:
+      required:
+      - ref
+      type: object
+      properties:
+        ref:
+          type: string
+          description: The index of requests received by current server since start
+        errors:
+          type: array
+          description: The optional error list
+          items:
+            $ref: '#/components/schemas/Err'
+    LoginVo:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: "Authorization: Bearer <token>"

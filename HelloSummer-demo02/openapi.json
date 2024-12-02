@@ -11,8 +11,7 @@
   },
   "servers" : [ {
     "url" : "https://localhost:8311",
-    "description" : "Local Development server",
-    "variables" : { }
+    "description" : "Local Development server"
   } ],
   "paths" : {
     "/hellosummer2/hello/{name}" : {
@@ -23,6 +22,7 @@
           "in" : "path",
           "required" : true,
           "schema" : {
+            "pattern" : "[a-zA-Z0-9_+&*-]*@gmail.com",
             "type" : "string"
           }
         } ],
@@ -124,6 +124,49 @@
         }
       }
     },
+    "/hellosummer2/CRLF" : {
+      "post" : {
+        "operationId" : "testCRLF",
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hellosummer2/time" : {
+      "get" : {
+        "operationId" : "time",
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/hellosummer/helloAdmin/admin" : {
       "get" : {
         "operationId" : "adminOnly",
@@ -155,9 +198,9 @@
         }
       }
     },
-    "/hellosummer/hello/anonymous" : {
+    "/hellosummer/helloAdmin/adminoremployee" : {
       "get" : {
-        "operationId" : "anonymous",
+        "operationId" : "adminorEmployeeOnly",
         "requestBody" : {
           "content" : {
             "*/*" : {
@@ -186,57 +229,44 @@
         }
       }
     },
-    "/hellosummer/status" : {
-      "put" : {
-        "tags" : [ "App Admin" ],
-        "summary" : "Graceful shutdown by changing service status",
-        "description" : "pause service if pause param is true, otherwise resume service",
-        "operationId" : "changeStatus",
+    "/hellosummer/hello/anonymous/{number}" : {
+      "get" : {
+        "operationId" : "anonymous",
         "parameters" : [ {
-          "name" : "pause",
-          "in" : "query",
+          "name" : "number",
+          "in" : "path",
+          "required" : true,
           "schema" : {
-            "type" : "boolean"
+            "type" : "integer",
+            "format" : "int32"
           }
         } ],
-        "responses" : {
-          "204" : {
-            "description" : "success"
-          },
-          "401" : {
-            "description" : "caller is not in Admin role",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "4XX" : {
-            "description" : "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "5XX" : {
-            "description" : "Something happened on the server side. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ServiceContext"
               }
             }
           }
         },
-        "security" : [ {
-          "BearerAuth" : [ ]
-        } ]
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Pong"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Pong"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/hellosummer/helloAdmin/employee" : {
@@ -280,8 +310,48 @@
           "200" : {
             "description" : "inspection success with current version"
           },
+          "400" : {
+            "description" : "All other 4xx code. The client cannot continue and should not re-try again with the request without modification.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
           "401" : {
-            "description" : "caller is not in Admin role",
+            "description" : "Unauthorized. The client should sign-on again, but not retransmit the same request again",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Client has  no permission. Client should not retransmit the same request again.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found. The client should not retransmit the same request again.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
             "content" : {
               "text/html" : {
                 "schema" : {
@@ -291,10 +361,7 @@
             }
           },
           "500" : {
-            "description" : "inspection error result"
-          },
-          "4XX" : {
-            "description" : "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
+            "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
             "content" : {
               "text/html" : {
                 "schema" : {
@@ -303,8 +370,38 @@
               }
             }
           },
-          "5XX" : {
-            "description" : "Something happened on the server side. The client can continue and try again with the request without modification.",
+          "501" : {
+            "description" : "Not Implemented. The client can continue and try again with the request without modification.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "507" : {
+            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
             "content" : {
               "text/html" : {
                 "schema" : {
@@ -319,12 +416,295 @@
         } ]
       }
     },
+    "/hellosummer/helloAdmin/user" : {
+      "get" : {
+        "operationId" : "loginedUserOnly",
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ServiceContext"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Pong"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Pong"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hellosummer/login" : {
+      "post" : {
+        "tags" : [ "App Authentication" ],
+        "summary" : "User login",
+        "description" : "Accept JSON based parameters for login",
+        "operationId" : "longin_JSON",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/LoginVo"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "success and return JWT token in header X-AuthToken",
+            "headers" : {
+              "X-AuthToken" : {
+                "description" : "Generated JWT",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Caller"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "All other 4xx code. The client cannot continue and should not re-try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized. The client should sign-on again, but not retransmit the same request again",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Client has  no permission. Client should not retransmit the same request again.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found. The client should not retransmit the same request again.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "501" : {
+            "description" : "Not Implemented. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "507" : {
+            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "App Authentication" ],
+        "summary" : "User logout",
+        "description" : "User logout",
+        "operationId" : "logout",
+        "responses" : {
+          "204" : {
+            "description" : "success"
+          },
+          "400" : {
+            "description" : "All other 4xx code. The client cannot continue and should not re-try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized. The client should sign-on again, but not retransmit the same request again",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Client has  no permission. Client should not retransmit the same request again.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found. The client should not retransmit the same request again.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "501" : {
+            "description" : "Not Implemented. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "507" : {
+            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "BearerAuth" : [ ]
+        } ]
+      }
+    },
     "/hellosummer/j_security_check" : {
       "post" : {
-        "tags" : [ "App User Authentication" ],
+        "tags" : [ "App Authentication" ],
         "summary" : "User login",
-        "description" : "User login",
-        "operationId" : "login",
+        "description" : "Accept Form based parameters for login",
+        "operationId" : "longin_jSecurityCheck",
         "requestBody" : {
           "content" : {
             "application/x-www-form-urlencoded" : {
@@ -363,8 +743,18 @@
               }
             }
           },
+          "400" : {
+            "description" : "All other 4xx code. The client cannot continue and should not re-try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
           "401" : {
-            "description" : "Invalid username or password",
+            "description" : "Unauthorized. The client should sign-on again, but not retransmit the same request again",
             "content" : {
               "*/*" : {
                 "schema" : {
@@ -373,8 +763,8 @@
               }
             }
           },
-          "4XX" : {
-            "description" : "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
+          "403" : {
+            "description" : "Client has  no permission. Client should not retransmit the same request again.",
             "content" : {
               "*/*" : {
                 "schema" : {
@@ -383,8 +773,68 @@
               }
             }
           },
-          "5XX" : {
-            "description" : "Something happened on the server side. The client can continue and try again with the request without modification.",
+          "404" : {
+            "description" : "Not Found. The client should not retransmit the same request again.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "501" : {
+            "description" : "Not Implemented. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "507" : {
+            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
             "content" : {
               "*/*" : {
                 "schema" : {
@@ -394,73 +844,6 @@
             }
           }
         }
-      }
-    },
-    "/hellosummer/helloAdmin/user" : {
-      "get" : {
-        "operationId" : "loginedUserOnly",
-        "requestBody" : {
-          "content" : {
-            "*/*" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/ServiceContext"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "default" : {
-            "description" : "default response",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Pong"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Pong"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hellosummer/logout" : {
-      "delete" : {
-        "tags" : [ "App User Authentication" ],
-        "summary" : "User logout",
-        "description" : "User logout",
-        "operationId" : "logout",
-        "responses" : {
-          "204" : {
-            "description" : "success"
-          },
-          "4XX" : {
-            "description" : "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "5XX" : {
-            "description" : "Something happened on the server side. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "BearerAuth" : [ ]
-        } ]
       }
     },
     "/hellosummer/ping" : {
@@ -486,6 +869,129 @@
         }
       }
     },
+    "/hellosummer/status" : {
+      "put" : {
+        "tags" : [ "App Admin" ],
+        "summary" : "Graceful shutdown by changing service status",
+        "description" : "pause service if pause param is true, otherwise resume service",
+        "operationId" : "pause",
+        "parameters" : [ {
+          "name" : "pause",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "success"
+          },
+          "400" : {
+            "description" : "All other 4xx code. The client cannot continue and should not re-try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized. The client should sign-on again, but not retransmit the same request again",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Client has  no permission. Client should not retransmit the same request again.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found. The client should not retransmit the same request again.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "501" : {
+            "description" : "Not Implemented. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "507" : {
+            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "BearerAuth" : [ ]
+        } ]
+      }
+    },
     "/hellosummer/version" : {
       "get" : {
         "tags" : [ "App Admin" ],
@@ -496,8 +1002,18 @@
           "200" : {
             "description" : "running application version"
           },
+          "400" : {
+            "description" : "All other 4xx code. The client cannot continue and should not re-try again with the request without modification.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
           "401" : {
-            "description" : "caller is not in Admin role",
+            "description" : "Unauthorized. The client should sign-on again, but not retransmit the same request again",
             "content" : {
               "text/html" : {
                 "schema" : {
@@ -506,8 +1022,8 @@
               }
             }
           },
-          "4XX" : {
-            "description" : "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
+          "403" : {
+            "description" : "Client has  no permission. Client should not retransmit the same request again.",
             "content" : {
               "text/html" : {
                 "schema" : {
@@ -516,8 +1032,68 @@
               }
             }
           },
-          "5XX" : {
-            "description" : "Something happened on the server side. The client can continue and try again with the request without modification.",
+          "404" : {
+            "description" : "Not Found. The client should not retransmit the same request again.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "501" : {
+            "description" : "Not Implemented. The client can continue and try again with the request without modification.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
+            "content" : {
+              "text/html" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "507" : {
+            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
             "content" : {
               "text/html" : {
                 "schema" : {
@@ -570,6 +1146,9 @@
       "Caller" : {
         "type" : "object",
         "properties" : {
+          "enabled" : {
+            "type" : "boolean"
+          },
           "id" : {
             "type" : "number"
           },
@@ -580,15 +1159,6 @@
           "displayName" : {
             "type" : "string"
           },
-          "enabled" : {
-            "type" : "boolean"
-          },
-          "tenantId" : {
-            "type" : "number"
-          },
-          "tenantName" : {
-            "type" : "string"
-          },
           "groups" : {
             "uniqueItems" : true,
             "type" : "array",
@@ -597,6 +1167,16 @@
             }
           },
           "uid" : {
+            "type" : "string"
+          },
+          "tokenTtlSec" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "tenantId" : {
+            "type" : "number"
+          },
+          "tenantName" : {
             "type" : "string"
           }
         }
@@ -611,9 +1191,6 @@
             "type" : "string"
           },
           "errorDesc" : {
-            "type" : "string"
-          },
-          "cause" : {
             "type" : "string"
           }
         },
@@ -692,6 +1269,9 @@
           "requestBody" : {
             "type" : "string"
           },
+          "txId" : {
+            "type" : "string"
+          },
           "hit" : {
             "type" : "integer",
             "format" : "int64"
@@ -699,6 +1279,10 @@
           "startTs" : {
             "type" : "integer",
             "format" : "int64"
+          },
+          "startDateTime" : {
+            "type" : "string",
+            "format" : "date-time"
           },
           "caller" : {
             "$ref" : "#/components/schemas/Caller"
@@ -728,11 +1312,8 @@
             "type" : "string"
           },
           "data" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string",
-              "format" : "byte"
-            }
+            "type" : "string",
+            "format" : "byte"
           },
           "txt" : {
             "type" : "string"
@@ -759,7 +1340,7 @@
               "$ref" : "#/components/schemas/Memo"
             }
           },
-          "attributes" : {
+          "sessionAttributes" : {
             "type" : "object",
             "additionalProperties" : {
               "type" : "object"
@@ -795,64 +1376,17 @@
                       "type" : "integer",
                       "format" : "int32"
                     },
-                    "nativeMethod" : {
-                      "type" : "boolean"
-                    },
                     "className" : {
                       "type" : "string"
+                    },
+                    "nativeMethod" : {
+                      "type" : "boolean"
                     }
                   }
                 }
               },
               "message" : {
                 "type" : "string"
-              },
-              "suppressed" : {
-                "type" : "array",
-                "items" : {
-                  "type" : "object",
-                  "properties" : {
-                    "stackTrace" : {
-                      "type" : "array",
-                      "items" : {
-                        "type" : "object",
-                        "properties" : {
-                          "classLoaderName" : {
-                            "type" : "string"
-                          },
-                          "moduleName" : {
-                            "type" : "string"
-                          },
-                          "moduleVersion" : {
-                            "type" : "string"
-                          },
-                          "methodName" : {
-                            "type" : "string"
-                          },
-                          "fileName" : {
-                            "type" : "string"
-                          },
-                          "lineNumber" : {
-                            "type" : "integer",
-                            "format" : "int32"
-                          },
-                          "nativeMethod" : {
-                            "type" : "boolean"
-                          },
-                          "className" : {
-                            "type" : "string"
-                          }
-                        }
-                      }
-                    },
-                    "message" : {
-                      "type" : "string"
-                    },
-                    "localizedMessage" : {
-                      "type" : "string"
-                    }
-                  }
-                }
               },
               "localizedMessage" : {
                 "type" : "string"
@@ -881,9 +1415,8 @@
         "type" : "object",
         "properties" : {
           "ref" : {
-            "type" : "integer",
-            "description" : "The index of requests received by current server since start",
-            "format" : "int64"
+            "type" : "string",
+            "description" : "The index of requests received by current server since start"
           },
           "errors" : {
             "type" : "array",
@@ -901,12 +1434,22 @@
             "type" : "string"
           },
           "value" : {
-            "type" : "integer",
-            "format" : "int64"
+            "type" : "string"
           },
           "receivedTime" : {
             "type" : "string",
             "format" : "date-time"
+          }
+        }
+      },
+      "LoginVo" : {
+        "type" : "object",
+        "properties" : {
+          "username" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
           }
         }
       }

@@ -5,23 +5,21 @@ import org.jexpress.demo.grpc.proto.generated2.Hello2Request;
 import org.jexpress.demo.grpc.proto.generated2.Hello2Response;
 import org.jexpress.demo.grpc.proto.generated2.Hello2ServiceGrpc;
 import org.summerboot.jexpress.boot.annotation.GrpcService;
-import org.summerboot.jexpress.nio.grpc.Counter;
+import org.summerboot.jexpress.nio.grpc.GRPCServiceCounter;
 import org.summerboot.jexpress.nio.grpc.StatusReporter;
 
 @GrpcService
 public abstract class Hello2Service extends Hello2ServiceGrpc.Hello2ServiceImplBase implements StatusReporter {
 
-    protected Counter counter;
+    protected GRPCServiceCounter counter;
 
     @Override
-    public void setCounter(Counter counter) {
+    public void setCounter(GRPCServiceCounter counter) {
         this.counter = counter;
     }
 
     @Override
-    public void hello2(
-            Hello2Request request,
-            StreamObserver<Hello2Response> responseObserver) {
+    public void hello2(Hello2Request request, StreamObserver<Hello2Response> responseObserver) {
         counter.incrementHit();
 
         String greeting = hello(request.getFirstName(), request.getLastName());

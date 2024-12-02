@@ -1,6 +1,5 @@
 package org.jexpress.demo.db.domain;
 
-import org.summerboot.jexpress.integration.jpa.AbstractEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -10,20 +9,18 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import org.summerboot.jexpress.integration.jpa.AbstractEntity;
+
 import java.util.Objects;
 
-/**
- *
- * @author Changski Zhang
- */
 @Entity
 @Table(uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"tenant_ID", "name"})
+        @UniqueConstraint(columnNames = {"tenant_ID", "name"})
 })
 @NamedQueries({
-    @NamedQuery(name = "FileLocation.findAll", query = "SELECT o FROM FileLocation o where o.tenant.id=:tenantID order by o.name"),
-    @NamedQuery(name = "FileLocation.findByName", query = "SELECT o FROM FileLocation o WHERE o.tenant.id=:tenantID and o.name = :name"),
-    @NamedQuery(name = "FileLocation.findByLocation", query = "SELECT o FROM FileLocation o WHERE o.tenant.id=:tenantID and o.location = :location")})
+        @NamedQuery(name = "FileLocation.findAll", query = "SELECT o FROM FileLocation o where o.tenant.id=:tenantID order by o.name"),
+        @NamedQuery(name = "FileLocation.findByName", query = "SELECT o FROM FileLocation o WHERE o.tenant.id=:tenantID and o.name = :name"),
+        @NamedQuery(name = "FileLocation.findByLocation", query = "SELECT o FROM FileLocation o WHERE o.tenant.id=:tenantID and o.location = :location")})
 public class FileLocation extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
