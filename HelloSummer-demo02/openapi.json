@@ -1159,16 +1159,6 @@
           "displayName" : {
             "type" : "string"
           },
-          "groups" : {
-            "uniqueItems" : true,
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          },
-          "uid" : {
-            "type" : "string"
-          },
           "tokenTtlSec" : {
             "type" : "integer",
             "format" : "int64"
@@ -1177,6 +1167,16 @@
             "type" : "number"
           },
           "tenantName" : {
+            "type" : "string"
+          },
+          "groups" : {
+            "uniqueItems" : true,
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "uid" : {
             "type" : "string"
           }
         }
