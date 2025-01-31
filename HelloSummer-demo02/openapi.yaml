@@ -40,7 +40,7 @@ paths:
         content:
           '*/*':
             schema:
-              $ref: '#/components/schemas/RequestDto'
+              $ref: "#/components/schemas/RequestDto"
         required: true
       responses:
         default:
@@ -48,10 +48,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseDto'
+                $ref: "#/components/schemas/ResponseDto"
             application/xml:
               schema:
-                $ref: '#/components/schemas/ResponseDto'
+                $ref: "#/components/schemas/ResponseDto"
   /hellosummer2/account1/{name}:
     post:
       operationId: hello_no_validation_unprotected_logging
@@ -65,20 +65,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RequestDto'
+              $ref: "#/components/schemas/RequestDto"
           application/xml:
             schema:
-              $ref: '#/components/schemas/RequestDto'
+              $ref: "#/components/schemas/RequestDto"
       responses:
         default:
           description: default response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseDto'
+                $ref: "#/components/schemas/ResponseDto"
             application/xml:
               schema:
-                $ref: '#/components/schemas/ResponseDto'
+                $ref: "#/components/schemas/ResponseDto"
   /hellosummer2/CRLF:
     post:
       operationId: testCRLF
@@ -111,17 +111,17 @@ paths:
         content:
           '*/*':
             schema:
-              $ref: '#/components/schemas/ServiceContext'
+              $ref: "#/components/schemas/ServiceContext"
       responses:
         default:
           description: default response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pong'
+                $ref: "#/components/schemas/Pong"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Pong'
+                $ref: "#/components/schemas/Pong"
   /hellosummer/helloAdmin/adminoremployee:
     get:
       operationId: adminorEmployeeOnly
@@ -129,17 +129,17 @@ paths:
         content:
           '*/*':
             schema:
-              $ref: '#/components/schemas/ServiceContext'
+              $ref: "#/components/schemas/ServiceContext"
       responses:
         default:
           description: default response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pong'
+                $ref: "#/components/schemas/Pong"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Pong'
+                $ref: "#/components/schemas/Pong"
   /hellosummer/hello/anonymous/{number}:
     get:
       operationId: anonymous
@@ -154,17 +154,17 @@ paths:
         content:
           '*/*':
             schema:
-              $ref: '#/components/schemas/ServiceContext'
+              $ref: "#/components/schemas/ServiceContext"
       responses:
         default:
           description: default response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pong'
+                $ref: "#/components/schemas/Pong"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Pong'
+                $ref: "#/components/schemas/Pong"
   /hellosummer/helloAdmin/employee:
     get:
       operationId: employeeOnly
@@ -172,17 +172,17 @@ paths:
         content:
           '*/*':
             schema:
-              $ref: '#/components/schemas/ServiceContext'
+              $ref: "#/components/schemas/ServiceContext"
       responses:
         default:
           description: default response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pong'
+                $ref: "#/components/schemas/Pong"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Pong'
+                $ref: "#/components/schemas/Pong"
   /hellosummer/inspection:
     get:
       tags:
@@ -199,69 +199,69 @@ paths:
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "401":
           description: "Unauthorized. The client should sign-on again, but not retransmit\
             \ the same request again"
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "403":
           description: Client has  no permission. Client should not retransmit the
             same request again.
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "404":
           description: Not Found. The client should not retransmit the same request
             again.
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "429":
           description: Too Many Requests
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "500":
           description: All other 5xx code. Server errors due to unexpected failures.
             The client can continue and try again with the request without modification.
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "501":
           description: Not Implemented. The client can continue and try again with
             the request without modification.
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "503":
           description: Service Unavailable. The client can continue and try again
             with the request without modification.
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "504":
           description: Gateway Timeout. The client can continue and try again with
             the request without modification.
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "507":
           description: Insufficient Storage. The client should contact the system
             administrator. Do not try the request again.
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
       security:
       - BearerAuth: []
   /hellosummer/helloAdmin/user:
@@ -271,17 +271,17 @@ paths:
         content:
           '*/*':
             schema:
-              $ref: '#/components/schemas/ServiceContext'
+              $ref: "#/components/schemas/ServiceContext"
       responses:
         default:
           description: default response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pong'
+                $ref: "#/components/schemas/Pong"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Pong'
+                $ref: "#/components/schemas/Pong"
   /hellosummer/login:
     post:
       tags:
@@ -293,7 +293,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginVo'
+              $ref: "#/components/schemas/LoginVo"
       responses:
         "201":
           description: success and return JWT token in header X-AuthToken
@@ -306,76 +306,76 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/Caller'
+                $ref: "#/components/schemas/Caller"
         "400":
           description: All other 4xx code. The client cannot continue and should not
             re-try again with the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "401":
           description: "Unauthorized. The client should sign-on again, but not retransmit\
             \ the same request again"
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "403":
           description: Client has  no permission. Client should not retransmit the
             same request again.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "404":
           description: Not Found. The client should not retransmit the same request
             again.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "429":
           description: Too Many Requests
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "500":
           description: All other 5xx code. Server errors due to unexpected failures.
             The client can continue and try again with the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "501":
           description: Not Implemented. The client can continue and try again with
             the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "503":
           description: Service Unavailable. The client can continue and try again
             with the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "504":
           description: Gateway Timeout. The client can continue and try again with
             the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "507":
           description: Insufficient Storage. The client should contact the system
             administrator. Do not try the request again.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
     delete:
       tags:
       - App Authentication
@@ -391,69 +391,69 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "401":
           description: "Unauthorized. The client should sign-on again, but not retransmit\
             \ the same request again"
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "403":
           description: Client has  no permission. Client should not retransmit the
             same request again.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "404":
           description: Not Found. The client should not retransmit the same request
             again.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "429":
           description: Too Many Requests
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "500":
           description: All other 5xx code. Server errors due to unexpected failures.
             The client can continue and try again with the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "501":
           description: Not Implemented. The client can continue and try again with
             the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "503":
           description: Service Unavailable. The client can continue and try again
             with the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "504":
           description: Gateway Timeout. The client can continue and try again with
             the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "507":
           description: Insufficient Storage. The client should contact the system
             administrator. Do not try the request again.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
       security:
       - BearerAuth: []
   /hellosummer/j_security_check:
@@ -487,76 +487,76 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/Caller'
+                $ref: "#/components/schemas/Caller"
         "400":
           description: All other 4xx code. The client cannot continue and should not
             re-try again with the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "401":
           description: "Unauthorized. The client should sign-on again, but not retransmit\
             \ the same request again"
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "403":
           description: Client has  no permission. Client should not retransmit the
             same request again.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "404":
           description: Not Found. The client should not retransmit the same request
             again.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "429":
           description: Too Many Requests
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "500":
           description: All other 5xx code. Server errors due to unexpected failures.
             The client can continue and try again with the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "501":
           description: Not Implemented. The client can continue and try again with
             the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "503":
           description: Service Unavailable. The client can continue and try again
             with the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "504":
           description: Gateway Timeout. The client can continue and try again with
             the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "507":
           description: Insufficient Storage. The client should contact the system
             administrator. Do not try the request again.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
   /hellosummer/ping:
     get:
       tags:
@@ -578,7 +578,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
   /hellosummer/status:
     put:
       tags:
@@ -600,69 +600,69 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "401":
           description: "Unauthorized. The client should sign-on again, but not retransmit\
             \ the same request again"
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "403":
           description: Client has  no permission. Client should not retransmit the
             same request again.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "404":
           description: Not Found. The client should not retransmit the same request
             again.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "429":
           description: Too Many Requests
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "500":
           description: All other 5xx code. Server errors due to unexpected failures.
             The client can continue and try again with the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "501":
           description: Not Implemented. The client can continue and try again with
             the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "503":
           description: Service Unavailable. The client can continue and try again
             with the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "504":
           description: Gateway Timeout. The client can continue and try again with
             the request without modification.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "507":
           description: Insufficient Storage. The client should contact the system
             administrator. Do not try the request again.
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
       security:
       - BearerAuth: []
   /hellosummer/version:
@@ -681,69 +681,69 @@ paths:
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "401":
           description: "Unauthorized. The client should sign-on again, but not retransmit\
             \ the same request again"
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "403":
           description: Client has  no permission. Client should not retransmit the
             same request again.
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "404":
           description: Not Found. The client should not retransmit the same request
             again.
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "429":
           description: Too Many Requests
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "500":
           description: All other 5xx code. Server errors due to unexpected failures.
             The client can continue and try again with the request without modification.
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "501":
           description: Not Implemented. The client can continue and try again with
             the request without modification.
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "503":
           description: Service Unavailable. The client can continue and try again
             with the request without modification.
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "504":
           description: Gateway Timeout. The client can continue and try again with
             the request without modification.
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
         "507":
           description: Insufficient Storage. The client should contact the system
             administrator. Do not try the request again.
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/ServiceError'
+                $ref: "#/components/schemas/ServiceError"
       security:
       - BearerAuth: []
 components:
@@ -774,6 +774,13 @@ components:
     Caller:
       type: object
       properties:
+        tenantName:
+          type: string
+        tokenTtlSec:
+          type: integer
+          format: int64
+        tenantId:
+          type: number
         enabled:
           type: boolean
         id:
@@ -783,20 +790,13 @@ components:
           format: int32
         displayName:
           type: string
-        tokenTtlSec:
-          type: integer
-          format: int64
-        tenantId:
-          type: number
-        tenantName:
+        uid:
           type: string
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
-        uid:
-          type: string
     Err:
       type: object
       properties:
@@ -813,7 +813,7 @@ components:
         empty:
           type: boolean
         all:
-          $ref: '#/components/schemas/HttpHeaders'
+          $ref: "#/components/schemas/HttpHeaders"
     HttpMethod:
       type: object
     HttpResponseStatus:
@@ -857,11 +857,11 @@ components:
         remoteIP:
           type: object
         requesMethod:
-          $ref: '#/components/schemas/HttpMethod'
+          $ref: "#/components/schemas/HttpMethod"
         requesURI:
           type: string
         requestHeaders:
-          $ref: '#/components/schemas/HttpHeaders'
+          $ref: "#/components/schemas/HttpHeaders"
         requestBody:
           type: string
         txId:
@@ -876,17 +876,17 @@ components:
           type: string
           format: date-time
         caller:
-          $ref: '#/components/schemas/Caller'
+          $ref: "#/components/schemas/Caller"
         callerId:
           type: string
         status:
-          $ref: '#/components/schemas/HttpResponseStatus'
+          $ref: "#/components/schemas/HttpResponseStatus"
         autoConvertBlank200To204:
           type: boolean
         responseHeaders:
-          $ref: '#/components/schemas/HttpHeaders'
+          $ref: "#/components/schemas/HttpHeaders"
         responseEncoder:
-          $ref: '#/components/schemas/ResponseEncoder'
+          $ref: "#/components/schemas/ResponseEncoder"
         contentType:
           type: string
         clientAcceptContentType:
@@ -908,17 +908,17 @@ components:
         poi:
           type: array
           items:
-            $ref: '#/components/schemas/POI'
+            $ref: "#/components/schemas/POI"
         memo:
           type: array
           items:
-            $ref: '#/components/schemas/Memo'
+            $ref: "#/components/schemas/Memo"
         sessionAttributes:
           type: object
           additionalProperties:
             type: object
         serviceError:
-          $ref: '#/components/schemas/ServiceError'
+          $ref: "#/components/schemas/ServiceError"
         cause:
           type: object
           properties:
@@ -949,7 +949,7 @@ components:
             localizedMessage:
               type: string
         level:
-          $ref: '#/components/schemas/Level'
+          $ref: "#/components/schemas/Level"
         logRequestHeader:
           type: boolean
         logResponseHeader:
@@ -970,7 +970,7 @@ components:
           type: array
           description: The optional error list
           items:
-            $ref: '#/components/schemas/Err'
+            $ref: "#/components/schemas/Err"
     Pong:
       type: object
       properties:
@@ -982,6 +982,9 @@ components:
           type: string
           format: date-time
     LoginVo:
+      required:
+      - password
+      - username
       type: object
       properties:
         username:

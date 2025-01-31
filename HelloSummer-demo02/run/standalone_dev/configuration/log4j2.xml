@@ -10,7 +10,7 @@
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <!-- WARN or OFF for production, WARN or ALL for development -->
-            <LevelRangeFilter maxLevel="ALL"/>
+            <LevelRangeFilter maxLevel="WARN"/>
             <PatternLayout pattern="${sys:logPattern}"/>
         </Console>
 

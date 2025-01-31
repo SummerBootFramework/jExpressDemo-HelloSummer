@@ -31,10 +31,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MyResponse'
+                $ref: "#/components/schemas/MyResponse"
             application/xml:
               schema:
-                $ref: '#/components/schemas/MyResponse'
+                $ref: "#/components/schemas/MyResponse"
   /hellosummer1/hello/post:
     post:
       operationId: helloPost
@@ -42,17 +42,17 @@ paths:
         content:
           '*/*':
             schema:
-              $ref: '#/components/schemas/JsonNode'
+              $ref: "#/components/schemas/JsonNode"
       responses:
         default:
           description: default response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MyResponse'
+                $ref: "#/components/schemas/MyResponse"
             application/xml:
               schema:
-                $ref: '#/components/schemas/MyResponse'
+                $ref: "#/components/schemas/MyResponse"
   /helloplugin/hello/{name}:
     get:
       operationId: hello_1
@@ -69,10 +69,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MyResponse'
+                $ref: "#/components/schemas/MyResponse"
             application/xml:
               schema:
-                $ref: '#/components/schemas/MyResponse'
+                $ref: "#/components/schemas/MyResponse"
   /helloplugin/hello/post:
     post:
       operationId: helloPost_1
@@ -80,17 +80,17 @@ paths:
         content:
           '*/*':
             schema:
-              $ref: '#/components/schemas/JsonNode'
+              $ref: "#/components/schemas/JsonNode"
       responses:
         default:
           description: default response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MyResponse'
+                $ref: "#/components/schemas/MyResponse"
             application/xml:
               schema:
-                $ref: '#/components/schemas/MyResponse'
+                $ref: "#/components/schemas/MyResponse"
 components:
   schemas:
     MyResponse:

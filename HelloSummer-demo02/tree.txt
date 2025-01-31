@@ -1,0 +1,173 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Detecting the operating system and CPU architecture
+[INFO] ------------------------------------------------------------------------
+[INFO] os.detected.name: windows
+[INFO] os.detected.arch: x86_64
+[INFO] os.detected.bitness: 64
+[INFO] os.detected.version: 10.0
+[INFO] os.detected.version.major: 10
+[INFO] os.detected.version.minor: 0
+[INFO] os.detected.classifier: windows-x86_64
+[INFO] 
+[INFO] ----------------------< org.jexpress:hellosummer >----------------------
+[INFO] Building Hello Summer - demo02 2.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:3.8.1:tree (default-cli) @ hellosummer ---
+[INFO] org.jexpress:hellosummer:jar:2.0
+[INFO] +- org.summerboot:jexpress:jar:2.4.18-SNAPSHOT:compile
+[INFO] |  +- commons-cli:commons-cli:jar:1.9.0:compile
+[INFO] |  +- commons-io:commons-io:jar:2.18.0:compile
+[INFO] |  +- org.apache.commons:commons-lang3:jar:3.17.0:compile
+[INFO] |  +- org.reflections:reflections:jar:0.10.2:compile
+[INFO] |  |  +- org.javassist:javassist:jar:3.28.0-GA:compile
+[INFO] |  |  \- com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO] |  +- org.apache.logging.log4j:log4j-api:jar:2.24.2:compile
+[INFO] |  +- org.apache.logging.log4j:log4j-core:jar:2.24.2:compile
+[INFO] |  +- com.lmax:disruptor:jar:4.0.0:compile
+[INFO] |  +- org.apache.logging.log4j:log4j-jul:jar:2.24.2:runtime
+[INFO] |  +- com.sun.mail:jakarta.mail:jar:2.0.1:compile
+[INFO] |  +- com.sun.activation:jakarta.activation:jar:2.0.1:compile
+[INFO] |  +- org.bouncycastle:bcpkix-jdk18on:jar:1.79:compile
+[INFO] |  |  +- org.bouncycastle:bcprov-jdk18on:jar:1.79:compile
+[INFO] |  |  \- org.bouncycastle:bcutil-jdk18on:jar:1.79:compile
+[INFO] |  +- io.jsonwebtoken:jjwt-api:jar:0.12.6:compile
+[INFO] |  +- io.jsonwebtoken:jjwt-impl:jar:0.12.6:compile
+[INFO] |  +- io.jsonwebtoken:jjwt-jackson:jar:0.12.6:compile
+[INFO] |  +- io.netty:netty-all:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-buffer:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-codec:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-codec-dns:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-codec-haproxy:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-codec-http:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-codec-http2:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-codec-memcache:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-codec-mqtt:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-codec-redis:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-codec-smtp:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-codec-socks:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-codec-stomp:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-codec-xml:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-common:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-handler:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-transport-native-unix-common:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-handler-proxy:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-handler-ssl-ocsp:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-resolver:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-resolver-dns:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-transport:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-transport-rxtx:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-transport-sctp:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-transport-udt:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-transport-classes-epoll:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-transport-classes-kqueue:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-resolver-dns-classes-macos:jar:4.1.115.Final:compile
+[INFO] |  |  +- io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.1.115.Final:runtime
+[INFO] |  |  +- io.netty:netty-transport-native-epoll:jar:linux-aarch_64:4.1.115.Final:runtime
+[INFO] |  |  +- io.netty:netty-transport-native-epoll:jar:linux-riscv64:4.1.115.Final:runtime
+[INFO] |  |  +- io.netty:netty-transport-native-kqueue:jar:osx-x86_64:4.1.115.Final:runtime
+[INFO] |  |  +- io.netty:netty-transport-native-kqueue:jar:osx-aarch_64:4.1.115.Final:runtime
+[INFO] |  |  +- io.netty:netty-resolver-dns-native-macos:jar:osx-x86_64:4.1.115.Final:runtime
+[INFO] |  |  \- io.netty:netty-resolver-dns-native-macos:jar:osx-aarch_64:4.1.115.Final:runtime
+[INFO] |  +- io.netty:netty-transport-native-epoll:jar:4.1.115.Final:compile
+[INFO] |  +- io.netty:netty-transport-native-kqueue:jar:4.1.115.Final:compile
+[INFO] |  +- io.netty:netty-tcnative-boringssl-static:jar:2.0.69.Final:compile
+[INFO] |  |  +- io.netty:netty-tcnative-boringssl-static:jar:linux-x86_64:2.0.69.Final:compile
+[INFO] |  |  +- io.netty:netty-tcnative-boringssl-static:jar:linux-aarch_64:2.0.69.Final:compile
+[INFO] |  |  +- io.netty:netty-tcnative-boringssl-static:jar:osx-x86_64:2.0.69.Final:compile
+[INFO] |  |  +- io.netty:netty-tcnative-boringssl-static:jar:osx-aarch_64:2.0.69.Final:compile
+[INFO] |  |  \- io.netty:netty-tcnative-boringssl-static:jar:windows-x86_64:2.0.69.Final:compile
+[INFO] |  +- io.netty:netty-tcnative-classes:jar:2.0.69.Final:compile
+[INFO] |  +- com.google.protobuf:protobuf-java:jar:4.29.1:compile
+[INFO] |  +- io.grpc:grpc-protobuf:jar:1.69.0:compile
+[INFO] |  |  +- io.grpc:grpc-api:jar:1.69.0:compile
+[INFO] |  |  +- com.google.api.grpc:proto-google-common-protos:jar:2.48.0:compile
+[INFO] |  |  +- com.google.guava:guava:jar:33.3.1-android:compile
+[INFO] |  |  |  +- com.google.guava:failureaccess:jar:1.0.2:compile
+[INFO] |  |  |  +- com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO] |  |  |  +- org.checkerframework:checker-qual:jar:3.43.0:compile
+[INFO] |  |  |  \- com.google.j2objc:j2objc-annotations:jar:3.0.0:compile
+[INFO] |  |  \- io.grpc:grpc-protobuf-lite:jar:1.69.0:runtime
+[INFO] |  +- io.grpc:grpc-netty-shaded:jar:1.69.0:compile
+[INFO] |  |  +- io.grpc:grpc-util:jar:1.69.0:runtime
+[INFO] |  |  |  \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.24:runtime
+[INFO] |  |  +- io.grpc:grpc-core:jar:1.69.0:compile
+[INFO] |  |  |  +- com.google.code.gson:gson:jar:2.11.0:runtime
+[INFO] |  |  |  +- com.google.android:annotations:jar:4.1.1.4:runtime
+[INFO] |  |  |  \- io.grpc:grpc-context:jar:1.69.0:runtime
+[INFO] |  |  +- com.google.errorprone:error_prone_annotations:jar:2.30.0:compile
+[INFO] |  |  \- io.perfmark:perfmark-api:jar:0.27.0:runtime
+[INFO] |  +- io.grpc:grpc-stub:jar:1.69.0:compile
+[INFO] |  +- io.swagger.core.v3:swagger-annotations:jar:2.2.26:compile
+[INFO] |  +- org.apache.tika:tika-core:jar:3.0.0:compile
+[INFO] |  +- jakarta.ws.rs:jakarta.ws.rs-api:jar:4.0.0:compile
+[INFO] |  +- jakarta.annotation:jakarta.annotation-api:jar:3.0.0:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.18.2:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-core:jar:2.18.2:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-annotations:jar:2.18.2:compile
+[INFO] |  +- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.18.2:compile
+[INFO] |  +- com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.18.2:compile
+[INFO] |  |  +- org.codehaus.woodstox:stax2-api:jar:4.2.2:compile
+[INFO] |  |  \- com.fasterxml.woodstox:woodstox-core:jar:7.0.0:compile
+[INFO] |  +- jakarta.el:jakarta.el-api:jar:6.0.1:compile
+[INFO] |  +- org.apache.tomcat.embed:tomcat-embed-el:jar:11.0.2:compile
+[INFO] |  +- org.hibernate.validator:hibernate-validator:jar:8.0.1.Final:compile
+[INFO] |  |  +- jakarta.validation:jakarta.validation-api:jar:3.0.2:compile
+[INFO] |  |  +- org.jboss.logging:jboss-logging:jar:3.4.3.Final:compile
+[INFO] |  |  \- com.fasterxml:classmate:jar:1.5.1:compile
+[INFO] |  +- com.google.inject:guice:jar:7.0.0:compile
+[INFO] |  |  +- jakarta.inject:jakarta.inject-api:jar:2.0.1:compile
+[INFO] |  |  \- aopalliance:aopalliance:jar:1.0:compile
+[INFO] |  +- org.hibernate.orm:hibernate-core:jar:6.6.3.Final:compile
+[INFO] |  |  +- jakarta.persistence:jakarta.persistence-api:jar:3.1.0:compile
+[INFO] |  |  +- jakarta.transaction:jakarta.transaction-api:jar:2.0.1:compile
+[INFO] |  |  +- org.hibernate.common:hibernate-commons-annotations:jar:7.0.3.Final:runtime
+[INFO] |  |  +- io.smallrye:jandex:jar:3.2.0:runtime
+[INFO] |  |  +- net.bytebuddy:byte-buddy:jar:1.14.18:runtime
+[INFO] |  |  +- jakarta.xml.bind:jakarta.xml.bind-api:jar:4.0.0:runtime
+[INFO] |  |  |  \- jakarta.activation:jakarta.activation-api:jar:2.1.0:runtime
+[INFO] |  |  +- org.glassfish.jaxb:jaxb-runtime:jar:4.0.2:runtime
+[INFO] |  |  |  \- org.glassfish.jaxb:jaxb-core:jar:4.0.2:runtime
+[INFO] |  |  |     +- org.glassfish.jaxb:txw2:jar:4.0.2:runtime
+[INFO] |  |  |     \- com.sun.istack:istack-commons-runtime:jar:4.1.1:runtime
+[INFO] |  |  \- org.antlr:antlr4-runtime:jar:4.13.0:runtime
+[INFO] |  +- org.hibernate.orm:hibernate-hikaricp:jar:6.6.3.Final:compile
+[INFO] |  +- com.zaxxer:HikariCP:jar:6.2.1:compile
+[INFO] |  +- org.quartz-scheduler:quartz:jar:2.5.0:compile
+[INFO] |  +- org.quartz-scheduler:quartz-jobs:jar:2.5.0:compile
+[INFO] |  +- org.eclipse.paho:org.eclipse.paho.mqttv5.client:jar:1.2.5:compile
+[INFO] |  \- org.apache.xmlgraphics:batik-transcoder:jar:1.18:compile
+[INFO] |     +- org.apache.xmlgraphics:batik-anim:jar:1.18:compile
+[INFO] |     |  +- org.apache.xmlgraphics:batik-css:jar:1.18:compile
+[INFO] |     |  +- org.apache.xmlgraphics:batik-ext:jar:1.18:compile
+[INFO] |     |  +- org.apache.xmlgraphics:batik-parser:jar:1.18:compile
+[INFO] |     |  \- org.apache.xmlgraphics:batik-svg-dom:jar:1.18:compile
+[INFO] |     +- org.apache.xmlgraphics:batik-awt-util:jar:1.18:compile
+[INFO] |     |  \- org.apache.xmlgraphics:xmlgraphics-commons:jar:2.10:compile
+[INFO] |     |     \- commons-logging:commons-logging:jar:1.0.4:compile
+[INFO] |     +- org.apache.xmlgraphics:batik-bridge:jar:1.18:compile
+[INFO] |     |  \- org.apache.xmlgraphics:batik-script:jar:1.18:compile
+[INFO] |     +- org.apache.xmlgraphics:batik-dom:jar:1.18:compile
+[INFO] |     |  \- xml-apis:xml-apis:jar:1.4.01:compile
+[INFO] |     +- org.apache.xmlgraphics:batik-gvt:jar:1.18:compile
+[INFO] |     +- org.apache.xmlgraphics:batik-shared-resources:jar:1.18:compile
+[INFO] |     +- org.apache.xmlgraphics:batik-svggen:jar:1.18:compile
+[INFO] |     +- org.apache.xmlgraphics:batik-util:jar:1.18:compile
+[INFO] |     |  +- org.apache.xmlgraphics:batik-constants:jar:1.18:compile
+[INFO] |     |  \- org.apache.xmlgraphics:batik-i18n:jar:1.18:compile
+[INFO] |     +- org.apache.xmlgraphics:batik-xml:jar:1.18:compile
+[INFO] |     \- xml-apis:xml-apis-ext:jar:1.3.04:compile
+[INFO] +- com.mysql:mysql-connector-j:jar:8.3.0:compile
+[INFO] +- org.testng:testng:jar:7.10.2:test
+[INFO] |  +- org.slf4j:slf4j-api:jar:1.7.36:compile
+[INFO] |  +- com.beust:jcommander:jar:1.82:test
+[INFO] |  \- org.webjars:jquery:jar:3.7.1:test
+[INFO] \- javax.annotation:javax.annotation-api:jar:1.3.2:provided
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.670 s
+[INFO] Finished at: 2024-12-12T15:40:37-05:00
+[INFO] ------------------------------------------------------------------------
+Active code page: 65001
