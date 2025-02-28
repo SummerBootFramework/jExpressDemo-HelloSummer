@@ -6,7 +6,7 @@
     "contact" : {
       "name" : "summerboot.org"
     },
-    "version" : "jExpress 2.4.17"
+    "version" : "jExpress 2.5.1"
   },
   "servers" : [ {
     "url" : "https://localhost:8211",
@@ -1111,6 +1111,9 @@
       "Caller" : {
         "type" : "object",
         "properties" : {
+          "enabled" : {
+            "type" : "boolean"
+          },
           "id" : {
             "type" : "number"
           },
@@ -1121,21 +1124,8 @@
           "displayName" : {
             "type" : "string"
           },
-          "enabled" : {
-            "type" : "boolean"
-          },
-          "tenantId" : {
-            "type" : "number"
-          },
           "uid" : {
             "type" : "string"
-          },
-          "tenantName" : {
-            "type" : "string"
-          },
-          "tokenTtlSec" : {
-            "type" : "integer",
-            "format" : "int64"
           },
           "groups" : {
             "uniqueItems" : true,
@@ -1143,6 +1133,16 @@
             "items" : {
               "type" : "string"
             }
+          },
+          "tenantId" : {
+            "type" : "number"
+          },
+          "tokenTtlSec" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "tenantName" : {
+            "type" : "string"
           }
         }
       },
@@ -1179,6 +1179,7 @@
         }
       },
       "LoginVo" : {
+        "required" : [ "password", "username" ],
         "type" : "object",
         "properties" : {
           "username" : {

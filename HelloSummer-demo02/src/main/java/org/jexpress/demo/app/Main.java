@@ -18,6 +18,13 @@ import java.util.concurrent.atomic.AtomicLong;
 public class Main {
 
     public static void main(String... args) throws InterruptedException {
+//        SummerApplication app = SummerApplication.run();
+//        app.shutdown();
+//        app.start();
+        SummerApplication.run();
+    }
+
+    public static void main2(String... args) throws InterruptedException {
         int core = Integer.parseInt(args[0]);// 1
         int max = Integer.parseInt(args[1]);// 1
         int queue = Integer.parseInt(args[2]);// 0;
@@ -27,10 +34,6 @@ public class Main {
         final long waitSec = Long.parseLong(args[6]);// 10;
         int taskAmount = Integer.parseInt(args[7]);// 10;
         testThread(core, max, queue, keepAliveSec, allowCoreThreadTimeOut, useVirtualThread, waitSec, taskAmount);
-        //SummerApplication.run();
-//        SummerApplication app = SummerApplication.run();
-//        app.shutdown();
-//        app.start();
     }
 
     public static void testThread(int core, int max, int queue, long keepAliveSec, boolean allowCoreThreadTimeOut, boolean useVirtualThread, long waitSec, int taskAmount) throws InterruptedException {

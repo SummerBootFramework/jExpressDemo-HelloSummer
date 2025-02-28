@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="MockService" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="org.jexpress.mockservice.app.Main" />
+    <module name="MockService" />
+    <option name="VM_PARAMETERS" value="-server -Xms1G -Xmx1G -XX:+UseG1GC -XX:+AlwaysPreTouch -Djava.awt.headless=true -Djna.nosys=true -Dfile.encoding=UTF-8 -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector -Dopenssl -Dio.netty.leakDetectionLevel=advanced -Dio.netty.noUnsafe=true -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/run" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

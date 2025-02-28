@@ -1146,16 +1146,6 @@
       "Caller" : {
         "type" : "object",
         "properties" : {
-          "tenantName" : {
-            "type" : "string"
-          },
-          "tokenTtlSec" : {
-            "type" : "integer",
-            "format" : "int64"
-          },
-          "tenantId" : {
-            "type" : "number"
-          },
           "enabled" : {
             "type" : "boolean"
           },
@@ -1167,6 +1157,16 @@
             "format" : "int32"
           },
           "displayName" : {
+            "type" : "string"
+          },
+          "tenantId" : {
+            "type" : "number"
+          },
+          "tokenTtlSec" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "tenantName" : {
             "type" : "string"
           },
           "uid" : {

@@ -6,24 +6,23 @@
     <groupId>org.jexpress.mockservice</groupId>
     <artifactId>MockService</artifactId>
     <version>1.0.2</version>
-    <name>Hello Summer - MockService</name>
+    <name>Hello Summer - MockService ${version}</name>
     <url>https://github.com/SummerBootFramework/jExpressDemo-HelloSummer</url>
 
     <properties>
         <!-- common properties and dependencies -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
         <maven-clean.version>3.4.0</maven-clean.version>
         <maven-compiler.version>3.13.0</maven-compiler.version>
         <maven-dependency.version>3.8.1</maven-dependency.version>
         <maven-jar.version>3.4.2</maven-jar.version>
         <maven-resources.version>3.3.1</maven-resources.version>
         <maven-surefire.version>3.5.2</maven-surefire.version>
-        <swagger-maven.version>2.2.26</swagger-maven.version>
-        <jexpress.version>2.4.17</jexpress.version>
+        <swagger-maven.version>2.2.28</swagger-maven.version>
+        <jexpress.version>2.5.1</jexpress.version>
         <elastic-apm.version>1.52.1</elastic-apm.version>
-        <testng.version>7.10.2</testng.version>
+        <testng.version>7.11.0</testng.version>
 
         <!-- application properties and dependencies-->
         <main.class>${api.package}.app.Main</main.class>
@@ -199,6 +198,8 @@
                             <mainClass>${main.class}</mainClass>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
+                            <!-- To force the use of '-SNAPSHOT' version naming, simply disable the <useUniqueVersions>  -->
+                            <useUniqueVersions>false</useUniqueVersions>
                         </manifest>
                         <!-- To enable for local dependency
                         <manifestEntries>
