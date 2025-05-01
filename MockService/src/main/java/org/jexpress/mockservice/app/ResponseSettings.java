@@ -6,10 +6,12 @@ import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+
 public class ResponseSettings {
     public static final String KEY_RESPONSE_STATUS_CODE = "Response_Status_Code";
     public static final String KEY_RESPONSE_DELAY_SECOND = "Response_Delay_Second";
-    public static final String KEY_RUN_RESPONSE_AS_JSON = "Run_Response_File_As_Json";
+    public static final String KEY_RUN_RESPONSE_AS_JS = "Run_Response_File_As_JavaScript";
+    public static final String KEY_JS_AS_TOC = "JavaScript_Response_As_TOC";
 
     public static final String RSPONSE_HEADER_FILE_CONTENT = """
             ####################
@@ -17,8 +19,9 @@ public class ResponseSettings {
             ####################
             Response_Status_Code=200  
             Response_Delay_Second=0
-            Run_Response_File_As_Json=false
-                                                                         
+            Run_Response_File_As_JavaScript=false
+            JavaScript_Response_As_TOC=true
+            
             ####################
             # Response Headers #
             ####################
@@ -27,7 +30,8 @@ public class ResponseSettings {
 
     private final HttpResponseStatus responseStatus;
     private final int responseDelaySecond;
-    private final boolean runResponseFileAsJson;
+    private final boolean runResponseFileAsJS;
+    private final boolean jsResponseAsTOC;
 
     public ResponseSettings(Properties properties, ServiceContext context) {
         if (properties == null) {
@@ -50,12 +54,20 @@ public class ResponseSettings {
             responseDelaySecond = 0;
         }
 
-        v = properties.getProperty(KEY_RUN_RESPONSE_AS_JSON);
+        v = properties.getProperty(KEY_RUN_RESPONSE_AS_JS);
         if (v != null) {
-            runResponseFileAsJson = Boolean.parseBoolean(v);
-            properties.remove(KEY_RUN_RESPONSE_AS_JSON);
+            runResponseFileAsJS = Boolean.parseBoolean(v);
+            properties.remove(KEY_RUN_RESPONSE_AS_JS);
         } else {
-            runResponseFileAsJson = false;
+            runResponseFileAsJS = false;
+        }
+
+        v = properties.getProperty(KEY_JS_AS_TOC);
+        if (v != null) {
+            jsResponseAsTOC = Boolean.parseBoolean(v);
+            properties.remove(KEY_RUN_RESPONSE_AS_JS);
+        } else {
+            jsResponseAsTOC = true;
         }
 
         for (Object key : properties.keySet()) {
@@ -83,7 +95,11 @@ public class ResponseSettings {
         return responseDelaySecond;
     }
 
-    public boolean isRunResponseFileAsJson() {
-        return runResponseFileAsJson;
+    public boolean isRunResponseFileAsJS() {
+        return runResponseFileAsJS;
+    }
+
+    public boolean isJsResponseAsTOC() {
+        return jsResponseAsTOC;
     }
 }

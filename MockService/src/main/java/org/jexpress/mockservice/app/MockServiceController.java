@@ -12,7 +12,6 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import org.apache.commons.lang3.StringUtils;
 import org.summerboot.jexpress.boot.annotation.Controller;
 import org.summerboot.jexpress.nio.server.domain.Err;
 import org.summerboot.jexpress.nio.server.domain.ServiceContext;
@@ -42,42 +41,48 @@ public class MockServiceController {
     @PATCH
     @DELETE
     @Path("")
-    public String mockService(String body, @Parameter(hidden = true) final ServiceContext context) throws IOException, ScriptException, NoSuchMethodException {
+    public String mockService(final String body, @Parameter(hidden = true) final ServiceContext context) throws IOException, ScriptException, NoSuchMethodException {
+        // 1. get request URI
         Map<String, String> queryParam = new LinkedHashMap();
         String action = FormatterUtil.parseUrlQueryParam(context.uri(), queryParam);
+        // 2. check whitelist
         Set<String> whiteList = WhitelistConfig.cfg.getWhteList();
         if (whiteList != null && !whiteList.contains(action)) {
             Err e = new Err(400, "", "URI " + action + " is not in whitelist", null, null);
             context.error(e).status(HttpResponseStatus.FORBIDDEN);
             return null;
         }
+        // 3. load root properties
         String filePath = "mock_response" + action + "_" + context.method();
+        int level = 1;
+        return runMock(body, queryParam, context, filePath, level);
+    }
 
-        String fileName = filePath + ".js";
-        context.memo("js.file", fileName);
+    protected String runMock(final String body, Map<String, String> queryParam, final ServiceContext context, final String filePath, int level) throws IOException, ScriptException, NoSuchMethodException {
+        String fileName = filePath + ".properties";
+        context.memo(level + ".properties.file", fileName);
+        Properties properties1 = Utils.loadProperties(fileName, true);
+        ResponseSettings responseSettings1 = new ResponseSettings(properties1, context);
+        responseSettings1.apply();
+        boolean runResponseFileAsJS = responseSettings1.isRunResponseFileAsJS();
+        if (!runResponseFileAsJS) {
+            // 1. load root txt file
+            fileName = filePath + ".txt";
+            context.memo(level + ".txt.file", fileName);
+            String defaultFileContent = null;
+            return Utils.loadFileContent(fileName, true, defaultFileContent);
+        }
+
+        // 3. load root js file
+        fileName = filePath + ".js";
+        context.memo(level + ".js.file", fileName);
         String jsCode = Utils.loadFileContent(fileName, true, Utils.JS_FILE_CONTENT);
-        String postFix = Utils.javascriptRuleEngine(jsCode, context.requestHeaders().entries(), queryParam, body, context);
-        if (StringUtils.isNotBlank(postFix)) {
-            filePath += "_case_" + postFix;
+        String jsResponse = Utils.javascriptRuleEngine(jsCode, context.requestHeaders().entries(), queryParam, body, context);
+        if (!responseSettings1.isJsResponseAsTOC()) {
+            return jsResponse;
         }
-
-        fileName = filePath + ".properties";
-        context.memo("response.header.file", fileName);
-        Properties properties = Utils.loadProperties(fileName, true);
-        ResponseSettings responseSettings = new ResponseSettings(properties, context);
-        responseSettings.apply();
-        boolean runResponseFileAsJson = responseSettings.isRunResponseFileAsJson();
-
-        fileName = filePath + "." + (runResponseFileAsJson ? "js" : "txt");
-        context.memo("response.body.file", fileName);
-        String defaultFileContent = runResponseFileAsJson ? Utils.JS_FILE_CONTENT : null;
-        String responseContent = Utils.loadFileContent(fileName, true, defaultFileContent);
-        if (!runResponseFileAsJson) {
-            return responseContent;
-        }
-        jsCode = responseContent;
-        responseContent = Utils.javascriptRuleEngine(jsCode, context.requestHeaders().entries(), queryParam, body, context);
-        return responseContent;
+        String subFilePath = filePath + "_case_" + jsResponse;
+        return runMock(body, queryParam, context, subFilePath, ++level);
     }
 
 }

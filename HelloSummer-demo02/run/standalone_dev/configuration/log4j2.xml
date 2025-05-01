@@ -10,7 +10,7 @@
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <!-- WARN or OFF for production, WARN or ALL for development -->
-            <LevelRangeFilter maxLevel="WARN"/>
+            <LevelRangeFilter maxLevel="ALL"/>
             <PatternLayout pattern="${sys:logPattern}"/>
         </Console>
 
@@ -56,7 +56,7 @@
             </Policies>
             <DefaultRolloverStrategy max="500"/>
         </RollingRandomAccessFile>
-		<RollingRandomAccessFile
+        <RollingRandomAccessFile
                 name="BackServiceLogFile"
                 fileName="${sys:logPath}/${sys:appName}_backservice_${sys:serverName}.log"
                 filePattern="${sys:logPath}/$${date:yyyy-MM-dd}/${sys:appName}_backservice_${sys:serverName}_%d{yyyy-MM-dd HHmm}.%i.log.gz"
@@ -92,6 +92,10 @@
         </Logger>
 
         <Logger level="info" name="org.summerboot.jexpress.nio.server.BootHttpRequestHandler" includeLocation="false" additivity="false">
+            <AppenderRef ref="RequestLogFile"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger level="info" name="org.summerboot.jexpress.nio.grpc.ContextualizedServerCallListenerEx" includeLocation="false" additivity="false">
             <AppenderRef ref="RequestLogFile"/>
             <AppenderRef ref="Console"/>
         </Logger>

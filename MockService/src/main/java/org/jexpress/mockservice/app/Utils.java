@@ -145,6 +145,9 @@ public class Utils {
             }
             sb.append(jsLine).append(BootConstant.BR);
         }
+        if (StringUtils.isBlank(sb.toString())) {
+            return null;
+        }
         String jsFunctionCode = JS_CODE_PREFIX + sb.toString() + JS_CODE_POSTFIF;
 
         String remoteAddress = null;

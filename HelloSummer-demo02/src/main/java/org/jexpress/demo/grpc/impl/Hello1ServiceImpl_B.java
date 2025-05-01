@@ -9,6 +9,9 @@ public class Hello1ServiceImpl_B extends Hello1Service {
 
     @Override
     protected String hello(String firstName, String lastName) {
+        if (firstName.startsWith("error")) {
+            throw new RuntimeException("my error");
+        }
         return BootConstant.APP_ID + " Aloha1 " + firstName + " " + lastName;
     }
 

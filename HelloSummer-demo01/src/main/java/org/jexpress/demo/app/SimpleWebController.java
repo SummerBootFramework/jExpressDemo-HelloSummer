@@ -13,8 +13,8 @@ import jakarta.ws.rs.core.MediaType;
 import org.summerboot.jexpress.boot.annotation.Controller;
 import org.summerboot.jexpress.boot.annotation.Log;
 
-@Controller
-@Path("/hellosummer1")
+//@Controller
+//@Path("/hellosummer1")
 public class SimpleWebController {
 
     private static final String USER_INPUT_VALIDATION_REGEX = "[a-zA-Z\\#\\-' ]{1,10}";
