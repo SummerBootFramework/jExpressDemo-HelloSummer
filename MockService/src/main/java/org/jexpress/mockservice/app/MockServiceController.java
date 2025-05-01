@@ -78,7 +78,7 @@ public class MockServiceController {
         context.memo(level + ".js.file", fileName);
         String jsCode = Utils.loadFileContent(fileName, true, Utils.JS_FILE_CONTENT);
         String jsResponse = Utils.javascriptRuleEngine(jsCode, context.requestHeaders().entries(), queryParam, body, context);
-        if (!responseSettings1.isJsResponseAsTOC()) {
+        if (!responseSettings1.isJsResponseAsSwitch()) {
             return jsResponse;
         }
         String subFilePath = filePath + "_case_" + jsResponse;
