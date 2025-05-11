@@ -7,8 +7,8 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jexpress.demo.grpc.client.GrpcClientConfig1;
-import org.jexpress.demo.grpc.client.Hello1Client;
+import org.jexpress.demo.grpc.client.Hello1ClientConfig;
+import org.jexpress.demo.grpc.client.Hello1ClientImpl;
 import org.summerboot.jexpress.boot.SummerInitializer;
 import org.summerboot.jexpress.boot.SummerRunner;
 import org.summerboot.jexpress.boot.annotation.Order;
@@ -69,8 +69,8 @@ public class MainRunner implements SummerInitializer, SummerRunner {
             log.debug("load logs " + i);
         }
 
-        GrpcClientConfig1 grpcCfg1 = GrpcClientConfig1.cfg;
-        Hello1Client c1 = new Hello1Client().withConfig(grpcCfg1);
+        Hello1ClientConfig grpcCfg1 = Hello1ClientConfig.cfg;
+        Hello1ClientImpl c1 = new Hello1ClientImpl().withConfig(grpcCfg1);
         //GrpcClientConfig2 grpcCfg2 = GrpcClientConfig2.cfg;
         //Hello1Client c2 = new Hello1Client().withConfig(grpcCfg2);
         c1.connect();

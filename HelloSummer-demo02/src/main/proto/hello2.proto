@@ -9,14 +9,21 @@ option java_outer_classname = "Hello2Proto";
 package hello2.rpc;
 
 message Hello2Request {
-  string firstName = 1;
-  string lastName = 2;
+  string callerTxId = 1;
+  string firstName = 2;
+  string lastName = 3;
 }
 
 message Hello2Response {
-  string greeting = 1;
+  string serverTxId = 1;
+  uint32 errorCode = 2;
+  string errorDesc = 3;
+  string version = 4;
+  uint64 cost = 5;
+  string greeting = 6;
 }
 
 service Hello2Service {
+  rpc ping(google.protobuf.Empty) returns (Hello2Response);
   rpc hello2(Hello2Request) returns (Hello2Response);
 }

@@ -1,7 +1,7 @@
 package org.jexpress.mockservice.app;
 
 import io.netty.handler.codec.http.HttpResponseStatus;
-import org.summerboot.jexpress.nio.server.domain.ServiceContext;
+import org.summerboot.jexpress.nio.server.SessionContext;
 
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -33,7 +33,7 @@ public class ResponseSettings {
     private final boolean runResponseFileAsJS;
     private final boolean jsResponseAsSwitch;
 
-    public ResponseSettings(Properties properties, ServiceContext context) {
+    public ResponseSettings(Properties properties, SessionContext context) {
         if (properties == null) {
             properties = new Properties();
         }

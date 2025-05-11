@@ -16,14 +16,14 @@ import org.jexpress.demo.app.instrumentation.HealthChecker;
 import org.summerboot.jexpress.boot.annotation.Controller;
 import org.summerboot.jexpress.boot.annotation.Deamon;
 import org.summerboot.jexpress.boot.instrumentation.HealthMonitor;
-import org.summerboot.jexpress.nio.server.domain.ServiceContext;
+import org.summerboot.jexpress.nio.server.SessionContext;
 import org.summerboot.jexpress.nio.server.ws.rs.BootController;
 
 import java.io.IOException;
 import java.time.OffsetDateTime;
 
 @Singleton
-@Controller(implTag = "RoleBased")
+@Controller(AlternativeName = "RoleBased")
 // to enable it, start application with -use RoleBased or -use RoleBased WebBased to enable both role and web based controllers
 @Path("/hellosummer")
 @OpenAPIDefinition(//OAS v3
@@ -58,7 +58,7 @@ public class MyControllerRoleBased extends BootController {
     @Path("/hello/anonymous/{number}")
     @Deamon
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Pong anonymous(@PathParam("number") int number, ServiceContext context) throws IOException {
+    public Pong anonymous(@PathParam("number") int number, SessionContext context) throws IOException {
         HealthChecker.a = number;
         switch (number) {
             case 1 -> {
@@ -75,7 +75,7 @@ public class MyControllerRoleBased extends BootController {
     @Path("/helloAdmin/user")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @PermitAll
-    public Pong loginedUserOnly(ServiceContext context) {
+    public Pong loginedUserOnly(SessionContext context) {
         return new Pong("Hello user: " + context.caller(), context.txId());
     }
 
@@ -83,7 +83,7 @@ public class MyControllerRoleBased extends BootController {
     @Path("/helloAdmin/admin")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @RolesAllowed({"AppAdmin"})
-    public Pong adminOnly(ServiceContext context) {
+    public Pong adminOnly(SessionContext context) {
         return new Pong("Hello admin: " + context.caller(), context.txId());
     }
 
@@ -91,7 +91,7 @@ public class MyControllerRoleBased extends BootController {
     @Path("/helloAdmin/employee")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @RolesAllowed({"Employee"})
-    public Pong employeeOnly(ServiceContext context) {
+    public Pong employeeOnly(SessionContext context) {
         return new Pong("Hello employee: " + context.caller(), context.txId());
     }
 
@@ -99,7 +99,7 @@ public class MyControllerRoleBased extends BootController {
     @Path("/helloAdmin/adminoremployee")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @RolesAllowed({"AppAdmin", "Employee"})
-    public Pong adminorEmployeeOnly(ServiceContext context) {
+    public Pong adminorEmployeeOnly(SessionContext context) {
         return new Pong("Hello employee: " + context.caller(), context.txId());
     }
 

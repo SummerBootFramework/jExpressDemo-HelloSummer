@@ -2,8 +2,8 @@
   <configuration default="false" name="HellSummer02" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="org.jexpress.demo.app.Main" />
     <module name="hellosummer" />
-    <option name="PROGRAM_PARAMETERS" value="-domain dev -use hawaii_1 RoleBased" />
-    <option name="VM_PARAMETERS" value="-Dopenssl -server -Xms1G -Xmx1G -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector -XX:+UseG1GC -Dio.netty.noUnsafe=true -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0 -XX:+AlwaysPreTouch -Djna.nosys=true -Dio.netty.leakDetectionLevel=advanced -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false" />
+    <option name="PROGRAM_PARAMETERS" value="-domain dev -use RoleBased WebBased" />
+    <option name="VM_PARAMETERS" value="-Dopenssl -server -Xms1G -Xmx1G -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector -XX:+UseG1GC -Dio.netty.noUnsafe=true -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0 -XX:+AlwaysPreTouch -Djna.nosys=true -Dio.netty.leakDetectionLevel=advanced -Dcom.sun.management.jmxremote.port=9998 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false" />
     <option name="WORKING_DIRECTORY" value="run" />
     <method v="2">
       <option name="Make" enabled="true" />

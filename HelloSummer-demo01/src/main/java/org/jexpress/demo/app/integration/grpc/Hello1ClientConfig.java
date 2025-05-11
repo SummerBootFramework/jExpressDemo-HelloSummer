@@ -1,19 +1,19 @@
-package org.jexpress.demo.grpc.client;
+package org.jexpress.demo.app.integration.grpc;
 
 import org.summerboot.jexpress.boot.config.annotation.ImportResource;
 import org.summerboot.jexpress.nio.grpc.GRPCClientConfig;
 
 
 @ImportResource("cfg_grpcclient1.properties")
-public class GrpcClientConfig1 extends GRPCClientConfig {
+public class Hello1ClientConfig extends GRPCClientConfig {
 
     public static void main(String... args) {
-        String t = generateTemplate(GrpcClientConfig1.class);
+        String t = generateTemplate(Hello1ClientConfig.class);
         System.out.println(t);
     }
 
-    public static final GrpcClientConfig1 cfg = new GrpcClientConfig1();
+    public static final Hello1ClientConfig cfg = new Hello1ClientConfig();
 
-    private GrpcClientConfig1() {
+    private Hello1ClientConfig() {
     }
 }

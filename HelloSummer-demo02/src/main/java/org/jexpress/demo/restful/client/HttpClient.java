@@ -6,7 +6,7 @@ import org.summerboot.jexpress.integration.httpclient.HttpClientConfig;
 import org.summerboot.jexpress.integration.httpclient.RPCDelegate_HTTPClientImpl;
 import org.summerboot.jexpress.integration.httpclient.RPCError;
 import org.summerboot.jexpress.integration.httpclient.RPCResult;
-import org.summerboot.jexpress.nio.server.domain.ServiceContext;
+import org.summerboot.jexpress.nio.server.SessionContext;
 
 import java.io.IOException;
 import java.net.URI;
@@ -23,7 +23,7 @@ public class HttpClient extends RPCDelegate_HTTPClientImpl {
     }
 
     public void send(String... messages) throws IOException {
-        ServiceContext serviceContext = ServiceContext.build(0);
+        SessionContext serviceContext = SessionContext.build(0);
 
         final URI uri = URI.create("https://localhost:8222/api/v1/echo");
         HttpRequest.Builder reqBuilder = HttpRequest.newBuilder(uri);

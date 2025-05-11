@@ -174,7 +174,7 @@
           "content" : {
             "*/*" : {
               "schema" : {
-                "$ref" : "#/components/schemas/ServiceContext"
+                "$ref" : "#/components/schemas/SessionContext"
               }
             }
           }
@@ -205,7 +205,7 @@
           "content" : {
             "*/*" : {
               "schema" : {
-                "$ref" : "#/components/schemas/ServiceContext"
+                "$ref" : "#/components/schemas/SessionContext"
               }
             }
           }
@@ -245,7 +245,7 @@
           "content" : {
             "*/*" : {
               "schema" : {
-                "$ref" : "#/components/schemas/ServiceContext"
+                "$ref" : "#/components/schemas/SessionContext"
               }
             }
           }
@@ -276,7 +276,7 @@
           "content" : {
             "*/*" : {
               "schema" : {
-                "$ref" : "#/components/schemas/ServiceContext"
+                "$ref" : "#/components/schemas/SessionContext"
               }
             }
           }
@@ -423,7 +423,7 @@
           "content" : {
             "*/*" : {
               "schema" : {
-                "$ref" : "#/components/schemas/ServiceContext"
+                "$ref" : "#/components/schemas/SessionContext"
               }
             }
           }
@@ -1136,6 +1136,7 @@
             "type" : "string"
           },
           "shoppingList" : {
+            "minItems" : 1,
             "type" : "array",
             "items" : {
               "type" : "string"
@@ -1159,25 +1160,25 @@
           "displayName" : {
             "type" : "string"
           },
-          "tenantId" : {
-            "type" : "number"
-          },
-          "tokenTtlSec" : {
-            "type" : "integer",
-            "format" : "int64"
-          },
-          "tenantName" : {
-            "type" : "string"
-          },
-          "uid" : {
-            "type" : "string"
-          },
           "groups" : {
             "uniqueItems" : true,
             "type" : "array",
             "items" : {
               "type" : "string"
             }
+          },
+          "uid" : {
+            "type" : "string"
+          },
+          "tenantName" : {
+            "type" : "string"
+          },
+          "tokenTtlSec" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "tenantId" : {
+            "type" : "number"
           }
         }
       },
@@ -1222,6 +1223,29 @@
           }
         }
       },
+      "LogSettings" : {
+        "type" : "object",
+        "properties" : {
+          "logRequestHeader" : {
+            "type" : "boolean"
+          },
+          "logRequestBody" : {
+            "type" : "boolean"
+          },
+          "logResponseHeader" : {
+            "type" : "boolean"
+          },
+          "logResponseBody" : {
+            "type" : "boolean"
+          },
+          "protectDataFieldsFromLogging" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
       "Memo" : {
         "type" : "object",
         "properties" : {
@@ -1245,10 +1269,41 @@
           }
         }
       },
+      "ProcessorSettings" : {
+        "type" : "object",
+        "properties" : {
+          "httpServiceResponseHeaderName_ServerTimestamp" : {
+            "type" : "string"
+          },
+          "httpServiceResponseHeaderName_Reference" : {
+            "type" : "string"
+          },
+          "logSettings" : {
+            "$ref" : "#/components/schemas/LogSettings"
+          }
+        }
+      },
       "ResponseEncoder" : {
         "type" : "object"
       },
-      "ServiceContext" : {
+      "ServiceError" : {
+        "required" : [ "ref" ],
+        "type" : "object",
+        "properties" : {
+          "ref" : {
+            "type" : "string",
+            "description" : "The index of requests received by current server since start"
+          },
+          "errors" : {
+            "type" : "array",
+            "description" : "The optional error list",
+            "items" : {
+              "$ref" : "#/components/schemas/Err"
+            }
+          }
+        }
+      },
+      "SessionContext" : {
         "type" : "object",
         "properties" : {
           "localIP" : {
@@ -1346,6 +1401,9 @@
               "type" : "object"
             }
           },
+          "processorSettings" : {
+            "$ref" : "#/components/schemas/ProcessorSettings"
+          },
           "serviceError" : {
             "$ref" : "#/components/schemas/ServiceError"
           },
@@ -1410,23 +1468,6 @@
           }
         }
       },
-      "ServiceError" : {
-        "required" : [ "ref" ],
-        "type" : "object",
-        "properties" : {
-          "ref" : {
-            "type" : "string",
-            "description" : "The index of requests received by current server since start"
-          },
-          "errors" : {
-            "type" : "array",
-            "description" : "The optional error list",
-            "items" : {
-              "$ref" : "#/components/schemas/Err"
-            }
-          }
-        }
-      },
       "Pong" : {
         "type" : "object",
         "properties" : {
@@ -1447,9 +1488,11 @@
         "type" : "object",
         "properties" : {
           "username" : {
+            "minLength" : 1,
             "type" : "string"
           },
           "password" : {
+            "minLength" : 1,
             "type" : "string"
           }
         }

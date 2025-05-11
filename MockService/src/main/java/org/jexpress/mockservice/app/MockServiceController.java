@@ -13,8 +13,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import org.summerboot.jexpress.boot.annotation.Controller;
+import org.summerboot.jexpress.nio.server.SessionContext;
 import org.summerboot.jexpress.nio.server.domain.Err;
-import org.summerboot.jexpress.nio.server.domain.ServiceContext;
 import org.summerboot.jexpress.util.FormatterUtil;
 
 import javax.script.ScriptException;
@@ -41,7 +41,7 @@ public class MockServiceController {
     @PATCH
     @DELETE
     @Path("")
-    public String mockService(final String body, @Parameter(hidden = true) final ServiceContext context) throws IOException, ScriptException, NoSuchMethodException {
+    public String mockService(final String body, @Parameter(hidden = true) final SessionContext context) throws IOException, ScriptException, NoSuchMethodException {
         // 1. get request URI
         Map<String, String> queryParam = new LinkedHashMap();
         String action = FormatterUtil.parseUrlQueryParam(context.uri(), queryParam);
@@ -58,7 +58,7 @@ public class MockServiceController {
         return runMock(body, queryParam, context, filePath, level);
     }
 
-    protected String runMock(final String body, Map<String, String> queryParam, final ServiceContext context, final String filePath, int level) throws IOException, ScriptException, NoSuchMethodException {
+    protected String runMock(final String body, Map<String, String> queryParam, final SessionContext context, final String filePath, int level) throws IOException, ScriptException, NoSuchMethodException {
         String fileName = filePath + ".properties";
         context.memo(level + ".properties.file", fileName);
         Properties properties1 = Utils.loadProperties(fileName, true);

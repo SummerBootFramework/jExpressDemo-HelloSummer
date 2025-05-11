@@ -19,17 +19,15 @@
         <maven-jar.version>3.4.2</maven-jar.version>
         <maven-resources.version>3.3.1</maven-resources.version>
         <maven-surefire.version>3.5.2</maven-surefire.version>
-        <swagger-maven.version>2.2.28</swagger-maven.version>
+        <maven-failsafe.version>3.5.3</maven-failsafe.version>
+        <swagger-maven.version>2.2.30</swagger-maven.version>
         <jexpress.version>2.5.2-SNAPSHOT</jexpress.version>
-        <elastic-apm.version>1.52.1</elastic-apm.version>
+        <elastic-apm.version>1.53.0</elastic-apm.version>
         <testng.version>7.11.0</testng.version>
 
         <!-- application properties and dependencies-->
         <main.class>${api.package}.app.Main</main.class>
         <api.package>org.jexpress.demo</api.package>
-        <!-- protobuf and gRPC -->
-        <protobuf.version>4.28.3</protobuf.version>
-        <grpc.version>1.68.1</grpc.version>
         <jdbc.version>8.3.0</jdbc.version>
     </properties>
 
@@ -48,15 +46,13 @@
                     <groupId>com.openhtmltopdf</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>com.zaxxer</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.google.protobuf</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jexpress</groupId>
+            <artifactId>gRPC-Client</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
         <!-- Testing -->
@@ -208,10 +204,43 @@
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
+
+            <!-- Unit Test Plugin -->
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire.version}</version>
+                <configuration>
+                    <argLine>-server -Xms1G -Xmx1G -XX:+UseG1GC -XX:+AlwaysPreTouch -Djava.awt.headless=true
+                        -Djna.nosys=true -Dfile.encoding=UTF-8
+                        -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+                        -Dopenssl -Dio.netty.leakDetectionLevel=advanced -Dio.netty.noUnsafe=true
+                        -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0 Dio.netty.native.workdir
+                        --add-modules java.se --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens
+                        java.base/java.lang=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens
+                        java.management/sun.management=ALL-UNNAMED
+                    </argLine>
+                </configuration>
+            </plugin>
+
+            <!-- Integration Test Plugin -->
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-failsafe-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-failsafe.version}</version>
+                <configuration>
+                    <argLine>-server -Xms1G -Xmx1G -XX:+UseG1GC -XX:+AlwaysPreTouch -Djava.awt.headless=true
+                        -Djna.nosys=true -Dfile.encoding=UTF-8
+                        -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+                        -Dopenssl -Dio.netty.leakDetectionLevel=advanced -Dio.netty.noUnsafe=true
+                        -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0 Dio.netty.native.workdir
+                        --add-modules java.se --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens
+                        java.base/java.lang=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens
+                        java.management/sun.management=ALL-UNNAMED
+                    </argLine>
+                </configuration>
             </plugin>
         </plugins>
         <pluginManagement>

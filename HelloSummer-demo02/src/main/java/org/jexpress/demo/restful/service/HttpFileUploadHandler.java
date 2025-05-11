@@ -12,7 +12,7 @@ import org.summerboot.jexpress.integration.cache.AuthTokenCache;
 import org.summerboot.jexpress.nio.server.BootHttpFileUploadHandler;
 import org.summerboot.jexpress.nio.server.NioConfig;
 import org.summerboot.jexpress.nio.server.domain.Err;
-import org.summerboot.jexpress.nio.server.domain.ServiceContext;
+import org.summerboot.jexpress.nio.server.SessionContext;
 import org.summerboot.jexpress.security.auth.Authenticator;
 import org.summerboot.jexpress.security.auth.Caller;
 
@@ -34,12 +34,12 @@ public class HttpFileUploadHandler extends BootHttpFileUploadHandler<Object> {
     private AuthTokenCache cache = null;
 
     @Override
-    protected boolean isValidRequestPath(HttpMethod method, String httpRequestPath, ServiceContext context) {
+    protected boolean isValidRequestPath(HttpMethod method, String httpRequestPath, SessionContext context) {
         return HttpMethod.POST.equals(method) && httpRequestPath.startsWith(AppURI.API_NF_FILE_UPLOAD);
     }
 
     @Override
-    protected Caller authenticate(final HttpHeaders httpHeaders, ServiceContext context) {
+    protected Caller authenticate(final HttpHeaders httpHeaders, SessionContext context) {
         Caller caller = auth.verifyToken(httpHeaders, cache, null, context);
         if (caller != null && !caller.isInRole("MyRole")) {
             return null;
@@ -48,7 +48,7 @@ public class HttpFileUploadHandler extends BootHttpFileUploadHandler<Object> {
     }
 
     @Override
-    protected long getCallerFileUploadSizeLimit_Bytes(Caller caller, ServiceContext context) {
+    protected long getCallerFileUploadSizeLimit_Bytes(Caller caller, SessionContext context) {
 //        if (caller == null) {
 //            return 0;
 //        }
@@ -59,7 +59,7 @@ public class HttpFileUploadHandler extends BootHttpFileUploadHandler<Object> {
     }
 
     @Override
-    protected Object onFileUploaded(ChannelHandlerContext ctx, String fileName, File file, Map<String, String> params, Caller caller, ServiceContext context) {
+    protected Object onFileUploaded(ChannelHandlerContext ctx, String fileName, File file, Map<String, String> params, Caller caller, SessionContext context) {
         try {
             Path src = file.toPath().toAbsolutePath();
             //Path dest = src.resolveSibling(fileName + "_" + this.hashCode() + "_" + System.currentTimeMillis());

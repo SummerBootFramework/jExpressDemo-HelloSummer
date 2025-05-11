@@ -3,7 +3,7 @@ package org.jexpress.demo.restful.service;
 import com.google.inject.Singleton;
 import io.grpc.ServerInterceptor;
 import org.summerboot.jexpress.boot.annotation.Service;
-import org.summerboot.jexpress.nio.server.domain.ServiceContext;
+import org.summerboot.jexpress.nio.server.SessionContext;
 import org.summerboot.jexpress.security.auth.Authenticator;
 import org.summerboot.jexpress.security.auth.AuthenticatorListener;
 import org.summerboot.jexpress.security.auth.BootAuthenticator;
@@ -17,7 +17,7 @@ import javax.naming.NamingException;
 public class MyAuthenticator extends BootAuthenticator<Long> {
 
     @Override
-    protected Caller authenticate(String usename, String password, Long metaData, AuthenticatorListener listener, ServiceContext context) throws NamingException {
+    protected Caller authenticate(String usename, String password, Long metaData, AuthenticatorListener listener, SessionContext context) throws NamingException {
         // case1: verify username and password against LDAP
         /*        
         try (LdapAgent ldap = LdapAgent.build()) {

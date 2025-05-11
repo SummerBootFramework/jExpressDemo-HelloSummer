@@ -7,6 +7,7 @@ import org.jexpress.demo.db.DBConfig;
 import org.jexpress.demo.db.domain.FileLocation;
 import org.jexpress.demo.db.domain.Tenant;
 import org.summerboot.jexpress.boot.config.ConfigUtil;
+import org.summerboot.jexpress.security.EncryptorUtil;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -25,6 +26,7 @@ public class DBTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
+        EncryptorUtil.setMasterPassword("changeit");
         ConfigUtil.updatePasswords(FILE_CFG__DB, null, true);
         DBConfig.cfg.load(FILE_CFG__DB, "org.jexpress");
     }

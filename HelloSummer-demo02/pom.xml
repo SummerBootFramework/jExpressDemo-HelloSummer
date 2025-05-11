@@ -19,17 +19,17 @@
         <maven-jar.version>3.4.2</maven-jar.version>
         <maven-resources.version>3.3.1</maven-resources.version>
         <maven-surefire.version>3.5.2</maven-surefire.version>
-        <swagger-maven.version>2.2.28</swagger-maven.version>
+        <swagger-maven.version>2.2.30</swagger-maven.version>
         <jexpress.version>2.5.2-SNAPSHOT</jexpress.version>
-        <elastic-apm.version>1.52.1</elastic-apm.version>
+        <elastic-apm.version>1.53.0</elastic-apm.version>
         <testng.version>7.11.0</testng.version>
 
         <!-- application properties and dependencies-->
         <main.class>${api.package}.app.Main</main.class>
         <api.package>org.jexpress.demo</api.package>
         <!-- protobuf and gRPC -->
-        <protobuf.version>4.28.3</protobuf.version>
-        <grpc.version>1.68.1</grpc.version>
+        <protobuf.version>4.30.2</protobuf.version>
+        <grpc.version>1.72.0</grpc.version>
         <jdbc.version>8.3.0</jdbc.version>
     </properties>
 
@@ -248,10 +248,14 @@
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire.version}</version>
+                <configuration>
+                    <argLine>-server</argLine>
+                </configuration>
             </plugin>
         </plugins>
         <pluginManagement>

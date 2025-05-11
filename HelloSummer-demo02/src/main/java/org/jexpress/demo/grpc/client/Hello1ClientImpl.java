@@ -9,7 +9,7 @@ import org.summerboot.jexpress.nio.grpc.GRPCClient;
 
 import java.util.concurrent.TimeUnit;
 
-public class Hello1Client extends GRPCClient<Hello1Client> {
+public class Hello1ClientImpl extends GRPCClient<Hello1ClientImpl> {
 
     private Hello1ServiceGrpc.Hello1ServiceBlockingStub blockingStub;
 

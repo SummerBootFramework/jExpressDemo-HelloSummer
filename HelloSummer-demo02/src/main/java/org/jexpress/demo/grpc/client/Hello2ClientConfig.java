@@ -3,15 +3,15 @@ package org.jexpress.demo.grpc.client;
 import org.summerboot.jexpress.nio.grpc.GRPCClientConfig;
 
 //@ImportResource("cfg_grpcclient2.properties")
-public class GrpcClientConfig2 extends GRPCClientConfig {
+public class Hello2ClientConfig extends GRPCClientConfig {
 
     public static void main(String... args) {
-        String t = generateTemplate(GrpcClientConfig2.class);
+        String t = generateTemplate(Hello2ClientConfig.class);
         System.out.println(t);
     }
 
-    public static final GrpcClientConfig2 cfg = new GrpcClientConfig2();
+    public static final Hello2ClientConfig cfg = new Hello2ClientConfig();
 
-    private GrpcClientConfig2() {
+    private Hello2ClientConfig() {
     }
 }

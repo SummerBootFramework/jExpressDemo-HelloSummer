@@ -17,7 +17,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import org.summerboot.jexpress.boot.annotation.Controller;
 import org.summerboot.jexpress.boot.annotation.Log;
-import org.summerboot.jexpress.nio.server.domain.ServiceContext;
+import org.summerboot.jexpress.nio.server.SessionContext;
 import org.summerboot.jexpress.nio.server.domain.ServiceError;
 import org.summerboot.jexpress.nio.server.ws.rs.BootController;
 import org.summerboot.jexpress.security.auth.Caller;
@@ -64,7 +64,7 @@ public class NonFunctionalServiceController extends BootController {
                             @FormParam("issuer") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String issuer,
                             @FormParam("subject") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String subject,
                             @FormParam("audience") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String audience,
-                            @Parameter(hidden = true) final ServiceContext context) {
+                            @Parameter(hidden = true) final SessionContext context) {
         String jwt = Utils.generateJWT(id, issuer, subject, audience, ttlMinutes);
         context.responseHeader(X_AUTH_TOKEN, jwt).status(HttpResponseStatus.CREATED);
     }

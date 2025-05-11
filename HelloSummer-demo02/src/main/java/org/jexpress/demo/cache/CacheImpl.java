@@ -7,7 +7,7 @@ import org.summerboot.jexpress.integration.cache.AuthTokenCache;
 import org.summerboot.jexpress.integration.cache.SimpleLocalCacheImpl;
 
 @Singleton
-@Service(binding = AuthTokenCache.class, implTag = "aaa")
+@Service(binding = AuthTokenCache.class, AlternativeName = "aaa")
 @Inspector
 public class CacheImpl extends SimpleLocalCacheImpl<String, String> implements AuthTokenCache {
 

@@ -6,7 +6,7 @@ import io.jsonwebtoken.Jwts;
 import org.apache.commons.lang3.StringUtils;
 import org.graalvm.polyglot.Context;
 import org.summerboot.jexpress.boot.BootConstant;
-import org.summerboot.jexpress.nio.server.domain.ServiceContext;
+import org.summerboot.jexpress.nio.server.SessionContext;
 import org.summerboot.jexpress.security.JwtUtil;
 import org.summerboot.jexpress.security.auth.AuthConfig;
 
@@ -123,7 +123,7 @@ public class Utils {
             // return 'mocked response content';
             """;
 
-    public static String javascriptRuleEngine(String jsCode, List<Map.Entry<String, String>> headers, Map<String, String> queryParam, String requestBody, final ServiceContext context) throws ScriptException, NoSuchMethodException {
+    public static String javascriptRuleEngine(String jsCode, List<Map.Entry<String, String>> headers, Map<String, String> queryParam, String requestBody, final SessionContext context) throws ScriptException, NoSuchMethodException {
         if (StringUtils.isBlank(jsCode)) {
             return null;
         }

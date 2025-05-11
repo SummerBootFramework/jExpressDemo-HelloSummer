@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- version 2.4.11 -->
+<!-- version 2.5.2 -->
 <Configuration status="WARN" monitorInterval="30">
     <Properties>
         <Property name="logPattern" value="[${sys:logId}] %d{ISO8601} %p %c{}.%M() [%t] %m %ex%n"/>
@@ -56,7 +56,7 @@
             </Policies>
             <DefaultRolloverStrategy max="500"/>
         </RollingRandomAccessFile>
-        <RollingRandomAccessFile
+		<RollingRandomAccessFile
                 name="BackServiceLogFile"
                 fileName="${sys:logPath}/${sys:appName}_backservice_${sys:serverName}.log"
                 filePattern="${sys:logPath}/$${date:yyyy-MM-dd}/${sys:appName}_backservice_${sys:serverName}_%d{yyyy-MM-dd HHmm}.%i.log.gz"
@@ -79,7 +79,7 @@
         <Logger level="warn" name="io.grpc" includeLocation="true"/>
         <!-- Note: "java.lang.UnsupportedOperationException: sun.misc.Unsafe unavailable" can be seen, also can be ignored, when -Dio.netty.noUnsafe=true and io.netty.util.internal.CleanerJava9 log level is below INFO (either TRACE or DEBUG) -->
         <Logger level="info" name="io.netty.util.internal.CleanerJava9" includeLocation="true"/>
-        <Logger level="trace" name="org.summerboot.jexpress.boot" includeLocation="true"/>
+        <Logger level="debug" name="org.summerboot.jexpress.boot" includeLocation="true"/>
         <Logger level="info" name="org.summerboot.jexpress.integration.httpclient.HttpClientConfig" includeLocation="true"/>
         <Logger level="info" name="org.summerboot.jexpress.nio.server.NioServerHttpInitializer" includeLocation="true"/>
         <Logger level="debug" name="org.summerboot.jexpress.nio.server.NioServer" includeLocation="true"/>

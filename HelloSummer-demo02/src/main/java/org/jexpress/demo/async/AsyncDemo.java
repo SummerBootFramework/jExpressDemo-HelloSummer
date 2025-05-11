@@ -2,7 +2,7 @@ package org.jexpress.demo.async;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.summerboot.jexpress.nio.server.domain.Err;
-import org.summerboot.jexpress.nio.server.domain.ServiceContext;
+import org.summerboot.jexpress.nio.server.SessionContext;
 import org.summerboot.jexpress.util.BeanUtil;
 
 import java.time.OffsetDateTime;
@@ -26,7 +26,7 @@ public class AsyncDemo {
         int task2Time = 5;
         boolean task2Success = true;
 
-        ServiceContext context = ServiceContext.build(0);
+        SessionContext context = SessionContext.build(0);
 
         long start = System.currentTimeMillis();
 
