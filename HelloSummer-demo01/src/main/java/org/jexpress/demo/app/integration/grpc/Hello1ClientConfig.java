@@ -4,7 +4,7 @@ import org.summerboot.jexpress.boot.config.annotation.ImportResource;
 import org.summerboot.jexpress.nio.grpc.GRPCClientConfig;
 
 
-@ImportResource("cfg_grpcclient1.properties")
+@ImportResource(value = "cfg_grpcclient1a.properties")
 public class Hello1ClientConfig extends GRPCClientConfig {
 
     public static void main(String... args) {
