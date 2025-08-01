@@ -8,7 +8,7 @@ import org.summerboot.jexpress.nio.server.domain.Err;
 import java.util.List;
 
 
-@Inspector
+@Inspector(name = "aaa")
 public class PauseChecker implements HealthInspector<Object> {
 
     /**

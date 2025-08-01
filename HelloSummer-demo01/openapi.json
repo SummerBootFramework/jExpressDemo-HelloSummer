@@ -224,6 +224,16 @@
       "Caller" : {
         "type" : "object",
         "properties" : {
+          "tenantId" : {
+            "type" : "number"
+          },
+          "tenantName" : {
+            "type" : "string"
+          },
+          "tokenTtlSec" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
           "enabled" : {
             "type" : "boolean"
           },
@@ -237,7 +247,7 @@
           "displayName" : {
             "type" : "string"
           },
-          "uid" : {
+          "jti" : {
             "type" : "string"
           },
           "groups" : {
@@ -247,15 +257,8 @@
               "type" : "string"
             }
           },
-          "tenantId" : {
-            "type" : "number"
-          },
-          "tenantName" : {
+          "uid" : {
             "type" : "string"
-          },
-          "tokenTtlSec" : {
-            "type" : "integer",
-            "format" : "int64"
           }
         }
       },
@@ -270,6 +273,12 @@
           },
           "errorDesc" : {
             "type" : "string"
+          },
+          "args" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object"
+            }
           }
         },
         "description" : "The optional error list"
@@ -389,10 +398,13 @@
           "remoteIP" : {
             "type" : "object"
           },
-          "requesMethod" : {
+          "protocol" : {
+            "type" : "string"
+          },
+          "requestMethod" : {
             "$ref" : "#/components/schemas/HttpMethod"
           },
-          "requesURI" : {
+          "requestURI" : {
             "type" : "string"
           },
           "requestHeaders" : {

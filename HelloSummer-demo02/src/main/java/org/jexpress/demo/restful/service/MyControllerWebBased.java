@@ -22,13 +22,13 @@ public class MyControllerWebBased extends WebResourceController {
     @GET
     @Path("/")
     public void welcomePage(final SessionContext context) {
-        context.file(WELCOME_PAGE1, false);
+        context.response(WELCOME_PAGE1, false);
     }
 
     @GET
     @Path("/page2")
     public void welcomePage2(final SessionContext context) {
-        context.file(WELCOME_PAGE2, false);
+        context.response(WELCOME_PAGE2, false);
     }
 
     @GET
@@ -40,13 +40,13 @@ public class MyControllerWebBased extends WebResourceController {
     @GET
     @Path("/download/{downloadMode}")
     public void download(@NotNull @PathParam("downloadMode") boolean isDownloadMode, final SessionContext context) {
-        context.file(WELCOME_PAGE1, isDownloadMode);
+        context.response(WELCOME_PAGE1, isDownloadMode);
     }
 
     @GET
     @Path("/download")
     public void download2(final SessionContext context) {
-        context.file(new File("../tree.txt"), false);
+        context.response(new File("../tree.txt"), false);
     }
 
 }

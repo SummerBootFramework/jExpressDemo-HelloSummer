@@ -4,7 +4,6 @@ import io.netty.handler.codec.http.HttpResponseStatus;
 import org.jexpress.demo.restful.service.MyController;
 import org.summerboot.jexpress.integration.httpclient.HttpClientConfig;
 import org.summerboot.jexpress.integration.httpclient.RPCDelegate_HTTPClientImpl;
-import org.summerboot.jexpress.integration.httpclient.RPCError;
 import org.summerboot.jexpress.integration.httpclient.RPCResult;
 import org.summerboot.jexpress.nio.server.SessionContext;
 
@@ -28,9 +27,9 @@ public class HttpClient extends RPCDelegate_HTTPClientImpl {
         final URI uri = URI.create("https://localhost:8222/api/v1/echo");
         HttpRequest.Builder reqBuilder = HttpRequest.newBuilder(uri);
         HttpResponseStatus successStatus = HttpResponseStatus.OK;
-        RPCResult<MyController.ResponseDto, RPCError> result = rpcEx(serviceContext, reqBuilder, successStatus);
+        RPCResult<MyController.ResponseDto> result = rpcEx(serviceContext, reqBuilder, successStatus);
         if (result != null) {
-            MyController.ResponseDto dto = result.update(MyController.ResponseDto.class, RPCError.class, serviceContext).successResponse();
+            MyController.ResponseDto dto = result.update(MyController.ResponseDto.class, serviceContext).successResponse();
             System.out.println("HTTP Response: " + dto);
             /*
 {

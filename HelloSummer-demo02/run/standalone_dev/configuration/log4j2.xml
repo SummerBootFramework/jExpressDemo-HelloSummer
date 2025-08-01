@@ -14,8 +14,8 @@
             <PatternLayout pattern="${sys:logPattern}"/>
         </Console>
 
-        <!-- 
-            1. Requires JVM arg: -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector 
+        <!--
+            1. Requires JVM arg: -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
             2. Required total disk spece: around 200MB
             3. Archive logs: by DAY and split them by MINUTE
             4. Default log level is tuned for development
@@ -56,7 +56,7 @@
             </Policies>
             <DefaultRolloverStrategy max="500"/>
         </RollingRandomAccessFile>
-		<RollingRandomAccessFile
+        <RollingRandomAccessFile
                 name="BackServiceLogFile"
                 fileName="${sys:logPath}/${sys:appName}_backservice_${sys:serverName}.log"
                 filePattern="${sys:logPath}/$${date:yyyy-MM-dd}/${sys:appName}_backservice_${sys:serverName}_%d{yyyy-MM-dd HHmm}.%i.log.gz"

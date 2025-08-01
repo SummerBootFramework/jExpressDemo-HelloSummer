@@ -13,22 +13,22 @@
         <!-- common properties and dependencies -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
-        <maven-clean.version>3.4.0</maven-clean.version>
-        <maven-compiler.version>3.13.0</maven-compiler.version>
+        <maven-clean.version>3.4.1</maven-clean.version>
+        <maven-compiler.version>3.14.0</maven-compiler.version>
         <maven-dependency.version>3.8.1</maven-dependency.version>
         <maven-jar.version>3.4.2</maven-jar.version>
         <maven-resources.version>3.3.1</maven-resources.version>
-        <maven-surefire.version>3.5.2</maven-surefire.version>
+        <maven-surefire.version>3.5.3</maven-surefire.version>
         <maven-failsafe.version>3.5.3</maven-failsafe.version>
-        <swagger-maven.version>2.2.30</swagger-maven.version>
-        <jexpress.version>2.5.2-SNAPSHOT</jexpress.version>
-        <elastic-apm.version>1.53.0</elastic-apm.version>
+        <swagger-maven.version>2.2.34</swagger-maven.version>
+        <jexpress.version>2.6.0-SNAPSHOT</jexpress.version>
+        <elastic-apm.version>1.55.0</elastic-apm.version>
         <testng.version>7.11.0</testng.version>
 
         <!-- application properties and dependencies-->
         <main.class>${api.package}.app.Main</main.class>
         <api.package>org.jexpress.demo</api.package>
-        <jdbc.version>8.3.0</jdbc.version>
+        <jdbc.version>9.4.0</jdbc.version>
     </properties>
 
     <dependencies>
@@ -212,14 +212,11 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire.version}</version>
                 <configuration>
-                    <argLine>-server -Xms1G -Xmx1G -XX:+UseG1GC -XX:+AlwaysPreTouch -Djava.awt.headless=true
-                        -Djna.nosys=true -Dfile.encoding=UTF-8
+                    <argLine>-Djava.awt.headless=true -Xms2G -Xmx2G -XX:+UseZGC -XX:ZUncommitDelay=300 -XX:+ZGenerational -XX:+AlwaysPreTouch -XX:+PerfDisableSharedMem
+                        -XX:+ZUncommit -XX:+DisableExplicitGC -XX:MaxDirectMemorySize=1g -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=heapdump.hprof -XX:+ExitOnOutOfMemoryError
+                        -Xlog:gc*:file=gc.log:time,level,tags:filecount=5,filesize=10M -Dfile.encoding=UTF-8 -Duser.timezone=America/Toronto
+                        -Dio.netty.handler.ssl.openssl.engine.enable=true -Dio.netty.leakDetectionLevel=SIMPLE -Dio.netty.native.workdir=lib
                         -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
-                        -Dopenssl -Dio.netty.leakDetectionLevel=advanced -Dio.netty.noUnsafe=true
-                        -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0 Dio.netty.native.workdir
-                        --add-modules java.se --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens
-                        java.base/java.lang=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens
-                        java.management/sun.management=ALL-UNNAMED
                     </argLine>
                 </configuration>
             </plugin>
@@ -231,14 +228,11 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven-failsafe.version}</version>
                 <configuration>
-                    <argLine>-server -Xms1G -Xmx1G -XX:+UseG1GC -XX:+AlwaysPreTouch -Djava.awt.headless=true
-                        -Djna.nosys=true -Dfile.encoding=UTF-8
+                    <argLine>-Djava.awt.headless=true -Xms2G -Xmx2G -XX:+UseZGC -XX:ZUncommitDelay=300 -XX:+ZGenerational -XX:+AlwaysPreTouch -XX:+PerfDisableSharedMem
+                        -XX:+ZUncommit -XX:+DisableExplicitGC -XX:MaxDirectMemorySize=1g -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=heapdump.hprof -XX:+ExitOnOutOfMemoryError
+                        -Xlog:gc*:file=gc.log:time,level,tags:filecount=5,filesize=10M -Dfile.encoding=UTF-8 -Duser.timezone=America/Toronto
+                        -Dio.netty.handler.ssl.openssl.engine.enable=true -Dio.netty.leakDetectionLevel=SIMPLE -Dio.netty.native.workdir=lib
                         -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
-                        -Dopenssl -Dio.netty.leakDetectionLevel=advanced -Dio.netty.noUnsafe=true
-                        -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0 Dio.netty.native.workdir
-                        --add-modules java.se --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens
-                        java.base/java.lang=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens
-                        java.management/sun.management=ALL-UNNAMED
                     </argLine>
                 </configuration>
             </plugin>

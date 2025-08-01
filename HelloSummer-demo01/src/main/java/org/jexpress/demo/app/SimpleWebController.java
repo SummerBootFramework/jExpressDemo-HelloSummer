@@ -50,7 +50,7 @@ public class SimpleWebController extends PingController {
 
     @GET
     @Path("hello/grpc/{input}")
-    @Deamon
+    @Deamon//(requiredHealthChecks = "ins1")
     public MyResponse grpc(@PathParam("input") String input, SessionContext context) {
         String greeting = grpcClient1.bizFunction(input, "", context);
         if (greeting == null) {

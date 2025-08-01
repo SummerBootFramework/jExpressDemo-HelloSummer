@@ -13,15 +13,15 @@
         <!-- common properties and dependencies -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
-        <maven-clean.version>3.4.0</maven-clean.version>
-        <maven-compiler.version>3.13.0</maven-compiler.version>
+        <maven-clean.version>3.4.1</maven-clean.version>
+        <maven-compiler.version>3.14.0</maven-compiler.version>
         <maven-dependency.version>3.8.1</maven-dependency.version>
         <maven-jar.version>3.4.2</maven-jar.version>
         <maven-resources.version>3.3.1</maven-resources.version>
-        <maven-surefire.version>3.5.2</maven-surefire.version>
-        <swagger-maven.version>2.2.30</swagger-maven.version>
-        <jexpress.version>2.5.2-SNAPSHOT</jexpress.version>
-        <elastic-apm.version>1.52.1</elastic-apm.version>
+        <maven-surefire.version>3.5.3</maven-surefire.version>
+        <swagger-maven.version>2.2.34</swagger-maven.version>
+        <jexpress.version>2.6.0-SNAPSHOT</jexpress.version>
+        <elastic-apm.version>1.55.0</elastic-apm.version>
         <testng.version>7.11.0</testng.version>
 
         <!-- application properties and dependencies-->

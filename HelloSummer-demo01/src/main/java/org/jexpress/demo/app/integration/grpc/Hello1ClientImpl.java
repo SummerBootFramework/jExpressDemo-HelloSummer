@@ -8,7 +8,7 @@ import org.summerboot.jexpress.nio.grpc.GRPCClientConfig;
 
 @Singleton
 @Service
-@Inspector
+@Inspector(name = "ins1")
 public class Hello1ClientImpl extends Hello1Service_BizClient implements Hello1Client {
 
 

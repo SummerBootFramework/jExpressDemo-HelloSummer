@@ -59,7 +59,7 @@
             </elementProp>
             <elementProp name="jwt" elementType="Argument">
               <stringProp name="Argument.name">jwt</stringProp>
-              <stringProp name="Argument.value">eyJhbGciOiJSUzUxMiJ9.eyJqdGkiOiIxLjQ1Nl90emhhbmdfMTcyMjgyMjkwNTg0MSIsInN1YiI6InR6aGFuZyIsImF1ZCI6IkFkbWluR3JvdXAsRW1wbG95ZWVHcm91cCIsImNhbGxlcklkIjo0NTYsInRlbmFudElkIjoxLCJ0ZW5hbnROYW1lIjoiakV4cHJlc3MgT3JnIiwiZXhwIjoxNzIyOTA5MzA1LCJpYXQiOjE3MjI4MjI5MDV9.NyJ1oxIMXUpSPxKIU3ECcmj864_v4cLUK5mIXo8OuE4C4uTKyN_0h9OgqIKaMjvJgCng1hrz7uVAyNHTdEw4qUiUFPX-LZejlev7gqUwQPhrlWahjJG0CxOmiDkToheI9OH3bh6omBS2SA53QkwbDiuYCafGALheZ1VBidFLZhu0gUzshTJCFK5MRqUeeOKx8DaivJsCjYVbVvECArxis0UbEv1zZmspPVgeNB1uVumj8wsjalau7nUCIqa1xGBWaQVmpDqFHoCs9fztVzRrFHZ63izvjIAcL9lWX21vKpieXGv9BOtARjkPjX1GkPOYFhfFI4Z9GwT2iMnsReaBmeRtFPEUGNLSdMyEhL4UevN2DhGdMRgz0QQIyBPu8cJFNBNQC5qrs5xt8_pVHXUucUBTfLtMdyhEoVARlDTiUQ3e82sGwU6IvtFiuBDJWsOwWNDP-9FE-Tve60qsxGMPwSDIwFoItUyrTyDegvRKD2yU1Hu-i5H8zPQqveND_mrQKdcSSXEF1EV2dbJf7n7bCIEpQbLScFWCDnL9iQrh_2h-Pk0Hi5ItuY3wPT76h1e3Mkcx85YbI_OOA6OMUQ8Nbd5Ep-9yfI6T9NLi7kZMxpF5wy4ipyy1AC14gRClUu-BoEODHI6Dd_m6vC-mfinarzaQGl9F-TZXlvozMnqlas8</stringProp>
+              <stringProp name="Argument.value">eyJhbGciOiJSUzUxMiJ9.eyJqdGkiOiIxLTQ1NkA2MjMxNjUtNSIsInN1YiI6InR6aGFuZyIsImF1ZCI6WyJBZG1pbkdyb3VwIiwiRW1wbG95ZWVHcm91cCJdLCJ0ZW5hbnROYW1lIjoiakV4cHJlc3MgT3JnIiwiZXhwIjoxNzUxNTY2MDQwLCJpYXQiOjE3NTE0Nzk2NDB9.qsq56fa_TqWe31KI-Q8hjSblZpEOd7aQb3hsYrnkfpeXg1EG8WEgaxGKO7ftp_99ibBTzbv6R_l_SDwr2fvTuhx3bYPq2OAUhWXnGWVk9jkK2obMrkrfXH8uUkrMmvxOK673omCTWaT61fS-Dmm7fD4lc_-GJplVJvDhtMvr9DMQjI5BDnt9fb55pJEfiLfS0kwwTIPxHgoO_FDN3I5TrACW0Slj6h4rin43SHI-5n3IVsLJgHk09RtIaI--UkjGXGKZSxFOiGgAGHejfmIXY8FXAIaL3yp8KIWWIGrKtU6jCiHOnYhL8JS4MOuZpkIldnCjkV1CjVHE6evItOLJvfuZMDlxjSLohrdFghQg1CurPPimHRkeZPAIfAUbrflCg4QjMFf57tD2qSOVK9nkgLnlJ_WvaX7GF8BgdEpbaZHYxwtNS5_PoEIWcXkNJ_03WH11WhttSEGemKwwBOf9AGOsMJn8gzhfj0cVVbLMljyvl9xdX5RB2QngXJl7gwoQd3kcJkK5EhwKlQlMZ7tSig_AlIT4sya0OGnrEtEtkzV4f-BXENPrCBVWPudXh7HiTLdAW_C1wws8hrmP5-_xToi7ZgdrIkdYq9LPuWjBVCjtdAVwiaQhyh6i_VmJAOLwi3NsMV5eCVnjw4VKbj1rsUfLIkrlitnPazuPNezO5UY</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
           </collectionProp>
@@ -80,12 +80,12 @@
           <stringProp name="HTTPSampler.response_timeout">100000</stringProp>
         </ConfigTestElement>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="f5 ping" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="f5 ping" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="HTTPSampler.domain"></stringProp>
-          <stringProp name="HTTPSampler.port">9211</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">/hellosummer/ping</stringProp>
@@ -258,7 +258,7 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="admin.version" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="admin.version" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -453,7 +453,7 @@
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/hellosummer2/time" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/helloAdmin/user" enabled="false">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -461,7 +461,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">${context-root2}/time</stringProp>
+          <stringProp name="HTTPSampler.path">/hellosummer/helloAdmin/user</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -472,6 +472,15 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${jwt}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
             <collectionProp name="HeaderManager.headers"/>
           </HeaderManager>
@@ -1174,6 +1183,7 @@
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/hellosummer2/hello/{name}" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
@@ -1186,7 +1196,6 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <stringProp name="HTTPSampler.domain"></stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
@@ -1466,12 +1475,12 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="demo1 - f5 ping" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="demo1 - f5 ping" enabled="false">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="HTTPSampler.domain"></stringProp>
-          <stringProp name="HTTPSampler.port">8211</stringProp>
+          <stringProp name="HTTPSampler.port">9211</stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">/hellosummer1/ping</stringProp>
@@ -1496,12 +1505,12 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="demo1 - hello_grpc" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="demo1 - hello_grpc" enabled="false">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="HTTPSampler.domain"></stringProp>
-          <stringProp name="HTTPSampler.port">8211</stringProp>
+          <stringProp name="HTTPSampler.port">9211</stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">/hellosummer1hello/grpc/err23</stringProp>

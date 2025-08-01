@@ -5,6 +5,7 @@ import io.grpc.ManagedChannel;
 import org.jexpress.demo.grpc.proto.generated1.Hello1Request;
 import org.jexpress.demo.grpc.proto.generated1.Hello1Response;
 import org.jexpress.demo.grpc.proto.generated1.Hello1ServiceGrpc;
+import org.summerboot.jexpress.nio.grpc.BearerAuthCredential;
 import org.summerboot.jexpress.nio.grpc.GRPCClient;
 
 public class Hello1Service_gRPCClient extends GRPCClient<Hello1Service_gRPCClient> {
@@ -12,6 +13,8 @@ public class Hello1Service_gRPCClient extends GRPCClient<Hello1Service_gRPCClien
 
     @Override
     protected void onConnected(ManagedChannel channel) {
+        String jwt = "jwt1";
+        BearerAuthCredential bearerAuthCredential = new BearerAuthCredential(jwt);
         this.blockingStub = Hello1ServiceGrpc.newBlockingStub(channel);//.withCallCredentials(bearerAuthCredential);
     }
 

@@ -42,3 +42,4 @@ tree.text
 **/src/test/
 **/.idea/
 **/jexpress.iml
+**/*.log*

@@ -4,7 +4,7 @@ info:
   description: "To change to yours, just add @OpenAPIDefinition.info"
   contact:
     name: summerboot.org
-  version: jExpress 2.5.2
+  version: jExpress 2.6.0
 servers:
 - url: https://localhost:8211
   description: Local Development server
@@ -87,71 +87,19 @@ paths:
       responses:
         "200":
           description: inspection success with current version
-        "400":
-          description: All other 4xx code. The client cannot continue and should not
-            re-try again with the request without modification.
+        "4xx":
+          description: This class of status code is intended for situations in which
+            the error seems to have been caused by the client. Client normally should
+            not retransmit the same request again.
           content:
             text/html:
               schema:
                 $ref: "#/components/schemas/ServiceError"
-        "401":
-          description: "Unauthorized. The client should sign-on again, but not retransmit\
-            \ the same request again"
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "403":
-          description: Client has  no permission. Client should not retransmit the
-            same request again.
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "404":
-          description: Not Found. The client should not retransmit the same request
-            again.
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "429":
-          description: Too Many Requests
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "500":
-          description: All other 5xx code. Server errors due to unexpected failures.
-            The client can continue and try again with the request without modification.
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "501":
-          description: Not Implemented. The client can continue and try again with
+        "5xx":
+          description: This class of status code is intended for situations in which
+            the server is aware that it has encountered an error or is otherwise incapable
+            of performing the request. The client can continue and try again with
             the request without modification.
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "503":
-          description: Service Unavailable. The client can continue and try again
-            with the request without modification.
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "504":
-          description: Gateway Timeout. The client can continue and try again with
-            the request without modification.
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "507":
-          description: Insufficient Storage. The client should contact the system
-            administrator. Do not try the request again.
           content:
             text/html:
               schema:
@@ -186,9 +134,10 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/Caller"
-        "400":
-          description: All other 4xx code. The client cannot continue and should not
-            re-try again with the request without modification.
+        "4xx":
+          description: This class of status code is intended for situations in which
+            the error seems to have been caused by the client. Client normally should
+            not retransmit the same request again.
           content:
             application/json:
               schema:
@@ -196,88 +145,11 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/ServiceError"
-        "401":
-          description: "Unauthorized. The client should sign-on again, but not retransmit\
-            \ the same request again"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "403":
-          description: Client has  no permission. Client should not retransmit the
-            same request again.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "404":
-          description: Not Found. The client should not retransmit the same request
-            again.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "429":
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "500":
-          description: All other 5xx code. Server errors due to unexpected failures.
-            The client can continue and try again with the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "501":
-          description: Not Implemented. The client can continue and try again with
+        "5xx":
+          description: This class of status code is intended for situations in which
+            the server is aware that it has encountered an error or is otherwise incapable
+            of performing the request. The client can continue and try again with
             the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "503":
-          description: Service Unavailable. The client can continue and try again
-            with the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "504":
-          description: Gateway Timeout. The client can continue and try again with
-            the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "507":
-          description: Insufficient Storage. The client should contact the system
-            administrator. Do not try the request again.
           content:
             application/json:
               schema:
@@ -294,9 +166,10 @@ paths:
       responses:
         "204":
           description: success
-        "400":
-          description: All other 4xx code. The client cannot continue and should not
-            re-try again with the request without modification.
+        "4xx":
+          description: This class of status code is intended for situations in which
+            the error seems to have been caused by the client. Client normally should
+            not retransmit the same request again.
           content:
             application/json:
               schema:
@@ -304,88 +177,11 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/ServiceError"
-        "401":
-          description: "Unauthorized. The client should sign-on again, but not retransmit\
-            \ the same request again"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "403":
-          description: Client has  no permission. Client should not retransmit the
-            same request again.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "404":
-          description: Not Found. The client should not retransmit the same request
-            again.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "429":
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "500":
-          description: All other 5xx code. Server errors due to unexpected failures.
-            The client can continue and try again with the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "501":
-          description: Not Implemented. The client can continue and try again with
+        "5xx":
+          description: This class of status code is intended for situations in which
+            the server is aware that it has encountered an error or is otherwise incapable
+            of performing the request. The client can continue and try again with
             the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "503":
-          description: Service Unavailable. The client can continue and try again
-            with the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "504":
-          description: Gateway Timeout. The client can continue and try again with
-            the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "507":
-          description: Insufficient Storage. The client should contact the system
-            administrator. Do not try the request again.
           content:
             application/json:
               schema:
@@ -430,9 +226,10 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/Caller"
-        "400":
-          description: All other 4xx code. The client cannot continue and should not
-            re-try again with the request without modification.
+        "4xx":
+          description: This class of status code is intended for situations in which
+            the error seems to have been caused by the client. Client normally should
+            not retransmit the same request again.
           content:
             application/json:
               schema:
@@ -440,88 +237,11 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/ServiceError"
-        "401":
-          description: "Unauthorized. The client should sign-on again, but not retransmit\
-            \ the same request again"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "403":
-          description: Client has  no permission. Client should not retransmit the
-            same request again.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "404":
-          description: Not Found. The client should not retransmit the same request
-            again.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "429":
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "500":
-          description: All other 5xx code. Server errors due to unexpected failures.
-            The client can continue and try again with the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "501":
-          description: Not Implemented. The client can continue and try again with
+        "5xx":
+          description: This class of status code is intended for situations in which
+            the server is aware that it has encountered an error or is otherwise incapable
+            of performing the request. The client can continue and try again with
             the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "503":
-          description: Service Unavailable. The client can continue and try again
-            with the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "504":
-          description: Gateway Timeout. The client can continue and try again with
-            the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "507":
-          description: Insufficient Storage. The client should contact the system
-            administrator. Do not try the request again.
           content:
             application/json:
               schema:
@@ -544,9 +264,10 @@ paths:
       responses:
         "204":
           description: success
-        "400":
-          description: All other 4xx code. The client cannot continue and should not
-            re-try again with the request without modification.
+        "4xx":
+          description: This class of status code is intended for situations in which
+            the error seems to have been caused by the client. Client normally should
+            not retransmit the same request again.
           content:
             application/json:
               schema:
@@ -554,88 +275,11 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/ServiceError"
-        "401":
-          description: "Unauthorized. The client should sign-on again, but not retransmit\
-            \ the same request again"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "403":
-          description: Client has  no permission. Client should not retransmit the
-            same request again.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "404":
-          description: Not Found. The client should not retransmit the same request
-            again.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "429":
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "500":
-          description: All other 5xx code. Server errors due to unexpected failures.
-            The client can continue and try again with the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "501":
-          description: Not Implemented. The client can continue and try again with
+        "5xx":
+          description: This class of status code is intended for situations in which
+            the server is aware that it has encountered an error or is otherwise incapable
+            of performing the request. The client can continue and try again with
             the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "503":
-          description: Service Unavailable. The client can continue and try again
-            with the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "504":
-          description: Gateway Timeout. The client can continue and try again with
-            the request without modification.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "507":
-          description: Insufficient Storage. The client should contact the system
-            administrator. Do not try the request again.
           content:
             application/json:
               schema:
@@ -680,71 +324,19 @@ paths:
       responses:
         "200":
           description: running application version
-        "400":
-          description: All other 4xx code. The client cannot continue and should not
-            re-try again with the request without modification.
+        "4xx":
+          description: This class of status code is intended for situations in which
+            the error seems to have been caused by the client. Client normally should
+            not retransmit the same request again.
           content:
             text/html:
               schema:
                 $ref: "#/components/schemas/ServiceError"
-        "401":
-          description: "Unauthorized. The client should sign-on again, but not retransmit\
-            \ the same request again"
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "403":
-          description: Client has  no permission. Client should not retransmit the
-            same request again.
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "404":
-          description: Not Found. The client should not retransmit the same request
-            again.
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "429":
-          description: Too Many Requests
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "500":
-          description: All other 5xx code. Server errors due to unexpected failures.
-            The client can continue and try again with the request without modification.
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "501":
-          description: Not Implemented. The client can continue and try again with
+        "5xx":
+          description: This class of status code is intended for situations in which
+            the server is aware that it has encountered an error or is otherwise incapable
+            of performing the request. The client can continue and try again with
             the request without modification.
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "503":
-          description: Service Unavailable. The client can continue and try again
-            with the request without modification.
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "504":
-          description: Gateway Timeout. The client can continue and try again with
-            the request without modification.
-          content:
-            text/html:
-              schema:
-                $ref: "#/components/schemas/ServiceError"
-        "507":
-          description: Insufficient Storage. The client should contact the system
-            administrator. Do not try the request again.
           content:
             text/html:
               schema:
@@ -765,20 +357,22 @@ components:
           format: int32
         displayName:
           type: string
-        tenantName:
-          type: string
-        tokenTtlSec:
-          type: integer
-          format: int64
-        tenantId:
-          type: number
-        uid:
+        jti:
           type: string
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
+        uid:
+          type: string
+        tenantId:
+          type: number
+        tokenTtlSec:
+          type: integer
+          format: int64
+        tenantName:
+          type: string
     Err:
       type: object
       properties:
@@ -788,6 +382,10 @@ components:
           type: string
         errorDesc:
           type: string
+        args:
+          type: array
+          items:
+            type: object
       description: The optional error list
     ServiceError:
       required:
@@ -815,7 +413,14 @@ components:
           minLength: 1
           type: string
   securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-KEY
+      in: header
     BearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: "Authorization: Bearer <token>"
+      bearerFormat: "Authorization: Bearer <JWT token>"

@@ -1,8 +1,6 @@
 package org.jexpress.demo.app;
 
 import com.google.inject.Injector;
-import com.google.inject.Key;
-import com.google.inject.name.Names;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.logging.log4j.LogManager;
@@ -12,12 +10,16 @@ import org.jexpress.demo.grpc.client.Hello1ClientImpl;
 import org.summerboot.jexpress.boot.SummerInitializer;
 import org.summerboot.jexpress.boot.SummerRunner;
 import org.summerboot.jexpress.boot.annotation.Order;
+import org.summerboot.jexpress.nio.IdleEventMonitor;
+import org.summerboot.jexpress.nio.grpc.GRPCServer;
+import org.summerboot.jexpress.nio.server.NioServer;
 
 import java.io.File;
+import java.time.OffsetDateTime;
 import java.util.concurrent.TimeUnit;
 
 @Order(1)
-public class MainRunner implements SummerInitializer, SummerRunner {
+public class MainRunner implements SummerInitializer, SummerRunner, IdleEventMonitor.IdleEventListener {
 
     private static final String CLI_CMD = "mycli";
 
@@ -50,6 +52,8 @@ public class MainRunner implements SummerInitializer, SummerRunner {
 
     @Override
     public void run(RunnerContext context) throws Exception {
+        IdleEventMonitor.start(GRPCServer.IDLE_EVENT_MONITOR, this, 60, TimeUnit.SECONDS);
+        IdleEventMonitor.start(NioServer.IDLE_EVENT_MONITOR, this, 60, TimeUnit.SECONDS);
         if (context.getCli().hasOption(CLI_CMD)) {
             System.out.println("my cli is called");
         }
@@ -57,8 +61,8 @@ public class MainRunner implements SummerInitializer, SummerRunner {
 //        log.error("test ex", ex);
 
         log.debug("beforeStart=" + context.getConfigDir());
-        SummerRunner plugin = context.getGuiceInjector().getInstance(Key.get(SummerRunner.class, Names.named("myplugin")));
-        plugin.run(null);
+        //SummerRunner plugin = context.getGuiceInjector().getInstance(Key.get(SummerRunner.class, Names.named("myplugin")));
+        //plugin.run(null);
 
         //MqttClient.send("hello mqtt1", "hello mqtt2");
         //HttpClient httpClient = new HttpClient();
@@ -88,5 +92,10 @@ public class MainRunner implements SummerInitializer, SummerRunner {
                 log.error("error", ex);
             }
         }
+    }
+
+    @Override
+    public void onIdle(IdleEventMonitor requestTracker) {
+        System.out.println(OffsetDateTime.now() + " MainRunner.onIdle: " + requestTracker.getName());
     }
 }

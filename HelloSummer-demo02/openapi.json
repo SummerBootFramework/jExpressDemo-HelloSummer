@@ -310,8 +310,8 @@
           "200" : {
             "description" : "inspection success with current version"
           },
-          "400" : {
-            "description" : "All other 4xx code. The client cannot continue and should not re-try again with the request without modification.",
+          "4xx" : {
+            "description" : "This class of status code is intended for situations in which the error seems to have been caused by the client. Client normally should not retransmit the same request again.",
             "content" : {
               "text/html" : {
                 "schema" : {
@@ -320,88 +320,8 @@
               }
             }
           },
-          "401" : {
-            "description" : "Unauthorized. The client should sign-on again, but not retransmit the same request again",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "403" : {
-            "description" : "Client has  no permission. Client should not retransmit the same request again.",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "404" : {
-            "description" : "Not Found. The client should not retransmit the same request again.",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "429" : {
-            "description" : "Too Many Requests",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "501" : {
-            "description" : "Not Implemented. The client can continue and try again with the request without modification.",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "503" : {
-            "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "504" : {
-            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "507" : {
-            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
+          "5xx" : {
+            "description" : "This class of status code is intended for situations in which the server is aware that it has encountered an error or is otherwise incapable of performing the request. The client can continue and try again with the request without modification.",
             "content" : {
               "text/html" : {
                 "schema" : {
@@ -482,8 +402,8 @@
               }
             }
           },
-          "400" : {
-            "description" : "All other 4xx code. The client cannot continue and should not re-try again with the request without modification.",
+          "4xx" : {
+            "description" : "This class of status code is intended for situations in which the error seems to have been caused by the client. Client normally should not retransmit the same request again.",
             "content" : {
               "*/*" : {
                 "schema" : {
@@ -492,88 +412,8 @@
               }
             }
           },
-          "401" : {
-            "description" : "Unauthorized. The client should sign-on again, but not retransmit the same request again",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "403" : {
-            "description" : "Client has  no permission. Client should not retransmit the same request again.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "404" : {
-            "description" : "Not Found. The client should not retransmit the same request again.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "429" : {
-            "description" : "Too Many Requests",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "501" : {
-            "description" : "Not Implemented. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "503" : {
-            "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "504" : {
-            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "507" : {
-            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
+          "5xx" : {
+            "description" : "This class of status code is intended for situations in which the server is aware that it has encountered an error or is otherwise incapable of performing the request. The client can continue and try again with the request without modification.",
             "content" : {
               "*/*" : {
                 "schema" : {
@@ -593,8 +433,8 @@
           "204" : {
             "description" : "success"
           },
-          "400" : {
-            "description" : "All other 4xx code. The client cannot continue and should not re-try again with the request without modification.",
+          "4xx" : {
+            "description" : "This class of status code is intended for situations in which the error seems to have been caused by the client. Client normally should not retransmit the same request again.",
             "content" : {
               "*/*" : {
                 "schema" : {
@@ -603,88 +443,8 @@
               }
             }
           },
-          "401" : {
-            "description" : "Unauthorized. The client should sign-on again, but not retransmit the same request again",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "403" : {
-            "description" : "Client has  no permission. Client should not retransmit the same request again.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "404" : {
-            "description" : "Not Found. The client should not retransmit the same request again.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "429" : {
-            "description" : "Too Many Requests",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "501" : {
-            "description" : "Not Implemented. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "503" : {
-            "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "504" : {
-            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "507" : {
-            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
+          "5xx" : {
+            "description" : "This class of status code is intended for situations in which the server is aware that it has encountered an error or is otherwise incapable of performing the request. The client can continue and try again with the request without modification.",
             "content" : {
               "*/*" : {
                 "schema" : {
@@ -743,8 +503,8 @@
               }
             }
           },
-          "400" : {
-            "description" : "All other 4xx code. The client cannot continue and should not re-try again with the request without modification.",
+          "4xx" : {
+            "description" : "This class of status code is intended for situations in which the error seems to have been caused by the client. Client normally should not retransmit the same request again.",
             "content" : {
               "*/*" : {
                 "schema" : {
@@ -753,88 +513,8 @@
               }
             }
           },
-          "401" : {
-            "description" : "Unauthorized. The client should sign-on again, but not retransmit the same request again",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "403" : {
-            "description" : "Client has  no permission. Client should not retransmit the same request again.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "404" : {
-            "description" : "Not Found. The client should not retransmit the same request again.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "429" : {
-            "description" : "Too Many Requests",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "501" : {
-            "description" : "Not Implemented. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "503" : {
-            "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "504" : {
-            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "507" : {
-            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
+          "5xx" : {
+            "description" : "This class of status code is intended for situations in which the server is aware that it has encountered an error or is otherwise incapable of performing the request. The client can continue and try again with the request without modification.",
             "content" : {
               "*/*" : {
                 "schema" : {
@@ -886,8 +566,8 @@
           "204" : {
             "description" : "success"
           },
-          "400" : {
-            "description" : "All other 4xx code. The client cannot continue and should not re-try again with the request without modification.",
+          "4xx" : {
+            "description" : "This class of status code is intended for situations in which the error seems to have been caused by the client. Client normally should not retransmit the same request again.",
             "content" : {
               "*/*" : {
                 "schema" : {
@@ -896,88 +576,8 @@
               }
             }
           },
-          "401" : {
-            "description" : "Unauthorized. The client should sign-on again, but not retransmit the same request again",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "403" : {
-            "description" : "Client has  no permission. Client should not retransmit the same request again.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "404" : {
-            "description" : "Not Found. The client should not retransmit the same request again.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "429" : {
-            "description" : "Too Many Requests",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "501" : {
-            "description" : "Not Implemented. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "503" : {
-            "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "504" : {
-            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "507" : {
-            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
+          "5xx" : {
+            "description" : "This class of status code is intended for situations in which the server is aware that it has encountered an error or is otherwise incapable of performing the request. The client can continue and try again with the request without modification.",
             "content" : {
               "*/*" : {
                 "schema" : {
@@ -1002,8 +602,8 @@
           "200" : {
             "description" : "running application version"
           },
-          "400" : {
-            "description" : "All other 4xx code. The client cannot continue and should not re-try again with the request without modification.",
+          "4xx" : {
+            "description" : "This class of status code is intended for situations in which the error seems to have been caused by the client. Client normally should not retransmit the same request again.",
             "content" : {
               "text/html" : {
                 "schema" : {
@@ -1012,88 +612,8 @@
               }
             }
           },
-          "401" : {
-            "description" : "Unauthorized. The client should sign-on again, but not retransmit the same request again",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "403" : {
-            "description" : "Client has  no permission. Client should not retransmit the same request again.",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "404" : {
-            "description" : "Not Found. The client should not retransmit the same request again.",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "429" : {
-            "description" : "Too Many Requests",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "All other 5xx code. Server errors due to unexpected failures. The client can continue and try again with the request without modification.",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "501" : {
-            "description" : "Not Implemented. The client can continue and try again with the request without modification.",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "503" : {
-            "description" : "Service Unavailable. The client can continue and try again with the request without modification.",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "504" : {
-            "description" : "Gateway Timeout. The client can continue and try again with the request without modification.",
-            "content" : {
-              "text/html" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ServiceError"
-                }
-              }
-            }
-          },
-          "507" : {
-            "description" : "Insufficient Storage. The client should contact the system administrator. Do not try the request again.",
+          "5xx" : {
+            "description" : "This class of status code is intended for situations in which the server is aware that it has encountered an error or is otherwise incapable of performing the request. The client can continue and try again with the request without modification.",
             "content" : {
               "text/html" : {
                 "schema" : {
@@ -1160,25 +680,28 @@
           "displayName" : {
             "type" : "string"
           },
-          "groups" : {
-            "uniqueItems" : true,
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          },
-          "uid" : {
-            "type" : "string"
-          },
-          "tenantName" : {
-            "type" : "string"
-          },
           "tokenTtlSec" : {
             "type" : "integer",
             "format" : "int64"
           },
           "tenantId" : {
             "type" : "number"
+          },
+          "tenantName" : {
+            "type" : "string"
+          },
+          "jti" : {
+            "type" : "string"
+          },
+          "uid" : {
+            "type" : "string"
+          },
+          "groups" : {
+            "uniqueItems" : true,
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
           }
         }
       },
@@ -1193,6 +716,12 @@
           },
           "errorDesc" : {
             "type" : "string"
+          },
+          "args" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object"
+            }
           }
         },
         "description" : "The optional error list"
@@ -1312,10 +841,13 @@
           "remoteIP" : {
             "type" : "object"
           },
-          "requesMethod" : {
+          "protocol" : {
+            "type" : "string"
+          },
+          "requestMethod" : {
             "$ref" : "#/components/schemas/HttpMethod"
           },
-          "requesURI" : {
+          "requestURI" : {
             "type" : "string"
           },
           "requestHeaders" : {
@@ -1499,10 +1031,19 @@
       }
     },
     "securitySchemes" : {
+      "BasicAuth" : {
+        "type" : "http",
+        "scheme" : "basic"
+      },
+      "ApiKeyAuth" : {
+        "type" : "apiKey",
+        "name" : "X-API-KEY",
+        "in" : "header"
+      },
       "BearerAuth" : {
         "type" : "http",
         "scheme" : "bearer",
-        "bearerFormat" : "Authorization: Bearer <token>"
+        "bearerFormat" : "Authorization: Bearer <JWT token>"
       }
     }
   }

@@ -3,7 +3,7 @@
     <option name="MAIN_CLASS_NAME" value="org.jexpress.demo.app.Main" />
     <module name="hellosummer" />
     <option name="PROGRAM_PARAMETERS" value="-domain dev -use RoleBased WebBased" />
-    <option name="VM_PARAMETERS" value="-Dopenssl -server -Xms1G -Xmx1G -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector -XX:+UseG1GC -Dio.netty.noUnsafe=true -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0 -XX:+AlwaysPreTouch -Djna.nosys=true -Dio.netty.leakDetectionLevel=advanced -Dcom.sun.management.jmxremote.port=9998 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false" />
+    <option name="VM_PARAMETERS" value="-Djava.awt.headless=true  -Xms2G -Xmx2G  -XX:+UseZGC -XX:ZUncommitDelay=300 -XX:+ZGenerational -XX:+AlwaysPreTouch  -XX:+PerfDisableSharedMem  -XX:+ZUncommit  -XX:+DisableExplicitGC  -XX:MaxDirectMemorySize=1g  -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=heapdump.hprof  -XX:+ExitOnOutOfMemoryError  -Xlog:gc*:file=gc.log:time,level,tags:filecount=5,filesize=10M  -Dfile.encoding=UTF-8  -Duser.timezone=America/Toronto  -Dio.netty.handler.ssl.openssl.engine.enable=true  -Dio.netty.leakDetectionLevel=SIMPLE  -Dio.netty.native.workdir=lib  -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector" />
     <option name="WORKING_DIRECTORY" value="run" />
     <method v="2">
       <option name="Make" enabled="true" />
