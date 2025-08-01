@@ -309,18 +309,18 @@ public class GrpcTest {
 
     private void test2WayAuth_step3_runClient(NettyChannelBuilder channelBuilder) {
         // connect to server
-        Hello1ClientImpl clent1 = new Hello1ClientImpl().withNettyChannelBuilder(channelBuilder).connect();
-        Hello2ClientImpl clent2 = new Hello2ClientImpl().withNettyChannelBuilder(channelBuilder).connect();
+        Hello1ClientImpl client1 = new Hello1ClientImpl().withNettyChannelBuilder(channelBuilder).connect();
+        Hello2ClientImpl client2 = new Hello2ClientImpl().withNettyChannelBuilder(channelBuilder).connect();
         try {
-            String g1 = clent1.hello("firstName", "lastName");
+            String g1 = client1.hello("firstName", "lastName");
             System.out.println("g1=" + g1);
             assertEquals(g1, BootConstant.APP_ID + " Hello1 " + "firstName lastName");
-            String g2 = clent2.hello("firstName", "lastName");
+            String g2 = client2.hello("firstName", "lastName");
             System.out.println("g2=" + g2);
             assertEquals(g2, BootConstant.APP_ID + " Hello2 " + "firstName lastName");
         } finally {
-            clent1.disconnect();
-            clent2.disconnect();
+            client1.disconnect();
+            client2.disconnect();
         }
     }
 }
