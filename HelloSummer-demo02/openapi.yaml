@@ -472,13 +472,6 @@ components:
           format: int32
         displayName:
           type: string
-        tokenTtlSec:
-          type: integer
-          format: int64
-        tenantId:
-          type: number
-        tenantName:
-          type: string
         jti:
           type: string
         uid:
@@ -488,6 +481,13 @@ components:
           type: array
           items:
             type: string
+        tenantId:
+          type: number
+        tenantName:
+          type: string
+        tokenTtlSec:
+          type: integer
+          format: int64
     Err:
       type: object
       properties:
