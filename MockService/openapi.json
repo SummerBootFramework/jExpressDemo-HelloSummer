@@ -497,15 +497,15 @@
           "uid" : {
             "type" : "string"
           },
+          "tenantName" : {
+            "type" : "string"
+          },
           "tenantId" : {
             "type" : "number"
           },
           "tokenTtlSec" : {
             "type" : "integer",
             "format" : "int64"
-          },
-          "tenantName" : {
-            "type" : "string"
           }
         }
       },

@@ -6,21 +6,21 @@
     <groupId>org.jexpress</groupId>
     <artifactId>gRPC-Client</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Hello Summer - gRPC-Client ${version}</name>
+    <name>Hello Summer - gRPC-Client ${project.version}</name>
     <url>https://github.com/SummerBootFramework/jExpressDemo-HelloSummer</url>
 
     <properties>
         <!-- common properties and dependencies -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
-        <maven-clean.version>3.4.0</maven-clean.version>
-        <maven-compiler.version>3.13.0</maven-compiler.version>
+        <maven-clean.version>3.4.1</maven-clean.version>
+        <maven-compiler.version>3.14.0</maven-compiler.version>
         <maven-dependency.version>3.8.1</maven-dependency.version>
         <maven-jar.version>3.4.2</maven-jar.version>
         <maven-resources.version>3.3.1</maven-resources.version>
-        <maven-surefire.version>3.5.2</maven-surefire.version>
-        <swagger-maven.version>2.2.30</swagger-maven.version>
-        <jexpress.version>2.6.0-SNAPSHOT</jexpress.version>
+        <maven-surefire.version>3.5.3</maven-surefire.version>
+        <swagger-maven.version>2.2.35</swagger-maven.version>
+        <jexpress.version>2.6.0</jexpress.version>
 
         <!-- application properties and dependencies-->
         <!-- protobuf and gRPC -->

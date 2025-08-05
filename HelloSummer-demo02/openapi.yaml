@@ -463,15 +463,6 @@ components:
     Caller:
       type: object
       properties:
-        groups:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-        jti:
-          type: string
-        uid:
-          type: string
         enabled:
           type: boolean
         id:
@@ -488,6 +479,15 @@ components:
           format: int64
         tenantId:
           type: number
+        jti:
+          type: string
+        groups:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        uid:
+          type: string
     Err:
       type: object
       properties:

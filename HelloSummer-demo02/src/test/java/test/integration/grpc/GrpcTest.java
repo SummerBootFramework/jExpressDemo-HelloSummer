@@ -41,7 +41,7 @@ public class GrpcTest extends GrpcTestBase {
 
     @Test
     public void test() throws GeneralSecurityException, IOException {
-        super.test();
+        super.runTest();
     }
 
     @Override
