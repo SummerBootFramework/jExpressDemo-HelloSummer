@@ -4,7 +4,7 @@ info:
   description: "To change to yours, just add @OpenAPIDefinition.info"
   contact:
     name: summerboot.org
-  version: jExpress 2.6.0
+  version: jExpress 2.6.1
 servers:
 - url: https://localhost:8211
   description: Local Development server
@@ -357,22 +357,22 @@ components:
           format: int32
         displayName:
           type: string
-        jti:
+        tenantId:
+          type: number
+        tenantName:
+          type: string
+        tokenTtlSec:
+          type: integer
+          format: int64
+        uid:
           type: string
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
-        uid:
+        jti:
           type: string
-        tenantName:
-          type: string
-        tenantId:
-          type: number
-        tokenTtlSec:
-          type: integer
-          format: int64
     Err:
       type: object
       properties:

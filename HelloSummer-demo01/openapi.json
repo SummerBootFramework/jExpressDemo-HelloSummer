@@ -237,19 +237,6 @@
           "displayName" : {
             "type" : "string"
           },
-          "tokenTtlSec" : {
-            "type" : "integer",
-            "format" : "int64"
-          },
-          "tenantId" : {
-            "type" : "number"
-          },
-          "tenantName" : {
-            "type" : "string"
-          },
-          "jti" : {
-            "type" : "string"
-          },
           "uid" : {
             "type" : "string"
           },
@@ -259,6 +246,19 @@
             "items" : {
               "type" : "string"
             }
+          },
+          "jti" : {
+            "type" : "string"
+          },
+          "tenantName" : {
+            "type" : "string"
+          },
+          "tenantId" : {
+            "type" : "number"
+          },
+          "tokenTtlSec" : {
+            "type" : "integer",
+            "format" : "int64"
           }
         }
       },

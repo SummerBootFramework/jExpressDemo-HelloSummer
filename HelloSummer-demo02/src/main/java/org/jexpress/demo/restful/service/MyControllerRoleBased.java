@@ -7,14 +7,16 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.servers.Server;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
+import jakarta.validation.constraints.Pattern;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.MatrixParam;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import org.jexpress.demo.app.instrumentation.HealthChecker;
 import org.summerboot.jexpress.boot.annotation.Controller;
-import org.summerboot.jexpress.boot.annotation.Deamon;
+import org.summerboot.jexpress.boot.annotation.Daemon;
 import org.summerboot.jexpress.boot.instrumentation.HealthMonitor;
 import org.summerboot.jexpress.nio.server.SessionContext;
 import org.summerboot.jexpress.nio.server.ws.rs.BootController;
@@ -56,7 +58,7 @@ public class MyControllerRoleBased extends BootController {
      */
     @GET
     @Path("/hello/anonymous/{number}")
-    @Deamon
+    @Daemon
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Pong anonymous(@PathParam("number") int number, SessionContext context) throws IOException {
         HealthChecker.a = number;
@@ -101,6 +103,13 @@ public class MyControllerRoleBased extends BootController {
     @RolesAllowed({"AppAdmin", "Employee"})
     public Pong adminorEmployeeOnly(SessionContext context) {
         return new Pong("Hello employee: " + context.caller(), context.txId());
+    }
+
+
+    @GET
+    @Path("/services/appname/v1/aaa/{pa1: [0-9]*}/bbb/{pa2:[a-zA-Z][a-zA-Z_0-9]}") // "/services/appname/v1/aaa/111;m4=88;m5=99;m1=123 ; m2=456 /bbb/a2;    m3=789  "
+    public Pong testPathParamWithRegex(@PathParam("pa1") int pa1Value, @PathParam("pa2") String pa2Value, @MatrixParam("m1") String m1Value, @MatrixParam("m2") String m2Value, @MatrixParam("m3") String m3Value, @MatrixParam("m4") @Pattern(regexp = "[0-9]*") int m4value, SessionContext context) {
+        return new Pong("testMatrixParamWithRegex", "pa1=" + pa1Value + ", pa2=" + pa2Value + ", m1=" + m1Value + ", m2=" + m2Value + ", m3=" + m3Value + ", m4=" + m4value + ", txId=" + context.txId());
     }
 
     public static class Pong {

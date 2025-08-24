@@ -12,7 +12,7 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import org.jexpress.demo.app.integration.grpc.Hello1Client;
 import org.summerboot.jexpress.boot.annotation.Controller;
-import org.summerboot.jexpress.boot.annotation.Deamon;
+import org.summerboot.jexpress.boot.annotation.Daemon;
 import org.summerboot.jexpress.nio.server.SessionContext;
 import org.summerboot.jexpress.nio.server.ws.rs.PingController;
 
@@ -50,7 +50,7 @@ public class SimpleWebController extends PingController {
 
     @GET
     @Path("hello/grpc/{input}")
-    @Deamon//(requiredHealthChecks = "ins1")
+    @Daemon//(requiredHealthChecks = "ins1")
     public MyResponse grpc(@PathParam("input") String input, SessionContext context) {
         String greeting = grpcClient1.bizFunction(input, "", context);
         if (greeting == null) {

@@ -405,6 +405,59 @@ paths:
                 $ref: "#/components/schemas/ServiceError"
       security:
       - BearerAuth: []
+  /hellosummer/services/appname/v1/aaa/{pa1}/bbb/{pa2}:
+    get:
+      operationId: testPathParamWithRegex
+      parameters:
+      - name: pa1
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: pa2
+        in: path
+        required: true
+        schema:
+          pattern: "[a-zA-Z][a-zA-Z_0-9]"
+          type: string
+      - name: m1
+        in: path
+        required: true
+        style: matrix
+        schema:
+          type: string
+      - name: m2
+        in: path
+        required: true
+        style: matrix
+        schema:
+          type: string
+      - name: m3
+        in: path
+        required: true
+        style: matrix
+        schema:
+          type: string
+      - name: m4
+        in: path
+        required: true
+        style: matrix
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: "#/components/schemas/SessionContext"
+      responses:
+        default:
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Pong"
   /hellosummer/version:
     get:
       tags:
@@ -472,13 +525,6 @@ components:
           format: int32
         displayName:
           type: string
-        tenantName:
-          type: string
-        tokenTtlSec:
-          type: integer
-          format: int64
-        tenantId:
-          type: number
         jti:
           type: string
         groups:
@@ -488,6 +534,13 @@ components:
             type: string
         uid:
           type: string
+        tenantId:
+          type: number
+        tenantName:
+          type: string
+        tokenTtlSec:
+          type: integer
+          format: int64
     Err:
       type: object
       properties:

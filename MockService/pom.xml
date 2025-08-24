@@ -20,7 +20,7 @@
         <maven-resources.version>3.3.1</maven-resources.version>
         <maven-surefire.version>3.5.3</maven-surefire.version>
         <swagger-maven.version>2.2.35</swagger-maven.version>
-        <jexpress.version>2.6.0</jexpress.version>
+        <jexpress.version>2.6.1-SNAPSHOT</jexpress.version>
         <elastic-apm.version>1.55.0</elastic-apm.version>
         <testng.version>7.11.0</testng.version>
 

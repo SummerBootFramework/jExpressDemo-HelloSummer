@@ -7,7 +7,7 @@ import org.jexpress.demo.grpc.client.Hello2ClientImpl;
 import org.jexpress.demo.grpc.impl.Hello1ServiceImpl_A;
 import org.jexpress.demo.grpc.impl.Hello2ServiceImpl_A;
 import org.summerboot.jexpress.boot.BootConstant;
-import org.summerboot.jexpress.nio.grpc.test.GrpcTestBase;
+import org.summerboot.jexpress.nio.grpc.GRPCTestHelper;
 import org.summerboot.jexpress.security.EncryptorUtil;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -20,7 +20,7 @@ import java.security.GeneralSecurityException;
 
 import static org.testng.Assert.assertEquals;
 
-public class GrpcTest extends GrpcTestBase {
+public class GrpcTest extends GRPCTestHelper {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -41,7 +41,7 @@ public class GrpcTest extends GrpcTestBase {
 
     @Test
     public void test() throws GeneralSecurityException, IOException {
-        super.runTest();
+        super.test2WayTLS();
     }
 
     @Override

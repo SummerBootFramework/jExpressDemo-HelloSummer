@@ -59,7 +59,7 @@
             </elementProp>
             <elementProp name="jwt" elementType="Argument">
               <stringProp name="Argument.name">jwt</stringProp>
-              <stringProp name="Argument.value">eyJhbGciOiJSUzUxMiJ9.eyJqdGkiOiIxLTQ1NkA2MjMxNjUtNSIsInN1YiI6InR6aGFuZyIsImF1ZCI6WyJBZG1pbkdyb3VwIiwiRW1wbG95ZWVHcm91cCJdLCJ0ZW5hbnROYW1lIjoiakV4cHJlc3MgT3JnIiwiZXhwIjoxNzUxNTY2MDQwLCJpYXQiOjE3NTE0Nzk2NDB9.qsq56fa_TqWe31KI-Q8hjSblZpEOd7aQb3hsYrnkfpeXg1EG8WEgaxGKO7ftp_99ibBTzbv6R_l_SDwr2fvTuhx3bYPq2OAUhWXnGWVk9jkK2obMrkrfXH8uUkrMmvxOK673omCTWaT61fS-Dmm7fD4lc_-GJplVJvDhtMvr9DMQjI5BDnt9fb55pJEfiLfS0kwwTIPxHgoO_FDN3I5TrACW0Slj6h4rin43SHI-5n3IVsLJgHk09RtIaI--UkjGXGKZSxFOiGgAGHejfmIXY8FXAIaL3yp8KIWWIGrKtU6jCiHOnYhL8JS4MOuZpkIldnCjkV1CjVHE6evItOLJvfuZMDlxjSLohrdFghQg1CurPPimHRkeZPAIfAUbrflCg4QjMFf57tD2qSOVK9nkgLnlJ_WvaX7GF8BgdEpbaZHYxwtNS5_PoEIWcXkNJ_03WH11WhttSEGemKwwBOf9AGOsMJn8gzhfj0cVVbLMljyvl9xdX5RB2QngXJl7gwoQd3kcJkK5EhwKlQlMZ7tSig_AlIT4sya0OGnrEtEtkzV4f-BXENPrCBVWPudXh7HiTLdAW_C1wws8hrmP5-_xToi7ZgdrIkdYq9LPuWjBVCjtdAVwiaQhyh6i_VmJAOLwi3NsMV5eCVnjw4VKbj1rsUfLIkrlitnPazuPNezO5UY</stringProp>
+              <stringProp name="Argument.value">eyJhbGciOiJSUzUxMiJ9.eyJqdGkiOiIxLTQ1NkAzOTUwMzktMiIsInN1YiI6InR6aGFuZyIsImF1ZCI6WyJBZG1pbkdyb3VwIiwiRW1wbG95ZWVHcm91cCJdLCJ0ZW5hbnROYW1lIjoiakV4cHJlc3MgT3JnIiwiZXhwIjoxNzU1MjgwNzg0LCJpYXQiOjE3NTUxOTQzODR9.m9pkWGSWvCXj1sGESP4iw6l1L8Hqp37k4WEP-N9jhbP9NTsIOeKygsVo5DDDGVZQg7BbYpTW_iwIUI2ChNZgKvvzuWUEkBlfMSMKL4IbzlJyFm6qnXS2zzsE4vOSp44zJE1H4Ab7g3H3Qdwr_3GOy95gSmDZjEW0lKiXt4OeGfJ0iIIbuMgF1bvAjdHqC6SwCbfVjCjMDuhUVBIKF1DIFKw9bxZn7knePXSZFxQng3s2aQmFunS2R7dkOMZmZGzLhmE6N1Q30gUpGgPxv4l9owrMxmfE2k-mpmGMnPuBf4SBETgQbDnB9gels-kC-lmGGVVL6fC_eV6-G-Sp9dL4I5lsw2iCWJD1E4hh7vhvFwAOnNTzLCN6dtlJ9M04cn1eym6lK1iLxFGO8O6WxUP6oI-9OVnEQF7spKig5ajqYlatVUu9tHg9Araxeed077MIe2IJTd8PDDtdx2AEZn6iS-QOdT-31ibyHaYZ-jbXHp1qgw7eCY3fp5RpN-UNBWnSkAJtN1RLt0jtKR1EuF1bnVls1X1JSlY80rsVYbkdzGlZr5PSZTItk0FHkUyFD8waSsWLI8DrLbvt21zaoRaseX1F4bt9QyFsL2Vp2-uCBVcR-vfA0ng6cVgpwAkDCfEB-mL3JmVbBza_1zZDMYYpbBN0W_wGCa42torStj1-EuI</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
           </collectionProp>
@@ -1232,6 +1232,49 @@
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">34</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="hello_jsontestMatrixParamWithRegex" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${context-root}/services/appname/v1/aaa/111;m4=8a8;m5=99;m1=123 ; m2=456 /bbb/a2;    m3=789  </stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization1</stringProp>
+                <stringProp name="Header.value">Bearer ${jwt}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
             <stringProp name="Assertion.custom_message"></stringProp>
           </ResponseAssertion>
           <hashTree/>
