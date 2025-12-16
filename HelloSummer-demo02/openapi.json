@@ -759,15 +759,15 @@
           "jti" : {
             "type" : "string"
           },
+          "uid" : {
+            "type" : "string"
+          },
           "groups" : {
             "uniqueItems" : true,
             "type" : "array",
             "items" : {
               "type" : "string"
             }
-          },
-          "uid" : {
-            "type" : "string"
           },
           "tenantId" : {
             "type" : "number"
@@ -859,6 +859,9 @@
           },
           "desc" : {
             "type" : "string"
+          },
+          "logLevel" : {
+            "$ref" : "#/components/schemas/Level"
           }
         }
       },
@@ -1053,6 +1056,53 @@
               },
               "message" : {
                 "type" : "string"
+              },
+              "suppressed" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "stackTrace" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "classLoaderName" : {
+                            "type" : "string"
+                          },
+                          "moduleName" : {
+                            "type" : "string"
+                          },
+                          "moduleVersion" : {
+                            "type" : "string"
+                          },
+                          "methodName" : {
+                            "type" : "string"
+                          },
+                          "fileName" : {
+                            "type" : "string"
+                          },
+                          "lineNumber" : {
+                            "type" : "integer",
+                            "format" : "int32"
+                          },
+                          "className" : {
+                            "type" : "string"
+                          },
+                          "nativeMethod" : {
+                            "type" : "boolean"
+                          }
+                        }
+                      }
+                    },
+                    "message" : {
+                      "type" : "string"
+                    },
+                    "localizedMessage" : {
+                      "type" : "string"
+                    }
+                  }
+                }
               },
               "localizedMessage" : {
                 "type" : "string"

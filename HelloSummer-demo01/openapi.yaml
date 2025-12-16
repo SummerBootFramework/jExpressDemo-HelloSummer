@@ -160,20 +160,20 @@ components:
           type: string
         uid:
           type: string
+        jti:
+          type: string
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
-        jti:
-          type: string
-        tenantName:
-          type: string
         tenantId:
           type: number
         tokenTtlSec:
           type: integer
           format: int64
+        tenantName:
+          type: string
     Err:
       type: object
       properties:
@@ -235,6 +235,8 @@ components:
           type: string
         desc:
           type: string
+        logLevel:
+          $ref: "#/components/schemas/Level"
     POI:
       type: object
       properties:
@@ -368,6 +370,37 @@ components:
                     type: boolean
             message:
               type: string
+            suppressed:
+              type: array
+              items:
+                type: object
+                properties:
+                  stackTrace:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        classLoaderName:
+                          type: string
+                        moduleName:
+                          type: string
+                        moduleVersion:
+                          type: string
+                        methodName:
+                          type: string
+                        fileName:
+                          type: string
+                        lineNumber:
+                          type: integer
+                          format: int32
+                        className:
+                          type: string
+                        nativeMethod:
+                          type: boolean
+                  message:
+                    type: string
+                  localizedMessage:
+                    type: string
             localizedMessage:
               type: string
         level:
