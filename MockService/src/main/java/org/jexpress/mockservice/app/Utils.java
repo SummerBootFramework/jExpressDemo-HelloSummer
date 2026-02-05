@@ -8,6 +8,7 @@ import org.graalvm.polyglot.Context;
 import org.summerboot.jexpress.boot.BootConstant;
 import org.summerboot.jexpress.nio.server.SessionContext;
 import org.summerboot.jexpress.security.JwtUtil;
+import org.summerboot.jexpress.security.SecurityUtil;
 import org.summerboot.jexpress.security.auth.AuthConfig;
 
 import javax.script.Invocable;
@@ -39,7 +40,7 @@ public class Utils {
 
 
     public static String escape4Filename(String s) {
-        return s.replaceAll("[?]", "_");
+        return SecurityUtil.escape4Filename(s);
     }
 
     public static Properties loadProperties(String fileName, boolean createIfNotExist) throws IOException {
@@ -105,7 +106,7 @@ public class Utils {
             // @return a postfix string, to append at the end of the response file name, which content will send back as response
             // example:
             // var headerValue = requestHeader["Content-Type"];
-            // var queryParamValue = queryParam.key1;
+            // var queryParamValue = queryParam.key1[0];
             // var jsonObject = JSON.parse(requestBody);
             // return headerValue.includes('json') ? 'json' : 'xml';
             """;
@@ -118,7 +119,7 @@ public class Utils {
             // @return a mocked response content
             // example:
             // var headerValue = requestHeader["Content-Type"];
-            // var queryParamValue = queryParam.key1;
+            // var queryParamValue = queryParam.key1[0];
             // var jsonObject = JSON.parse(requestBody);
             // return 'mocked response content';
             """;
