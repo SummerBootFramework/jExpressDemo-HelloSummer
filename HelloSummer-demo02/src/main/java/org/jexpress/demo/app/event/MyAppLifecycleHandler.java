@@ -1,47 +1,43 @@
 package org.jexpress.demo.app.event;
 
-import com.google.inject.Injector;
 import com.google.inject.Singleton;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
+import org.jexpress.demo.app.MyConfig;
 import org.jexpress.demo.app.MyInitializer;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 import org.summerboot.jexpress.boot.SummerApplication;
+import org.summerboot.jexpress.boot.annotation.Scheduled;
 import org.summerboot.jexpress.boot.annotation.Service;
 import org.summerboot.jexpress.boot.event.AppLifecycleHandler;
 import org.summerboot.jexpress.boot.event.AppLifecycleListener;
 import org.summerboot.jexpress.nio.IdleEventMonitor;
+import org.summerboot.jexpress.nio.grpc.GRPCServer;
+import org.summerboot.jexpress.nio.server.NioServer;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 @Singleton
 @Service(binding = AppLifecycleListener.class)
-public class MyAppLifecycleHandler extends AppLifecycleHandler {
-    private static final String CLI_CMD = "mycli";
+@Scheduled(cronField = "cronSettings")
+public class MyAppLifecycleHandler extends AppLifecycleHandler implements Job {
+    private static String[] cronSettings = MyConfig.cfg.getCronExpressions();
+
     private static final java.util.logging.Logger jul = java.util.logging.Logger.getLogger(MyInitializer.class.getName());
+    private static final String MY_IDLE_EVENT_MONITOR_ID = "MyIdleEventMonitor";
+
+    private IdleEventMonitor myIdleEventMonitor = new IdleEventMonitor(MY_IDLE_EVENT_MONITOR_ID) {
+        @Override
+        public long getIdleIntervalMillis() {
+            return TimeUnit.SECONDS.toMillis(MyConfig.cfg.getMyIdleThresholdSecond());
+        }
+    };
 
     @Override
-    public void initCLI(Options options) {
-        Option arg = Option.builder(CLI_CMD)
-                .desc("this is my cli")
-                .build();
-        options.addOption(arg);
-        Throwable ex = null;//new RuntimeException("test");
-        jul.log(java.util.logging.Level.INFO, "JUL log string={0} int={1}", new Object[]{"abc", 123});
-        log.info("Log4J2 log stirng={} int={}", "abc", 123, ex);
-    }
-
-    /**
-     * @param configDir
-     */
-    @Override
-    public void initAppBeforeIoC(File configDir) {
-        log.info(configDir);
-    }
-
-    @Override
-    public void initAppAfterIoC(File configDir, Injector guiceInjector) {
-        log.info(configDir);
+    public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+        log.info("onCron: " + jobExecutionContext);
+        String lastTransactionId = jobExecutionContext.getFireTime().toString();
+        myIdleEventMonitor.onCall("cron@" + lastTransactionId);
     }
 
 
@@ -73,14 +69,16 @@ public class MyAppLifecycleHandler extends AppLifecycleHandler {
 
     @Override
     public void onIdle(IdleEventMonitor idleEventMonitor) throws Exception {
-        System.out.println("My idle event monitor: " + idleEventMonitor.getName() + " " + idleEventMonitor.toString());
         switch (idleEventMonitor.getName()) {
-            case "GRPCServer":
-                TimeUnit.SECONDS.sleep(1);
-                break;
-            case "NioServer":
-                TimeUnit.SECONDS.sleep(2);
-                break;
+            case GRPCServer.IDLE_EVENT_MONITOR_ID -> {
+                //System.out.println("GRPCServer is idling");
+            }
+            case NioServer.IDLE_EVENT_MONITOR_ID -> {
+                //System.out.println("GRPCServer is idling");
+            }
+            case MY_IDLE_EVENT_MONITOR_ID -> {
+                log.debug("MyMonitor is idling");
+            }
         }
     }
 }

@@ -15,11 +15,11 @@ import jakarta.ws.rs.core.MediaType;
 import org.summerboot.jexpress.boot.annotation.Controller;
 import org.summerboot.jexpress.nio.server.SessionContext;
 import org.summerboot.jexpress.nio.server.domain.Err;
-import org.summerboot.jexpress.util.FormatterUtil;
+import org.summerboot.jexpress.nio.server.domain.ServiceRequest;
 
 import javax.script.ScriptException;
 import java.io.IOException;
-import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -41,10 +41,10 @@ public class MockServiceController {
     @PATCH
     @DELETE
     @Path("")
-    public String mockService(final String body, @Parameter(hidden = true) final SessionContext context) throws IOException, ScriptException, NoSuchMethodException {
+    public String mockService(final String body, ServiceRequest serviceRequest, @Parameter(hidden = true) final SessionContext context) throws IOException, ScriptException, NoSuchMethodException {
         // 1. get request URI
-        Map<String, String> queryParam = new LinkedHashMap();
-        String action = FormatterUtil.parseUrlQueryParam(context.uri(), queryParam);
+        Map<String, List<String>> queryParam = serviceRequest.getQueryParams();
+        String action = context.uriRawDecoded();
         // 2. check whitelist
         Set<String> whiteList = WhitelistConfig.cfg.getWhteList();
         if (whiteList != null && !whiteList.contains(action)) {
@@ -58,7 +58,7 @@ public class MockServiceController {
         return runMock(body, queryParam, context, filePath, level);
     }
 
-    protected String runMock(final String body, Map<String, String> queryParam, final SessionContext context, final String filePath, int level) throws IOException, ScriptException, NoSuchMethodException {
+    protected String runMock(final String body, Map<String, List<String>> queryParam, final SessionContext context, final String filePath, int level) throws IOException, ScriptException, NoSuchMethodException {
         String fileName = filePath + ".properties";
         context.memo(level + ".properties.file", fileName);
         Properties properties1 = Utils.loadProperties(fileName, true);

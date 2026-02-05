@@ -99,7 +99,7 @@ public class Utils {
     private static final String JS_CODE_POSTFIF = "}";
     public static final String JS_FILE_CONTENT = """
             // @param requestHeader as Map<String, String>
-            // @param queryParam as Map<String, String>
+            // @param queryParam as Map<String, List<String>>
             // @param requestBody as String
             // @param remoteAddress as String
             // @return a postfix string, to append at the end of the response file name, which content will send back as response
@@ -112,7 +112,7 @@ public class Utils {
 
     public static final String JS_RESPONSE_FILE_CONTENT = """
             // @param requestHeader as Map<String, String>
-            // @param queryParam as Map<String, String>
+            // @param queryParam as Map<String, List<String>>
             // @param requestBody as String
             // @param remoteAddress as String
             // @return a mocked response content
@@ -123,7 +123,7 @@ public class Utils {
             // return 'mocked response content';
             """;
 
-    public static String javascriptRuleEngine(String jsCode, List<Map.Entry<String, String>> headers, Map<String, String> queryParam, String requestBody, final SessionContext context) throws ScriptException, NoSuchMethodException {
+    public static String javascriptRuleEngine(String jsCode, List<Map.Entry<String, String>> headers, Map<String, List<String>> queryParam, String requestBody, final SessionContext context) throws ScriptException, NoSuchMethodException {
         if (StringUtils.isBlank(jsCode)) {
             return null;
         }

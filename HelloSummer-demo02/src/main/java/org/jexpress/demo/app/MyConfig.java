@@ -23,13 +23,17 @@ public class MyConfig extends BootConfig {
     private MyConfig() {
     }
 
-    @ConfigHeader(title = "My Header description")
+    @ConfigHeader(title = "1. Secret things")
     @JsonIgnore
-    @Config(key = "my.licenseKey", validate = Config.Validate.Encrypted, required = true)
+    @Config(key = "secret.licenseKey", validate = Config.Validate.Encrypted, required = true)
     protected volatile String licenseKey;
 
-    @Config(key = "my.licenseKeys", defaultValue = "0 0/5 14,18 * * ? ; 0 10,44 14 ? 3 WED", collectionDelimiter = ";")
-    protected volatile String[] licenseKesy;
+    @ConfigHeader(title = "2. Timer")
+    @Config(key = "scheduler.cronExpressions", defaultValue = "0 0/5 14,18 * * ? ; 0 10,44 14 ? 3 WED; 0/5 0 0 ? * * *", collectionDelimiter = ";")
+    protected volatile String[] cronExpressions;
+
+    @Config(key = "idle.hresholdSecond", defaultValue = "7")
+    protected volatile int myIdleThresholdSecond;
 
     @Override
     protected void loadCustomizedConfigs(File cfgFile, boolean isNotMock, ConfigUtil helper, Properties props) throws Exception {
@@ -41,5 +45,13 @@ public class MyConfig extends BootConfig {
 
     public String getLicenseKey() {
         return licenseKey;
+    }
+
+    public String[] getCronExpressions() {
+        return cronExpressions;
+    }
+
+    public int getMyIdleThresholdSecond() {
+        return myIdleThresholdSecond;
     }
 }
