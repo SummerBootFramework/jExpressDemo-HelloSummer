@@ -32,7 +32,7 @@ public class WhitelistConfig extends BootConfig {
     }
 
     @ConfigHeader(title = "My Header description")
-    @Config(key = "whitelist", desc = "accept all if not specified, or specify a CSV of URIs to whitelist, e.g. /service1/action1,/service1/action2")
+    @Config(key = "whitelist", desc = "accept all if not specified, or specify a CSV of URIs or regex of RUL to whitelist, e.g. /myservice/.* , /service1/action1/ , /service1/action2")
     protected volatile Set<String> whteList;
 
     public Set<String> getWhteList() {

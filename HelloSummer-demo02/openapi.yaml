@@ -525,6 +525,15 @@ components:
           format: int32
         displayName:
           type: string
+        groups:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        uid:
+          type: string
+        jti:
+          type: string
         tenantId:
           type: number
         tokenTtlSec:
@@ -532,15 +541,6 @@ components:
           format: int64
         tenantName:
           type: string
-        uid:
-          type: string
-        jti:
-          type: string
-        groups:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
     Err:
       type: object
       properties:
@@ -647,7 +647,7 @@ components:
           type: string
         requestMethod:
           $ref: "#/components/schemas/HttpMethod"
-        requestURI:
+        httpRequestUriRawDecoded:
           type: string
         requestHeaders:
           $ref: "#/components/schemas/HttpHeaders"

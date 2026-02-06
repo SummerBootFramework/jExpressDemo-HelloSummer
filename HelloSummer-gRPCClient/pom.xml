@@ -20,12 +20,12 @@
         <maven-resources.version>3.3.1</maven-resources.version>
         <maven-surefire.version>3.5.3</maven-surefire.version>
         <swagger-maven.version>2.2.41</swagger-maven.version>
-        <jexpress.version>2.6.4</jexpress.version>
+        <jexpress.version>2.6.6-SNAPSHOT</jexpress.version>
 
         <!-- application properties and dependencies-->
         <!-- protobuf and gRPC -->
-        <protobuf.version>4.33.2</protobuf.version>
-        <grpc.version>1.77.0</grpc.version>
+        <protobuf.version>4.33.5</protobuf.version>
+        <grpc.version>1.79.0</grpc.version>
     </properties>
 
     <dependencies>

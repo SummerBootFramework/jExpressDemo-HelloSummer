@@ -756,6 +756,19 @@
           "displayName" : {
             "type" : "string"
           },
+          "groups" : {
+            "uniqueItems" : true,
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "uid" : {
+            "type" : "string"
+          },
+          "jti" : {
+            "type" : "string"
+          },
           "tenantId" : {
             "type" : "number"
           },
@@ -765,19 +778,6 @@
           },
           "tenantName" : {
             "type" : "string"
-          },
-          "uid" : {
-            "type" : "string"
-          },
-          "jti" : {
-            "type" : "string"
-          },
-          "groups" : {
-            "uniqueItems" : true,
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
           }
         }
       },
@@ -926,7 +926,7 @@
           "requestMethod" : {
             "$ref" : "#/components/schemas/HttpMethod"
           },
-          "requestURI" : {
+          "httpRequestUriRawDecoded" : {
             "type" : "string"
           },
           "requestHeaders" : {

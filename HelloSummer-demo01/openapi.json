@@ -224,21 +224,15 @@
       "Caller" : {
         "type" : "object",
         "properties" : {
-          "enabled" : {
-            "type" : "boolean"
+          "tenantName" : {
+            "type" : "string"
           },
-          "id" : {
+          "tenantId" : {
             "type" : "number"
           },
-          "type" : {
+          "tokenTtlSec" : {
             "type" : "integer",
-            "format" : "int32"
-          },
-          "displayName" : {
-            "type" : "string"
-          },
-          "uid" : {
-            "type" : "string"
+            "format" : "int64"
           },
           "jti" : {
             "type" : "string"
@@ -250,14 +244,20 @@
               "type" : "string"
             }
           },
-          "tenantId" : {
+          "uid" : {
+            "type" : "string"
+          },
+          "enabled" : {
+            "type" : "boolean"
+          },
+          "id" : {
             "type" : "number"
           },
-          "tokenTtlSec" : {
+          "type" : {
             "type" : "integer",
-            "format" : "int64"
+            "format" : "int32"
           },
-          "tenantName" : {
+          "displayName" : {
             "type" : "string"
           }
         }
@@ -407,7 +407,7 @@
           "requestMethod" : {
             "$ref" : "#/components/schemas/HttpMethod"
           },
-          "requestURI" : {
+          "httpRequestUriRawDecoded" : {
             "type" : "string"
           },
           "requestHeaders" : {

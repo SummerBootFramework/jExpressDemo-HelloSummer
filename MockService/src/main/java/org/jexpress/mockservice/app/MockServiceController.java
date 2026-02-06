@@ -16,6 +16,7 @@ import org.summerboot.jexpress.boot.annotation.Controller;
 import org.summerboot.jexpress.nio.server.SessionContext;
 import org.summerboot.jexpress.nio.server.domain.Err;
 import org.summerboot.jexpress.nio.server.domain.ServiceRequest;
+import org.summerboot.jexpress.security.SecurityUtil;
 
 import javax.script.ScriptException;
 import java.io.IOException;
@@ -44,13 +45,22 @@ public class MockServiceController {
     public String mockService(final String body, ServiceRequest serviceRequest, @Parameter(hidden = true) final SessionContext context) throws IOException, ScriptException, NoSuchMethodException {
         // 1. get request URI
         Map<String, List<String>> queryParam = serviceRequest.getQueryParams();
-        String action = context.uriRawDecoded();
+        String action = serviceRequest.getHttpRequestPath();
         // 2. check whitelist
         Set<String> whiteList = WhitelistConfig.cfg.getWhteList();
         if (whiteList != null && !whiteList.contains(action)) {
-            Err e = new Err(400, "", "URI " + action + " is not in whitelist", null, null);
-            context.error(e).status(HttpResponseStatus.FORBIDDEN);
-            return null;
+            boolean match = false;
+            for (String whiteListPath : whiteList) {
+                if (action.startsWith(whiteListPath) || SecurityUtil.matches(action, whiteListPath)) {
+                    match = true;
+                    break;
+                }
+            }
+            if (!match) {
+                Err e = new Err(400, "", "URI " + action + " is not in whitelist", null, null);
+                context.error(e).status(HttpResponseStatus.FORBIDDEN);
+                return null;
+            }
         }
         // 3. load root properties
         String filePath = "mock_response" + action + "_" + context.method();

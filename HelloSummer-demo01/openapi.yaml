@@ -149,6 +149,22 @@ components:
     Caller:
       type: object
       properties:
+        tenantName:
+          type: string
+        tenantId:
+          type: number
+        tokenTtlSec:
+          type: integer
+          format: int64
+        jti:
+          type: string
+        groups:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        uid:
+          type: string
         enabled:
           type: boolean
         id:
@@ -157,22 +173,6 @@ components:
           type: integer
           format: int32
         displayName:
-          type: string
-        uid:
-          type: string
-        jti:
-          type: string
-        groups:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-        tenantId:
-          type: number
-        tokenTtlSec:
-          type: integer
-          format: int64
-        tenantName:
           type: string
     Err:
       type: object
@@ -280,7 +280,7 @@ components:
           type: string
         requestMethod:
           $ref: "#/components/schemas/HttpMethod"
-        requestURI:
+        httpRequestUriRawDecoded:
           type: string
         requestHeaders:
           $ref: "#/components/schemas/HttpHeaders"
