@@ -20,7 +20,7 @@
         <maven-resources.version>3.3.1</maven-resources.version>
         <maven-surefire.version>3.5.3</maven-surefire.version>
         <swagger-maven.version>2.2.42</swagger-maven.version>
-        <jexpress.version>2.6.6-SNAPSHOT</jexpress.version>
+        <jexpress.version>2.6.6</jexpress.version>
         <elastic-apm.version>1.55.0</elastic-apm.version>
         <testng.version>7.12.0</testng.version>
 
@@ -220,6 +220,14 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire.version}</version>
+                <configuration>
+                    <argLine>-Djava.awt.headless=true -Xms2G -Xmx2G -XX:+UseZGC -XX:ZUncommitDelay=300 -XX:+ZGenerational -XX:+AlwaysPreTouch -XX:+PerfDisableSharedMem
+                        -XX:+ZUncommit -XX:+DisableExplicitGC -XX:MaxDirectMemorySize=1g -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=heapdump.hprof -XX:+ExitOnOutOfMemoryError
+                        -Xlog:gc*:file=gc.log:time,level,tags:filecount=5,filesize=10M -Dfile.encoding=UTF-8 -Duser.timezone=America/Toronto -Djava.security.egd=file:/dev/./urandom
+                        -Dio.netty.handler.ssl.openssl.engine.enable=true -Dio.netty.leakDetectionLevel=SIMPLE -Dio.netty.native.workdir=lib
+                        -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+                    </argLine>
+                </configuration>
             </plugin>
         </plugins>
         <pluginManagement>

@@ -87,12 +87,13 @@ public class Utils {
 //        }
 //        Set<String> g = rm.getGroups();
 //        String audience = FormatterUtil.toCSV(g);
+        ;
 
         JwtBuilder jb = Jwts.builder()
-                .setId(id)
-                .setIssuer(issuer)
-                .setSubject(subject)
-                .setAudience(audience);
+                .id(id)
+                .issuer(issuer)
+                .subject(subject);
+        jb.audience().add(List.of(audience));
         return JwtUtil.createJWT(AuthConfig.cfg.getJwtSigningKey(), jb, Duration.ofMinutes(ttlMinutes));
     }
 

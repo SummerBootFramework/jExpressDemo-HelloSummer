@@ -756,18 +756,18 @@
           "displayName" : {
             "type" : "string"
           },
+          "uid" : {
+            "type" : "string"
+          },
+          "jti" : {
+            "type" : "string"
+          },
           "groups" : {
             "uniqueItems" : true,
             "type" : "array",
             "items" : {
               "type" : "string"
             }
-          },
-          "uid" : {
-            "type" : "string"
-          },
-          "jti" : {
-            "type" : "string"
           },
           "tenantId" : {
             "type" : "number"

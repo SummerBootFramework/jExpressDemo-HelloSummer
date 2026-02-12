@@ -149,22 +149,6 @@ components:
     Caller:
       type: object
       properties:
-        tenantName:
-          type: string
-        tenantId:
-          type: number
-        tokenTtlSec:
-          type: integer
-          format: int64
-        jti:
-          type: string
-        groups:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-        uid:
-          type: string
         enabled:
           type: boolean
         id:
@@ -173,6 +157,22 @@ components:
           type: integer
           format: int32
         displayName:
+          type: string
+        tenantId:
+          type: number
+        tenantName:
+          type: string
+        tokenTtlSec:
+          type: integer
+          format: int64
+        groups:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        uid:
+          type: string
+        jti:
           type: string
     Err:
       type: object
