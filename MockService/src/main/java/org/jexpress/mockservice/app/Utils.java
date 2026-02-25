@@ -10,6 +10,8 @@ import org.summerboot.jexpress.nio.server.SessionContext;
 import org.summerboot.jexpress.security.JwtUtil;
 import org.summerboot.jexpress.security.SecurityUtil;
 import org.summerboot.jexpress.security.auth.AuthConfig;
+import org.summerboot.jexpress.security.auth.Caller;
+import org.summerboot.jexpress.security.auth.RoleMapping;
 
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
@@ -30,6 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import static org.summerboot.jexpress.util.FormatterUtil.EMPTY_STR_ARRAY;
 
@@ -97,32 +100,22 @@ public class Utils {
         return JwtUtil.createJWT(AuthConfig.cfg.getJwtSigningKey(), jb, Duration.ofMinutes(ttlMinutes));
     }
 
-    private static final String JS_CODE_PREFIX = BootConstant.BR + "function ruleEngine(requestHeader, queryParam, requestBody, remoteAddress) {" + BootConstant.BR;
+    private static final String FUNCTION_NAME = "ruleEngine";
+
+    private static final String JS_CODE_PREFIX = BootConstant.BR + "function " + FUNCTION_NAME + "(remoteAddress, uid, requestHeader, queryParam, requestBody) {" + BootConstant.BR;
     private static final String JS_CODE_POSTFIF = "}";
     public static final String JS_FILE_CONTENT = """
+            // @param remoteAddress as String
+            // @param uid as String (from JWT)
             // @param requestHeader as Map<String, String>
             // @param queryParam as Map<String, List<String>>
             // @param requestBody as String
-            // @param remoteAddress as String
             // @return a postfix string, to append at the end of the response file name, which content will send back as response
             // example:
             // var headerValue = requestHeader["Content-Type"];
             // var queryParamValue = queryParam.key1[0];
             // var jsonObject = JSON.parse(requestBody);
             // return headerValue.includes('json') ? 'json' : 'xml';
-            """;
-
-    public static final String JS_RESPONSE_FILE_CONTENT = """
-            // @param requestHeader as Map<String, String>
-            // @param queryParam as Map<String, List<String>>
-            // @param requestBody as String
-            // @param remoteAddress as String
-            // @return a mocked response content
-            // example:
-            // var headerValue = requestHeader["Content-Type"];
-            // var queryParamValue = queryParam.key1[0];
-            // var jsonObject = JSON.parse(requestBody);
-            // return 'mocked response content';
             """;
 
     public static String javascriptRuleEngine(String jsCode, List<Map.Entry<String, String>> headers, Map<String, List<String>> queryParam, String requestBody, final SessionContext context) throws ScriptException, NoSuchMethodException {
@@ -151,19 +144,41 @@ public class Utils {
             return null;
         }
         String jsFunctionCode = JS_CODE_PREFIX + sb.toString() + JS_CODE_POSTFIF;
+        context.memo("jsCode", jsFunctionCode);
 
         String remoteAddress = null;
+        String uid = null;
         if (context != null) {
-            context.memo("jsCode", jsFunctionCode);
             InetSocketAddress saddr = (InetSocketAddress) context.remoteIP();
             InetAddress addr = saddr.getAddress();
             remoteAddress = addr.getCanonicalHostName();
+            Caller caller = context.caller();
+            if (caller != null) {
+                uid = caller.getUid();
+            }
         }
 
         ScriptEngine graalEngine = GraalJSScriptEngine.create(null, Context.newBuilder("js").allowAllAccess(true));
         graalEngine.eval(jsFunctionCode);
         Invocable invocable = (Invocable) graalEngine;
-        Object result = invocable.invokeFunction("ruleEngine", requestHeader, queryParam, requestBody, remoteAddress);
+        Object result = invocable.invokeFunction(FUNCTION_NAME, remoteAddress, uid, requestHeader, queryParam, requestBody);
         return result == null ? null : result.toString();
+    }
+
+    public static String generateJWT(String userId, String role, int ttlMinutes) {
+        RoleMapping rm = AuthConfig.cfg.getRole(role);
+        Set<String> groupNames;
+        if (rm != null) {
+            groupNames = rm.getGroups();
+        } else {
+            groupNames = Set.of("group1", "group2");
+        }
+
+        JwtBuilder builder = Jwts.builder()
+                .id(userId + System.currentTimeMillis())
+                .issuer("MockService")
+                .subject(userId);
+        builder.audience().add(groupNames);
+        return JwtUtil.createJWT(AuthConfig.cfg.getJwtSigningKey(), builder, Duration.ofMinutes(ttlMinutes));
     }
 }

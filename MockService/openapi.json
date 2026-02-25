@@ -484,11 +484,15 @@
           "displayName" : {
             "type" : "string"
           },
-          "uid" : {
+          "tenantId" : {
+            "type" : "number"
+          },
+          "tenantName" : {
             "type" : "string"
           },
-          "jti" : {
-            "type" : "string"
+          "tokenTtlSec" : {
+            "type" : "integer",
+            "format" : "int64"
           },
           "groups" : {
             "uniqueItems" : true,
@@ -497,14 +501,10 @@
               "type" : "string"
             }
           },
-          "tenantId" : {
-            "type" : "number"
+          "jti" : {
+            "type" : "string"
           },
-          "tokenTtlSec" : {
-            "type" : "integer",
-            "format" : "int64"
-          },
-          "tenantName" : {
+          "uid" : {
             "type" : "string"
           }
         }

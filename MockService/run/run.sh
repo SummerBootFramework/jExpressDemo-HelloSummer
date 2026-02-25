@@ -16,4 +16,4 @@ PATH=/usr/lib/jvm/java21/bin/:$PATH
  -Dio.netty.handler.ssl.openssl.engine.enable=true \
  -Dio.netty.leakDetectionLevel=SIMPLE \
  -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector \
- -jar MockService-1.0.4.jar
+ -jar MockService-1.0.5.jar

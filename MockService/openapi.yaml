@@ -357,21 +357,21 @@ components:
           format: int32
         displayName:
           type: string
-        uid:
+        tenantId:
+          type: number
+        tenantName:
           type: string
-        jti:
-          type: string
+        tokenTtlSec:
+          type: integer
+          format: int64
         groups:
           uniqueItems: true
           type: array
           items:
             type: string
-        tenantId:
-          type: number
-        tokenTtlSec:
-          type: integer
-          format: int64
-        tenantName:
+        jti:
+          type: string
+        uid:
           type: string
     Err:
       type: object

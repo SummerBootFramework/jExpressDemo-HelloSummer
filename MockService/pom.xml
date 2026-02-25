@@ -5,7 +5,7 @@
     <packaging>jar</packaging>
     <groupId>org.jexpress.mockservice</groupId>
     <artifactId>MockService</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <name>Hello Summer - MockService ${project.version}</name>
     <url>https://github.com/SummerBootFramework/jExpressDemo-HelloSummer</url>
 
@@ -27,7 +27,7 @@
         <!-- application properties and dependencies-->
         <main.class>${api.package}.app.Main</main.class>
         <api.package>${groupId}</api.package>
-        <graalvm.version>23.0.9</graalvm.version>
+        <graalvm.version>25.0.2</graalvm.version>
     </properties>
 
     <dependencies>
@@ -56,11 +56,14 @@
             </exclusions>
         </dependency>
 
+        <!-- Source: https://mvnrepository.com/artifact/org.graalvm.js/js -->
         <dependency>
             <groupId>org.graalvm.js</groupId>
             <artifactId>js</artifactId>
             <version>${graalvm.version}</version>
+            <type>pom</type>
         </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/org.graalvm.js/js-scriptengine -->
         <dependency>
             <groupId>org.graalvm.js</groupId>
             <artifactId>js-scriptengine</artifactId>
@@ -221,10 +224,14 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire.version}</version>
                 <configuration>
-                    <argLine>-Djava.awt.headless=true -Xms2G -Xmx2G -XX:+UseZGC -XX:ZUncommitDelay=300 -XX:+ZGenerational -XX:+AlwaysPreTouch -XX:+PerfDisableSharedMem
-                        -XX:+ZUncommit -XX:+DisableExplicitGC -XX:MaxDirectMemorySize=1g -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=heapdump.hprof -XX:+ExitOnOutOfMemoryError
-                        -Xlog:gc*:file=gc.log:time,level,tags:filecount=5,filesize=10M -Dfile.encoding=UTF-8 -Duser.timezone=America/Toronto -Djava.security.egd=file:/dev/./urandom
-                        -Dio.netty.handler.ssl.openssl.engine.enable=true -Dio.netty.leakDetectionLevel=SIMPLE -Dio.netty.native.workdir=lib
+                    <argLine>-Djava.awt.headless=true -Xms2G -Xmx2G -XX:+UseZGC -XX:ZUncommitDelay=300
+                        -XX:+ZGenerational -XX:+AlwaysPreTouch -XX:+PerfDisableSharedMem
+                        -XX:+ZUncommit -XX:+DisableExplicitGC -XX:MaxDirectMemorySize=1g -XX:+HeapDumpOnOutOfMemoryError
+                        -XX:HeapDumpPath=heapdump.hprof -XX:+ExitOnOutOfMemoryError
+                        -Xlog:gc*:file=gc.log:time,level,tags:filecount=5,filesize=10M -Dfile.encoding=UTF-8
+                        -Duser.timezone=America/Toronto -Djava.security.egd=file:/dev/./urandom
+                        -Dio.netty.handler.ssl.openssl.engine.enable=true -Dio.netty.leakDetectionLevel=SIMPLE
+                        -Dio.netty.native.workdir=lib
                         -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
                     </argLine>
                 </configuration>

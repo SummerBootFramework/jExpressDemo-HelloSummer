@@ -17,4 +17,4 @@ java -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:5005 \
  -Dio.netty.handler.ssl.openssl.engine.enable=true \
  -Dio.netty.leakDetectionLevel=SIMPLE \
  -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector \
- -jar MockService-1.0.4.jar -debug
+ -jar MockService-1.0.5.jar -debug

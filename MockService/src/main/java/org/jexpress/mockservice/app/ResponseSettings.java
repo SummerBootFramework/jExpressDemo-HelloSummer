@@ -65,7 +65,7 @@ public class ResponseSettings {
         v = properties.getProperty(KEY_JS_AS_SWITCH);
         if (v != null) {
             jsResponseAsSwitch = Boolean.parseBoolean(v);
-            properties.remove(KEY_RUN_RESPONSE_AS_JS);
+            properties.remove(KEY_JS_AS_SWITCH);
         } else {
             jsResponseAsSwitch = true;
         }
