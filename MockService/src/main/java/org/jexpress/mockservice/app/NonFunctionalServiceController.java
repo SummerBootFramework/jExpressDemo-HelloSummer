@@ -36,7 +36,7 @@ public class NonFunctionalServiceController extends BootController {
 
     private static final String X_AUTH_TOKEN = "X-AuthToken";
 
-    // curl -v -k https://localhost:8211/mockservice/jwt/10 -X POST -H "application/x-www-form-urlencoded; charset=UTF-8" -X POST -d "id=myid&issuer=myissuer&subject=mysubject&audience=myaudience"
+    // curl -v -k https://localhost:8211/mockservice/jwt/1440 -X POST -H "application/x-www-form-urlencoded; charset=UTF-8" -X POST -d "userId=myId&role=myRole&group=myGroup"
     @POST
     @Path("/jwt/{ttlMinutes}")
     @Log(requestBody = false, responseHeader = false)
@@ -51,21 +51,20 @@ public class NonFunctionalServiceController extends BootController {
                             },
                             content = @Content(schema = @Schema(implementation = Caller.class))
                     ),
-                    @ApiResponse(responseCode = "4XX", description = "A fault has taken place on client side. Client should not retransmit the same request again, but fix the error first.",
+                    @ApiResponse(responseCode = "4XX", description = DESC_4xx,
                             content = @Content(schema = @Schema(implementation = ServiceError.class))
                     ),
-                    @ApiResponse(responseCode = "5XX", description = "Something happened on the server side. The client can continue and try again with the request without modification.",
+                    @ApiResponse(responseCode = "5XX", description = DESC_5xx,
                             content = @Content(schema = @Schema(implementation = ServiceError.class))
                     )
             }
     )
     public void generateJWT(@PathParam("ttlMinutes") int ttlMinutes,
-                            @FormParam("id") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String id,
-                            @FormParam("issuer") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String issuer,
-                            @FormParam("subject") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String subject,
-                            @FormParam("audience") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String audience,
+                            @FormParam("userId") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String userId,
+                            @FormParam("role") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String role,
+                            @FormParam("group") @Pattern(regexp = USER_INPUT_VALIDATION_REGEX) String audience,
                             @Parameter(hidden = true) final SessionContext context) {
-        String jwt = Utils.generateJWT(id, issuer, subject, audience, ttlMinutes);
+        String jwt = Utils.generateJWT(ttlMinutes, userId, role, audience);
         context.responseHeader(X_AUTH_TOKEN, jwt).status(HttpResponseStatus.CREATED);
     }
 

@@ -1,4 +1,7 @@
-PATH=/usr/lib/jvm/java21/bin/:$PATH
+#PATH=/usr/lib/jvm/java21/bin/:$PATH
+JAVA_PATH=$(find /usr/lib/jvm -name "java21*" -type d | head -1)
+echo "${JAVA_PATH}"
+${JAVA_PATH}/bin/java \
  -Djava.awt.headless=true \
  -Xms2G -Xmx2G \
  -XX:+UseZGC -XX:ZUncommitDelay=300 -XX:+ZGenerational -XX:+AlwaysPreTouch \
@@ -16,4 +19,4 @@ PATH=/usr/lib/jvm/java21/bin/:$PATH
  -Dio.netty.handler.ssl.openssl.engine.enable=true \
  -Dio.netty.leakDetectionLevel=SIMPLE \
  -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector \
- -jar MockService-1.0.5.jar
+ -jar MockService-1.1.0.jar
